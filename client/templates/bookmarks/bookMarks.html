@@ -1,32 +1,21 @@
 <!-- 书签管理 -->
 <template name="bookMarks">
-  {{#contentFor "headerButtonLeft"}}
-    {{>ionNavBackButton path="index"}}
-  {{/contentFor}}
 
-  {{#contentFor "headerTitle"}}
-    <h1 class="title">Action Sheet</h1>
-  {{/contentFor}}
+ {{#contentFor "headerButtonLeft"}}
+   <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+     菜单
+   </button> 
+ {{/contentFor}}
 
-  {{#ionView}}
-    {{#ionContent}}
-      <div class="padding">
-        <button class="button button-large button-stable" data-action="showActionSheet">
-          Show Action Sheet
-        </button>
-      </div>
-    {{/ionContent}}
-  {{/ionView}}
+ {{#contentFor "headerTitle"}}
+    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
+ {{/contentFor}}
+
+ <div class="bar bar-header bar-dark">
+ 	<button class="button button-clear pull-left">
+	       返回
+	</button>
+    <h1 class="title">书签管理</h1>
+ </div>
+
 </template>
-<!-- 
-<template name="bookMarks">
-	{{#contentFor "headerButtonLeft"}}
-	    <button class="button button-clear pull-left" data-ion-modal="main">
-	    	返回
-	    </button> 
- 	{{/contentFor}}
-
-  	{{#contentFor "headerTitle"}}
-    	<h1 class="title">书签管理</h1>
-  	{{/contentFor}}
-</template> -->
