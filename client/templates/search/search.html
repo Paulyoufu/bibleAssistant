@@ -33,17 +33,27 @@
 
 
     {{#ionView}}
+
         {{#ionContent}}
           <!--  <button id="btn" style="height:50px;">ok1111</button>
            <div id="bk"></div>-->
-        <div style="position:absolute;position:fixed;margin-top:60px;">
-        <button id="old">old</button><button id="new">new</button>
-        </div>
-            <div style="margin-top:100px;" class="list">
+          <!--  <div style="z-index:2;position:fixed;margin-top:60px;">
+                <button id="old" class="button button-positive">旧约</button><button id="new" class="button button-stable">新约</button>
+            </div>-->
+            <div id="divBookLists" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">
                 {{#each booksList}}
                     {{> bookItem}}
                 {{/each}}
             </div>
         {{/ionContent}}
+        <div class="tabs">
+            <a class="tab-item chooseOrAndNew" id="old">
+                旧约
+            </a>
+
+            <a class="tab-item" id="new">
+                新约
+            </a>
+        </div>
     {{/ionView}}
 </template>
