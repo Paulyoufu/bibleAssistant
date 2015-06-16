@@ -1,6 +1,6 @@
 Template.main.rendered = function()
 {
-	
+   // getBooksList(0);
 };
 
 Template.main.helpers({

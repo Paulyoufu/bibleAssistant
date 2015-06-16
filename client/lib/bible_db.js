@@ -47,47 +47,53 @@ getLection = function (volumeSN, chapterSN) {
 // newOrOld 0 旧约 1 新约 2全部
 getBooksList = function (newOrOld) {
 
-  if (Session.get('booksList') != [] && Session.get('bookNameIndex') != null && Session.get('chapterCountIndex') != null){
-    return;
-  }
+ // if (Session.get('booksList') != [] && Session.get('bookNameIndex') != null && Session.get('chapterCountIndex') != null){
+  // return;
+  //}
   // 打开数据库
   // var db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
 
   db.transaction(function(tx) {
 
-    var strWhere = " where NewOrOld=" + newOrOld + ";";
-    if (newOrOld === 2) {
-        strWhere = "";
-    }
+    //var strWhere = " where NewOrOld=" + newOrOld + ";";
+  //  var strWhere = " where NewOrOld=0";
+   // if (newOrOld === 2) {
+      //  strWhere = "";
+    //}
 
     //单次查询BibleID表
-    var strSQL = "select SN as sn,  ChapterNumber as chapternumber, FullName as fullname from BibleID" + strWhere;
-
+    var strSQL = "select SN as sn,  ChapterNumber as chapternumber, FullName as fullname from BibleID where NewOrOld="+newOrOld.toString();
+console.log(newOrOld+"    strSql+11122224455521111++++++");
     tx.executeSql(strSQL, [], 
       function(tx, res) {
 
         var booksList = [];
-        var bookNameIndex = {};
-        var chapterCountIndex = {};
+       var bookNameIndex = {};
+       var chapterCountIndex = {};
 
         //循环显示结果
         for(var i=0;i<res.rows.length;i++)
-        {
+        { // $("#bk").append("<p>"+res.rows.item(i).fullname+"</p>");
           var bookItem = {};
           bookItem.bookSN = res.rows.item(i).sn;
           bookItem.chapterCount = res.rows.item(i).chapternumber;
           bookItem.fullName = res.rows.item(i).fullname;
           booksList.push(bookItem);
-          // console.log(res.rows.item(i).fullname);
+          console.log( bookItem.fullName);
+       //  $("#bk").append("<p>"+res.rows.item(i).fullname+"</p>");
+
+
 
           //初始化书名索引、章数索引
           bookNameIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).fullname;
           chapterCountIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).chapternumber;
+            console.log("---------------------------------------------------");
         }
         //将查询结果存入Session
         Session.set('booksList', booksList);
         Session.set('bookNameIndex', bookNameIndex);
         Session.set('chapterCountIndex', chapterCountIndex);
+
       }, function(e) {
         console.log("ERROR: getBooksList " + e.message);
       });
@@ -225,7 +231,7 @@ Meteor.startup(function () {
     db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
 
     //将整本书卷名从数据库查询到，存到Session:booksList
-    getBooksList(2);
+  //  getBooksList(0);
 
     //获取设置项，更新Session
     getSetting();

@@ -1,7 +1,7 @@
 Template.menu.events({
-	'click #btnSerach': function () {
+	'click #btnSearch': function () {
 
-		Router.go('serach');
+		Router.go('search');
 
 	},'click #btnBookMarks': function () {
 

@@ -1,5 +1,5 @@
 <!-- 搜索管理 -->
-<template name="serach">
+<template name="search">
 
  {{#contentFor "headerButtonLeft"}}
    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
@@ -17,5 +17,33 @@
 	</button>
     <h1 class="title">搜索管理</h1>
  </div>
+    {{#contentFor "headerTitle"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            书卷
+        </button>
+        <h1 class="title ">{{bookName}} 第{{chapterSN}}章</h1>
+        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
+            {{#if isAndroid}}
+                {{> ionIcon icon='android-more-vertical'}}
+            {{else}}
+                {{> ionIcon icon='navicon'}}
+            {{/if}}
+        </button>
+    {{/contentFor}}
 
+
+    {{#ionView}}
+        {{#ionContent}}
+          <!--  <button id="btn" style="height:50px;">ok1111</button>
+           <div id="bk"></div>-->
+        <div style="position:absolute;position:fixed;margin-top:60px;">
+        <button id="old">old</button><button id="new">new</button>
+        </div>
+            <div style="margin-top:100px;" class="list">
+                {{#each booksList}}
+                    {{> bookItem}}
+                {{/each}}
+            </div>
+        {{/ionContent}}
+    {{/ionView}}
 </template>
