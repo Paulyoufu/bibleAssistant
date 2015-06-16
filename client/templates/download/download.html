@@ -1,12 +1,21 @@
 <!-- 下载管理 -->
 <template name="download">
-	{{#contentFor "headerButtonLeft"}}
-	    <button class="button button-clear pull-left" data-ion-modal="main">
-	    	返回
-	    </button> 
- 	{{/contentFor}}
 
-  	{{#contentFor "headerTitle"}}
-    	<h1 class="title">下载管理</h1>
-  	{{/contentFor}}
+ {{#contentFor "headerButtonLeft"}}
+   <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+     菜单
+   </button> 
+ {{/contentFor}}
+
+ {{#contentFor "headerTitle"}}
+    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
+ {{/contentFor}}
+
+ <div class="bar bar-header bar-dark">
+ 	<button class="button button-clear pull-left">
+	       返回
+	</button>
+    <h1 class="title">下载管理</h1>
+ </div>
+
 </template>
