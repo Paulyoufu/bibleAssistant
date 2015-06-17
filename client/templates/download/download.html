@@ -1,21 +1,52 @@
 <!-- 下载管理 -->
 <template name="download">
 
- {{#contentFor "headerButtonLeft"}}
-   <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-     菜单
-   </button> 
- {{/contentFor}}
+	{{#contentFor "headerButtonLeft"}}
+	<button class="button button-clear pull-left" data-ion-menu-toggle="left">
+		菜单
+	</button> 
+	{{/contentFor}}
 
- {{#contentFor "headerTitle"}}
-    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
- {{/contentFor}}
+	{{#contentFor "headerTitle"}}
+	<h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
+	{{/contentFor}}
 
- <div class="bar bar-header bar-dark">
- 	<button class="button button-clear pull-left">
-	       返回
-	</button>
-    <h1 class="title">下载管理</h1>
- </div>
-
+	<div class="bar bar-header bar-dark">
+		<button class="button button-clear pull-left">
+			返回
+		</button>
+		<h1 class="title">下载管理</h1>
+	</div>
+	<div class="list">
+		<div class="item">
+			1章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+			<span class="item-note">
+				未下载
+			</span>
+		</div>
+		<div class="item">
+			2章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+				<span class="item-note">
+				未下载
+			</span>
+		</div>
+		<div class="item">
+			3章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+			<span class="item-note">
+				未下载
+			</span>
+		</div>
+		<div class="item">
+			4章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+			<span class="item-note">
+				未下载
+			</span>
+		</div>
+		<div class="item">
+			5章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+			<span class="item-note">
+				未下载
+			</span>
+		</div>
+	</div>
 </template>
