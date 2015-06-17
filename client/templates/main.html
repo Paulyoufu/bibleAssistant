@@ -21,10 +21,28 @@
     {{#ionView}}
 	    {{#ionContent}}
 	    	<div id="divBible" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">
-	        	{{#each lectionList}}
+                <button id="btnPrev" class="button button-full button-light">上一章</button>
+
+                {{#each lectionList}}
 	            	{{>lectionItem }}
 	            {{/each}}
-	        </div>
-	    {{/ionContent}}
+                <button  id="btnNext" class="button button-full button-light">下一章</button>
+
+            </div>
+
+        {{/ionContent}}
   	{{/ionView}}
+
+
+
+
+
+
+
+
+
+
+
+
+
 </template>
