@@ -1,0 +1,39 @@
+<template name="bookMenu">
+    
+{{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            <!-- data-ion-modal="menu" -->
+            <!-- data-ion-menu-toggle 左拉菜单-->
+            菜单
+    </button> 
+{{/contentFor}}
+
+{{#contentFor "headerTitle"}}
+    <h1 class="title" data-ion-menu-toggle="left">{{bookName}} 第{{chapterSN}}章</h1>
+{{/contentFor}}
+
+{{#contentFor "headerButtonRight"}}
+    <button id="btnVoice" class="button button-clear pull-right">
+        <!-- data-ion-modal="right" -->
+        语音
+    </button>
+{{/contentFor}}
+
+<div class="bar bar-header bar-dark">
+    <h1 class="title">书卷选择</h1>
+  </div>
+{{#ionView}}
+      {{#ionContent}}
+        {{#ionList}}
+        <div id="btnSerach" >
+        {{#ionItem path="search" iconLeft=true iconRight=true}}
+            {{> ionIcon icon="ios-checkmark" class="positive"}}
+            创世纪
+            {{> ionIcon icon="ios-arrow-right"}}
+        {{/ionItem}}
+        </div>
+
+        {{/ionList}}
+      {{/ionContent}}
+    {{/ionView}}
+</template>

@@ -9,7 +9,14 @@
 {{/contentFor}}
 
 {{#contentFor "headerTitle"}}
-    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
+    <h1 class="title" data-ion-menu-toggle="left">{{bookName}} 第{{chapterSN}}章</h1>
+{{/contentFor}}
+
+{{#contentFor "headerButtonRight"}}
+    <button id="btnVoice" class="button button-clear pull-right">
+        <!-- data-ion-modal="right" -->
+        语音
+    </button>
 {{/contentFor}}
 
 <div class="bar bar-header bar-dark">
