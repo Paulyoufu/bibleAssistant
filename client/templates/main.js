@@ -3,6 +3,14 @@ Template.main.rendered = function()
    // getBooksList(0);
 };
 
+Template.ionNavBar.events({
+	'click .title': function () {
+       Router.go('bookMenu');
+	},'click .pull-left': function () {
+       Router.go('menu');
+	}
+});
+
 Template.main.helpers({
 	lectionList: function () {
 		var currentBook = Session.get('currentBook');

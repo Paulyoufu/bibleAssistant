@@ -1,0 +1,72 @@
+<template name="bookMenu">
+    
+{{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            <!-- data-ion-modal="menu" -->
+            <!-- data-ion-menu-toggle 左拉菜单-->
+            菜单
+    </button> 
+{{/contentFor}}
+
+{{#contentFor "headerTitle"}}
+    <h1 class="title" data-ion-menu-toggle="left">{{bookName}} 第{{chapterSN}}章</h1>
+{{/contentFor}}
+
+{{#contentFor "headerButtonRight"}}
+    <button id="btnVoice" class="button button-clear pull-right">
+        <!-- data-ion-modal="right" -->
+        语音
+    </button>
+{{/contentFor}}
+
+
+            <div class="bar bar-header" style="background-color: black;height:110px">
+
+               <div style="height:20px">
+                   <h4  style="color:white;text-align:center">书卷选择</h4>
+               </div>
+
+                <div class="tabs" style="border-color: black">
+                    <a class="tab-item chooseOrAndNew " id="old">
+                    旧约
+                </a>
+
+                    <a class="tab-item chooseOrAndNewDefault " id="new" >
+                        新约
+                    </a>
+                </div>
+
+            </div>
+
+
+{{#ionView}}
+      {{#ionContent}}
+        {{#ionList}}
+        <div id="btnSerach" >
+        {{#ionItem path="search" iconLeft=true iconRight=true}}
+            {{> ionIcon icon="ios-checkmark" class="positive"}}
+            创世纪
+            {{> ionIcon icon="ios-arrow-right"}}
+        {{/ionItem}}
+        </div>
+
+        {{/ionList}}
+      {{/ionContent}}
+    {{/ionView}}
+    {{#ionView}}
+
+        {{#ionContent}}
+            <!--  <button id="btn" style="height:50px;">ok1111</button>
+             <div id="bk"></div>-->
+            <!--  <div style="z-index:2;position:fixed;margin-top:60px;">
+                  <button id="old" class="button button-positive">旧约</button><button id="new" class="button button-stable">新约</button>
+              </div>-->
+            <div id="divBookLists" class="list" style="margin-top:50px;height:100%;overflow-y:scroll;overflow-x:hidden;">
+                {{#each booksList}}
+                    {{> bookItem}}
+                {{/each}}
+            </div>
+        {{/ionContent}}
+
+    {{/ionView}}
+</template>
