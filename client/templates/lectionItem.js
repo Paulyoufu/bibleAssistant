@@ -42,6 +42,11 @@ Session.set("currSection",this.sectionSN);
                     inputType: 'text',
                     inputPlaceholder: '请输入书签名称'
                 });
+                var getBookmarker=window.prompt("书签名称");
+                if(getBookmarker!=null && getBookmarker=="")
+                {
+                    console.log(getBookmarker+"getboookdddddddddddddd");
+                }
             }
             return true;
         },
