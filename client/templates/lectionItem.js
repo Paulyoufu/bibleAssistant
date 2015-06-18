@@ -39,14 +39,15 @@ Template.lectionItem.events({
                         title: Session.get('currentBookName')+" "+Session.get('currentChapter')+"章"+Session.get("currSection"),
                         template: '书签名称',
                         okText: '确定',
+                        cancelText:"取消",
                         inputType: 'text',
                         inputPlaceholder: '请输入书签名称'
                     });
-                    var getBookmarker=window.prompt("书签名称");
-                    if(getBookmarker!=null && getBookmarker=="")
-                    {
-                        console.log(getBookmarker+"getboookdddddddddddddd");
-                    }
+                    //var getBookmarker=window.prompt("书签名称");
+                   // if(getBookmarker!=null && getBookmarker=="")
+                   // {
+                    //    console.log(getBookmarker+"getboookdddddddddddddd");
+                   // }
                 }
                 return true;
             },

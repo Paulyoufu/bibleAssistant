@@ -37,7 +37,8 @@ Template.bookMenu.events({
         $("#new").addClass("chooseOrAndNewDefault");
         $("#old").removeClass("chooseOrAndNewDefault");
         $("#old").addClass("chooseOrAndNew");
-
+        $("#old").attr("disabled","disabled"); // 禁用
+        $("#new").removeAttr("disabled"); // 启用
 
     },
     "click #new": function(){
@@ -49,7 +50,8 @@ Template.bookMenu.events({
         $("#old").addClass("chooseOrAndNewDefault");
         $("#new").removeClass("chooseOrAndNewDefault");
         $("#new").addClass("chooseOrAndNew");
-
+        $("#new").attr("disabled","disabled"); // 禁用
+        $("#old").removeAttr("disabled"); // 启用
     },
     'click .item': function () {
 
