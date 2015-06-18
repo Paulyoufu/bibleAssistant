@@ -37,3 +37,16 @@ Template.main.helpers({
 	}
 });
 
+Template.main.events({
+    "click #btnNext": function(){
+        console.log("next");
+        nextChapter();
+        BibleScrollTop();
+    },
+    "click #btnPrev": function(){
+        console.log("prev");
+        lastChapter();
+        BibleScrollTop();
+    }
+
+})

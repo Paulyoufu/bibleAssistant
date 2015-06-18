@@ -19,9 +19,26 @@
     </button>
 {{/contentFor}}
 
-<div class="bar bar-header bar-dark">
-    <h1 class="title">书卷选择</h1>
-  </div>
+
+            <div class="bar bar-header" style="background-color: black;height:115px">
+
+               <div style="height:20px">
+                   <h4  style="margin-left:90px;color:white;text-align:center">书卷选择</h4>
+               </div>
+
+                <div class="tabs" style="border-color: black;margin-left:-168px;border-style:none">
+                    <a class="tab-item chooseOrAndNew " id="old" style="border-style:none">
+                    旧约
+                </a>
+
+                    <a class="tab-item chooseOrAndNewDefault " id="new" style="border-style:none">
+                        新约
+                    </a>
+                </div>
+
+            </div>
+
+
 {{#ionView}}
       {{#ionContent}}
         {{#ionList}}
@@ -35,5 +52,21 @@
 
         {{/ionList}}
       {{/ionContent}}
+    {{/ionView}}
+    {{#ionView}}
+
+        {{#ionContent}}
+            <!--  <button id="btn" style="height:50px;">ok1111</button>
+             <div id="bk"></div>-->
+            <!--  <div style="z-index:2;position:fixed;margin-top:60px;">
+                  <button id="old" class="button button-positive">旧约</button><button id="new" class="button button-stable">新约</button>
+              </div>-->
+            <div id="divBookLists" class="list" style="margin-top:50px;height:100%;overflow-y:scroll;overflow-x:hidden;">
+                {{#each booksList}}
+                    {{> bookItem}}
+                {{/each}}
+            </div>
+        {{/ionContent}}
+
     {{/ionView}}
 </template>
