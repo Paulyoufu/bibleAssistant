@@ -3,7 +3,7 @@ Session.setDefault("currBookName","");
 Session.setDefault("currSection",1);
 Template.lectionItem.events({
     'click .item': function () {
-    console.log(Session.get('currentBookName')+"-----------------bookname");
+   // console.log(Session.get('currentBookName')+"-----------------bookname");
     console.log(Session.get('currentChapter')+"-----------------currentChapter");
     console.log(this.sectionSN+"------------sectionSn");
 Session.set("currSection",this.sectionSN);
