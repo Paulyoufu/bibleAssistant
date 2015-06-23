@@ -1,12 +1,14 @@
 Session.setDefault("currCharpter",1);
 Session.setDefault("currBookName","");
 Session.setDefault("currSection",1);
+Session.setDefault("currLection",null);
 Template.lectionItem.events({
     'click .item': function () {
    // console.log(Session.get('currentBookName')+"-----------------bookname");
     console.log(Session.get('currentChapter')+"-----------------currentChapter");
     console.log(this.sectionSN+"------------sectionSn");
 Session.set("currSection",this.sectionSN);
+Session.set("currLection",this.lection);
 
     },
 
@@ -29,8 +31,10 @@ Session.set("currSection",this.sectionSN);
         },
         buttonClicked: function(index) {
             if (index === 0) {
-                console.log('Shared!');
-                console.log(this.lection+"lection");
+                var text = Session.get("currLection");
+               if(text==null){ return;}
+                cordova.plugins.clipboard.copy(text);
+               // cordova.plugins.clipboard.paste(function (text) { alert(text); });
 
             }
             if (index === 1) {

@@ -17,7 +17,7 @@ Router.map(function() {
 
   this.route('bookMenu', {path: '/bookMenu'});
   // this.route('menu', {path: '/menu'});
-
+  this.route("chaptersMenu",{path:"/chaptersMenu"});
   this.route('serach', {path: '/serach'});
 
   this.route('bookMarks', {path: '/bookMarks'});

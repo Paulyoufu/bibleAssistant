@@ -22,11 +22,11 @@
 
             <div class="bar bar-header" style="background-color: black;height:110px">
 
-               <div style="height:20px">
-                   <h4  style="color:white;text-align:center">书卷选择</h4>
+               <div style="height:20px;margin-left:90px">
+                   <h4  style="color:white;text-align:center" >书卷选择</h4>
                </div>
 
-                <div class="tabs" style="border-color: black">
+                <div class="tabs" style="border-color: black;margin-left:-166px">
                     <a class="tab-item chooseOrAndNew " id="old">
                     旧约
                 </a>
@@ -42,13 +42,7 @@
 {{#ionView}}
       {{#ionContent}}
         {{#ionList}}
-        <div id="btnSerach" >
-        {{#ionItem path="search" iconLeft=true iconRight=true}}
-            {{> ionIcon icon="ios-checkmark" class="positive"}}
-            创世纪
-            {{> ionIcon icon="ios-arrow-right"}}
-        {{/ionItem}}
-        </div>
+
 
         {{/ionList}}
       {{/ionContent}}
@@ -62,7 +56,7 @@
                   <button id="old" class="button button-positive">旧约</button><button id="new" class="button button-stable">新约</button>
               </div>-->
             <div id="divBookLists" class="list" style="margin-top:50px;height:100%;overflow-y:scroll;overflow-x:hidden;">
-                {{#each booksList}}
+                {{#each postBookName}}
                     {{> bookItem}}
                 {{/each}}
             </div>

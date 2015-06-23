@@ -23,7 +23,12 @@ Template.chaptersMenu.helpers({
 });
 
 Template.chaptersMenu.events({
-	'click button': function () {
-		Router.go('booksMenu');
-	}
+	'click .pull-left': function () {
+        //alert("booksMunu");
+		Router.go('bookMenu');
+	},"click #btnBooks": function()
+    {
+        Router.go('bookMenu');
+
+    }
 });

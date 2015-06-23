@@ -1,7 +1,7 @@
 <template name="chaptersMenu">
 
 	{{#contentFor "headerTitle"}}
-      <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+      <button id="btnBooks" class="button button-clear pull-left" data-ion-menu-toggle="left">
          书卷
       </button>
       <h1 class="title ">{{bookName}} 第{{chapterSN}}章</h1>
@@ -15,7 +15,7 @@
 	{{/contentFor}}
 
 	<div class="bar bar-header bar-dark">
-		<button class="button button-clear pull-left">
+		<button id="returnBook" class="button button-clear pull-left">
 	       返回
 	    </button>
 		<h1 class="title">{{selectedBookName}}</h1>

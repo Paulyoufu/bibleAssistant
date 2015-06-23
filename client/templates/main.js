@@ -45,7 +45,7 @@ Template.main.events({
     "click #btnPrev": function(){
         console.log("prev");
         lastChapter();
-        BibleScrollTop();
+       // BibleScrollTop();
     }
 
 })
