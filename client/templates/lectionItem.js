@@ -41,16 +41,21 @@ Session.set("currLection",this.lection);
                 console.log('book!');
                 IonPopup.prompt({
                     title: Session.get('currentBookName')+" "+Session.get('currentChapter')+"章"+Session.get("currSection"),
-                    template: '书签名称',
-                    okText: '确定',
+                    template: '书签名称：',
+                    okText: '确定',cancelText:"取消",
                     inputType: 'text',
-                    inputPlaceholder: '请输入书签名称'
-                });
-                var getBookmarker=window.prompt("书签名称");
-                if(getBookmarker!=null && getBookmarker=="")
-                {
-                    console.log(getBookmarker+"getboookdddddddddddddd");
-                }
+                    inputPlaceholder: '书签',
+                    onOk: function() {
+                        if($("input[name='prompt']").val()!="")
+                        { alert($("input[name='prompt']").val());}
+                        //  console.log('Confirmed');
+                        // alert("hello");
+                    },
+                    onCancel: function() {
+                        // console.log('Cancelled');
+                        // alert("no ok");
+                    }})
+
             }
             return true;
         },
