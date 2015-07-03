@@ -1,6 +1,8 @@
 Template.main.rendered = function()
 {
-   // getBooksList(0);
+   //
+//$("#divBible").scrollTop(160);
+    // getBooksList(0);
 };
 
 Template.ionNavBar.events({
@@ -15,8 +17,11 @@ Template.main.helpers({
 	lectionList: function () {
 		var currentBook = Session.get('currentBook');
 		var currentChapter = Session.get('currentChapter');
-		getLection(currentBook, currentChapter);
-		return Session.get('lectionList');
+
+        getLection(currentBook, currentChapter);
+
+
+        return Session.get('lectionList');
 	},
 	bookName: function () {
 		return Session.get('currentBookName'); 
@@ -38,12 +43,12 @@ Template.main.helpers({
 });
 Template.main.events({
     "click #btnNext": function(){
-        console.log("next");
+        console.log("next");Session.set("index",1);
         nextChapter();
         BibleScrollTop();
     },
     "click #btnPrev": function(){
-        console.log("prev");
+        console.log("prev");Session.set("index",1);
         lastChapter();
        // BibleScrollTop();
     }

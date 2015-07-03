@@ -19,10 +19,6 @@ Template.menu.events({
 
 		Router.go('dedication');
 
-	},'click .title': function () {
-
-       Router.go('bookMenu');
-
 	},'click .pull-left': function () {
 
        Router.go('menu');

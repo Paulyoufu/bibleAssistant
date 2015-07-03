@@ -1,5 +1,7 @@
 Session.setDefault('booksList', []);            //圣经书卷list
 Session.setDefault('lectionList', []);          //经文list
+Session.setDefault('sessBookMark', []);          //经文list
+
 Session.setDefault('currentBook', 1);           //当前书卷SN
 Session.setDefault('currentBookName', '创世记'); //当前书卷名字
 Session.setDefault('currentChapter', 1);        //当前章SN
@@ -9,6 +11,7 @@ Session.setDefault('bookNameIndex', null);      //每卷书名字索引
 Session.setDefault('selectedBook', null);             //padding的书卷SN
 Session.setDefault('selectedChapterCount', null);     //padding的书卷章数
 Session.setDefault('selectedBookName', null);         //padding的书卷名字
+Session.setDefault("index",1);
 
 // 获取指定书卷、章的经文列表
 // volumeSN 书卷号 chapterSN 章号
@@ -24,7 +27,8 @@ getLection = function (volumeSN, chapterSN) {
             function(tx, res) {
 
                 var lectionList =[];
-
+                var gotoIndex=Session.get("index");
+                console.log(gotoIndex+"   --------   goto index -----------    ");
                 for(var i=0;i<res.rows.length;i++)
                 {
                     var lectionItem = {};
@@ -35,7 +39,27 @@ getLection = function (volumeSN, chapterSN) {
                     //console.log(res.rows.item(i).lection);
                 }
                 //将查询结果存入Session
+
                 Session.set('lectionList', lectionList);
+              // $("#divBible").scrollTop(60);
+             console.log($("div p:eq("+gotoIndex+")").position().top+"    top top top top top   !!!!!!!!!!");
+                //
+                if(gotoIndex>1)
+                {
+                    $("#divBible").scrollTop($("div p:eq(0)").position().top);
+                    console.log($("div p:eq(0)").position().top+"   a467123");
+                    if($("div p:eq(0)").position().top>=68)
+                    {                    $("#divBible").scrollTop($("div p:eq("+(gotoIndex-1)+")").position().top);
+                    }
+                    else{
+                        $("#divBible").scrollTop($("div p:eq("+(gotoIndex-1)+")").position().top+68-$("div p:eq(0)").position().top);
+                    }
+                   // Session.set("index",1);
+                }
+               else{
+                    $("#divBible").scrollTop(60);
+
+                }
 
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
@@ -100,6 +124,37 @@ nextChapter = function () {
     var currentBook = Session.get('currentBook');
     var currentChapter = Session.get('currentChapter');
     var currentChapterCount = Session.get('currentChapterCount');
+    currentChapter=parseInt(currentChapter);
+    currentBook=parseInt(currentBook);
+    currentChapterCount=parseInt(currentChapterCount);
+    //判断本卷书是否完成
+    if (currentChapter < currentChapterCount){
+        //未完成，切换下一章
+        currentChapter += 1;
+        Session.set('currentChapter', currentChapter);
+    }
+    else{
+        //完成，切换下一卷书
+        if (currentBook === 66){
+            currentBook = 1;
+        }
+        else{
+            currentBook += 1;
+        }
+        currentChapter = 1;
+
+        Session.set('currentBook', currentBook);
+        Session.set('currentChapter', currentChapter);
+        Session.set('currentBookName', Session.get('bookNameIndex')['bookSN'+currentBook]);
+        Session.set('currentChapterCount', Session.get('chapterCountIndex')['bookSN'+currentBook]);
+    }
+}
+
+
+gotoBookCharpter= function () {
+    var currentBook ="1"; //Session.get('currentBook');//
+    var currentChapter ="1"; //Session.get('currentChapter');
+    var currentChapterCount = Session.get('currentChapterCount');
 
     //判断本卷书是否完成
     if (currentChapter < currentChapterCount){
@@ -129,7 +184,10 @@ lastChapter = function () {
     var currentBook = Session.get('currentBook');
     var currentChapter = Session.get('currentChapter');
     var currentChapterCount = Session.get('currentChapterCount');
-
+    currentChapter=parseInt(currentChapter);
+    currentBook=parseInt(currentBook);
+    currentChapterCount=parseInt(currentChapterCount);
+    console.log(currentBook,typeof(currentChapter),currentChapterCount,typeof(1)+"   this is three value");
     //判断是否是本卷书第一章
     if (currentChapter === 1){
         //是第一章，切换上一卷书
@@ -214,13 +272,105 @@ setSetting = function (lastBook, lastChapter) {
 
         tx.executeSql(strSQL, [],
             function(tx, res) {
-                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
             }, function(e) {
                 console.log("ERROR: setSetting " + e.message);
             });
     });
 }
+//设置书签
 
+ setBookMarks=function(bookname,bookmark,timer,currbook,currchapter,currchapterCount)
+ {     console.log(currbook,currchapter+"++++++++setbookmarks++++++++");
+     db.transaction(function(tx) {
+       console.log("insert two");  //更新Setting表
+         var strSQL = "insert into bookmarks (bookname,bookmark,time,bookID,chapterID,chapterCount) values ('"+bookname+"','"+bookmark+"','"+timer+"','"+currbook+"','"+currchapter+"','"+currchapterCount+"'); ";
+        console.log(strSQL+"((((((( insert   )))))))");
+         tx.executeSql(strSQL, [],
+             function(tx, res) {
+                 console.log(res.rowsAffected+"----------id-sucess----------------");
+                 //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+             }, function(e) {
+                 console.log("ERROR: setSetting " + e.message);
+             });
+     });
+ }
+// update talbe
+updateBookMarks=function(bookname,bookmark,timer)
+{ console.log(timer+"[[[[[[timer]]]]]]");
+console.log(bookname+"[[[[[[bookname]]]]]]");
+console.log(bookmark+"[[[[[[bookmark]]]]]]");
+    db.transaction(function(tx) {
+        //更新Setting表(bookname,bookmark,time) values ('"+bookname+"','"+bookmark+"','"+timer+"');
+        var strSQL = "update bookmarks set bookname= '"+bookname+"',bookmark='"+bookmark+ "' where time='"+timer+"'";
+        console.log(strSQL+"===========strsqlupdate==========");
+        tx.executeSql(strSQL, [],
+            function(tx, res) {
+                console.log(res.rowsAffected+"----------id-sucess----------------");
+                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                Session.set("sessSearch","*");
+                getBookMarks(bookname);
+            }, function(e) {
+                console.log("ERROR: setSetting " + e.message);
+            });
+    });
+}
+//delete table
+delBookMarks=function(booknames,timer){
+    console.log(timer+"[[[[[[timer]]]]]]");
+    console.log(booknames+"[[[[[[bookname]]]]]]");
+    db.transaction(function(tx) {
+        //更新Setting表(bookname,bookmark,time) values ('"+bookname+"','"+bookmark+"','"+timer+"');
+        var strSQL = "delete from bookmarks  where time='"+timer+"'";
+
+        console.log(strSQL+"===========strsqldelete==========");
+        tx.executeSql(strSQL, [],
+            function(tx, res) {
+                console.log(res.rowsAffected+"----------id-sucess----------------");
+                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+              //  Session.set("sessSearch","*");
+             getBookMarks(booknames);
+            }, function(e) {
+                console.log("ERROR: setSetting " + e.message);
+            });
+    });
+}
+// select talbe
+getBookMarks=function(searchStr){db.transaction(function(tx) {
+    //更新Setting表
+    var strSQL = "select rowid,bookmark,bookname,time,bookID,chapterID,chapterCount from bookmarks order by time desc; ";
+    if(searchStr!="*"){strSQL="select rowid,bookmark,bookname,time,bookID,chapterID,chapterCount from bookmarks  where bookmark like '%"+searchStr+"%' order by time desc;";}
+    else{strSQL = "select rowid,bookmark,bookname,time,bookID,chapterID,chapterCount from bookmarks order by time desc; ";}
+    console.log(strSQL+"--------11111 sqlstr--------");
+    tx.executeSql(strSQL, [],
+        function(tx, res) {
+            var arrBookMark=[];
+console.log("---------2222222---------");
+
+            for(var i=0;i<res.rows.length;i++)
+        { var objBMitem={};
+            console.log("-------3333333---------");
+             objBMitem.objbookmarkTime=res.rows.item(i).time;
+            objBMitem.objbookname=res.rows.item(i).bookname;
+            objBMitem.objbookmark=res.rows.item(i).bookmark;
+            objBMitem.objbookid=res.rows.item(i).bookID;
+            objBMitem.objchapter=res.rows.item(i).chapterID;
+            objBMitem.objchapterCount=res.rows.item(i).chapterCount;
+
+            arrBookMark.push(objBMitem);
+           console.log(objBMitem.objbookmarkid+"*****objbookmarkid------"+ objBMitem.objbookname+"*****objbookname-------"+ objBMitem.objbookmark+"****objbookmark****");
+        //   console.log(res.rows.item(i).rowid+"--------------rowid--------------");
+          //  console.log(res.rows.item(i).time+"------timerDesc-------");
+            console.log(objBMitem+"+++++++objbmitem+++++++");
+        }
+            Session.set('sessBookMark',arrBookMark);
+
+            //  console.log(res.rowsAffected+"----------id-----------------");
+            //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+        }, function(e) {
+            console.log("ERROR: setSetting " + e.message);
+        });
+});}
 Meteor.startup(function () {
 
     db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});

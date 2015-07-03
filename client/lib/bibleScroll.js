@@ -28,10 +28,11 @@ BibleScroll=function(sectionIndex){
 
         }
 }
-BibleScrollTop=function(){
-    $("#divBible").scrollTop($("div p:eq(0)").position().top);
-    Session.set("sumSectionHeight",0);
-    Session.set("scrollPosition",0);
+BibleScrollTop=function(){Session.set("index",1);
+  //  $("#divBible").scrollTop(60);
+   // $("#divBible").scrollTop($("div p:eq(1)").position().top);
+  //  Session.set("sumSectionHeight",0);
+   // Session.set("scrollPosition",0);
 }
 CharpterScrollTop=function(){
     $("#charpterList").scrollTop($("div div:eq(0)").position().top);

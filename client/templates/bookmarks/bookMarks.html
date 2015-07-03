@@ -4,7 +4,7 @@
  {{#contentFor "headerButtonLeft"}}
    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
      菜单
-   </button> 
+   </button>
  {{/contentFor}}
 
  {{#contentFor "headerTitle"}}
@@ -12,10 +12,33 @@
  {{/contentFor}}
 
  <div class="bar bar-header bar-dark">
- 	<button class="button button-clear pull-left">
+ 	<button id="btnreturn" class="button button-clear pull-left">
 	       返回
 	</button>
+
     <h1 class="title">书签管理</h1>
  </div>
+    {{#ionView}}
 
+        {{#ionContent}}
+
+            <div class=" item-input-inset">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios7-search placeholder-icon"></i>
+                    <input id="txtSearch" type="text" placeholder="请畋书签名">
+                </label>
+                <button id="btnSearch" class=" ion-search " style="background-color: lightgray;height:30px;border-style:none">
+
+                </button>
+            </div>
+
+<div class="list">
+    {{#each arrBookMark}}
+            {{> temBookmarkItem}}
+        {{/each}}
+
+</div>
+        {{/ionContent}}
+
+    {{/ionView}}
 </template>

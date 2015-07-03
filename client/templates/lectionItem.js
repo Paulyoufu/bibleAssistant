@@ -46,8 +46,26 @@ Session.set("currLection",this.lection);
                     inputType: 'text',
                     inputPlaceholder: '书签',
                     onOk: function() {
-                        if($("input[name='prompt']").val()!="")
-                        { alert($("input[name='prompt']").val());}
+                        if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<7)
+                        { //alert($("input[name='prompt']").val().length);
+                            var d=new Date();
+                            var day=d.getDate();
+                            var month=d.getMonth() + 1;
+                            var year=d.getFullYear();
+                            var timer= year+"-"+month+"-"+day+" "+ d.getHours()+ d.getMinutes()+ d.getSeconds();
+                          var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
+                           var currbook=Session.get('currentBook');
+                            var currchapter=Session.get("currentChapter");
+                            var currchapterCount=Session.get('currentChapterCount');
+                            console.log(currbook,currchapter+"||||||||||||currbook currchapter");
+                            setBookMarks(booknames,$("input[name='prompt']").val(),timer,currbook,currchapter,currchapterCount);
+                        }
+                        else
+                        {
+                            $("input[name='prompt']").focus();
+
+                          //  alert('书签不能超过6个字符');
+                        }
                         //  console.log('Confirmed');
                         // alert("hello");
                     },
