@@ -1,0 +1,11 @@
+<template name="player" >
+  {{#ionFooterBar class="bar-dark" }}
+    <div class="content button-bar">
+      {{#if isPlaying}}
+        <button class="button button-icon icon ion-ios-pause" data-play></button>
+      {{else}}
+        <button class="button button-icon icon ion-ios-play" data-play></button>
+      {{/if}}
+    </div>
+  {{/ionFooterBar}}
+</template>
