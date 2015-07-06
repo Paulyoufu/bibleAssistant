@@ -30,7 +30,39 @@
             {{/if}}
         </button>
     {{/contentFor}}
+    {{#ionView}}
 
+        {{#ionContent}}
+        <div style="margin-top:10px;margin-left:10px">
+                    <select id="selbookname" style="width:95%;">
+                        <option>全书</option>
+                        <option>旧约</option>
+                        <option>新约</option>
+                        {{#each oldBookName}}
+                            <option>
+                                {{> bookNameItem}}
+                            </option>
+                        {{/each}}
+                        {{#each newBookName}}
+                            <option>
+                                {{> bookNameItem}}
+                            </option>
+                        {{/each}}
+                    </select>
+        </div>
+            <div class=" item-input-inset">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios7-search placeholder-icon"></i>
+                    <input id="scriptSearch" type="text" placeholder="请输入关键字">
+                </label>
+                <button id="btnSearch" class=" ion-search " style="background-color: lightgray;height:30px;border-style:none">
+
+                </button>
+            </div>
+
+        {{/ionContent}}
+
+    {{/ionView}}
 
 
 </template>

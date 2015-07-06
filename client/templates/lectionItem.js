@@ -59,6 +59,7 @@ Session.set("currLection",this.lection);
                             var currchapterCount=Session.get('currentChapterCount');
                             console.log(currbook,currchapter+"||||||||||||currbook currchapter");
                             setBookMarks(booknames,$("input[name='prompt']").val(),timer,currbook,currchapter,currchapterCount);
+                            getBookMarks("*");
                         }
                         else
                         {

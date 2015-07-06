@@ -6,7 +6,7 @@ Template.bookMenu.events({
 	}
 });
 Session.setDefault("bibleOldOrNew",0);
-var arrOld=[
+ arrOld=[
     {bookID:1,bookName:'创世记',charpterCount:'50'},
     {bookID:2,bookName:'出埃及记',charpterCount:'40'},
     {bookID:3,bookName:'利未记',charpterCount:'27'},
@@ -47,7 +47,7 @@ var arrOld=[
     {bookID:38,bookName:'撒迦利亚书',charpterCount:'14'},
     {bookID:39,bookName:'玛拉基书',charpterCount:'4'}
 ];
-var arrNew=[
+ arrNew=[
     {bookID:40,bookName:'马太福音',charpterCount:'28'},
     {bookID:41,bookName:'马可福音',charpterCount:'16'},
     {bookID:42,bookName:'路加福音',charpterCount:'24'},

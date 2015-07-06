@@ -41,8 +41,8 @@ getLection = function (volumeSN, chapterSN) {
                 //将查询结果存入Session
 
                 Session.set('lectionList', lectionList);
-              // $("#divBible").scrollTop(60);
-             console.log($("div p:eq("+gotoIndex+")").position().top+"    top top top top top   !!!!!!!!!!");
+                // $("#divBible").scrollTop(60);
+                console.log($("div p:eq("+gotoIndex+")").position().top+"    top top top top top   !!!!!!!!!!");
                 //
                 if(gotoIndex>1)
                 {
@@ -54,9 +54,9 @@ getLection = function (volumeSN, chapterSN) {
                     else{
                         $("#divBible").scrollTop($("div p:eq("+(gotoIndex-1)+")").position().top+68-$("div p:eq(0)").position().top);
                     }
-                   // Session.set("index",1);
+                    // Session.set("index",1);
                 }
-               else{
+                else{
                     $("#divBible").scrollTop(60);
 
                 }
@@ -70,7 +70,7 @@ getLection = function (volumeSN, chapterSN) {
 // 获取书卷目录 sn 章数 书名
 // newOrOld 0 旧约 1 新约 2全部
 getBooksList = function (newOrOld) {
-
+   console.log(newOrOld+"oooooooooo");
     if (Session.get('booksList') != [] && Session.get('bookNameIndex') != null && Session.get('chapterCountIndex') != null){
         return;
     }
@@ -83,33 +83,35 @@ getBooksList = function (newOrOld) {
         if (newOrOld === 2) {
             strWhere = "";
         }
-
+      console.log(strwhere+" this where is");
         //单次查询BibleID表
         var strSQL = "select SN as sn,  ChapterNumber as chapternumber, FullName as fullname from BibleID" + strWhere;
-
+    console.log(strSQL+" this is strsql");
         tx.executeSql(strSQL, [],
             function(tx, res) {
 
-               // var booksList = [];
+                 var booksList = [];
                 var bookNameIndex = {};
                 var chapterCountIndex = {};
 
                 //循环显示结果
                 for(var i=0;i<res.rows.length;i++)
                 {
-                   // var bookItem = {};
-                  //  bookItem.bookSN = res.rows.item(i).sn;
-                  //  bookItem.chapterCount = res.rows.item(i).chapternumber;
-                  //  bookItem.fullName = res.rows.item(i).fullname;
-                  //  booksList.push(bookItem);
-                    // console.log(res.rows.item(i).fullname);
+                     var bookItem = {};
+                     bookItem.bookSN = res.rows.item(i).sn;
+                     bookItem.chapterCount = res.rows.item(i).chapternumber;
+                     bookItem.fullName = res.rows.item(i).fullname;
+                    booksList.push(bookItem);
+                    console.log(res.rows.item(i).fullname);
 
                     //初始化书名索引、章数索引
                     bookNameIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).fullname;
                     chapterCountIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).chapternumber;
                 }
                 //将查询结果存入Session
-               // Session.set('booksList', booksList);
+                 Session.set('booksList', booksList);
+                console.log(Session.get('booksList')+"  111111111111 2222222222222222222");
+
                 Session.set('bookNameIndex', bookNameIndex);
                 Session.set('chapterCountIndex', chapterCountIndex);
 
@@ -280,26 +282,26 @@ setSetting = function (lastBook, lastChapter) {
 }
 //设置书签
 
- setBookMarks=function(bookname,bookmark,timer,currbook,currchapter,currchapterCount)
- {     console.log(currbook,currchapter+"++++++++setbookmarks++++++++");
-     db.transaction(function(tx) {
-       console.log("insert two");  //更新Setting表
-         var strSQL = "insert into bookmarks (bookname,bookmark,time,bookID,chapterID,chapterCount) values ('"+bookname+"','"+bookmark+"','"+timer+"','"+currbook+"','"+currchapter+"','"+currchapterCount+"'); ";
+setBookMarks=function(bookname,bookmark,timer,currbook,currchapter,currchapterCount)
+{     console.log(currbook,currchapter+"++++++++setbookmarks++++++++");
+    db.transaction(function(tx) {
+        console.log("insert two");  //更新Setting表
+        var strSQL = "insert into bookmarks (bookname,bookmark,time,bookID,chapterID,chapterCount) values ('"+bookname+"','"+bookmark+"','"+timer+"','"+currbook+"','"+currchapter+"','"+currchapterCount+"'); ";
         console.log(strSQL+"((((((( insert   )))))))");
-         tx.executeSql(strSQL, [],
-             function(tx, res) {
-                 console.log(res.rowsAffected+"----------id-sucess----------------");
-                 //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-             }, function(e) {
-                 console.log("ERROR: setSetting " + e.message);
-             });
-     });
- }
+        tx.executeSql(strSQL, [],
+            function(tx, res) {
+                console.log(res.rowsAffected+"----------id-sucess----------------");
+                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            }, function(e) {
+                console.log("ERROR: setSetting " + e.message);
+            });
+    });
+}
 // update talbe
 updateBookMarks=function(bookname,bookmark,timer)
 { console.log(timer+"[[[[[[timer]]]]]]");
-console.log(bookname+"[[[[[[bookname]]]]]]");
-console.log(bookmark+"[[[[[[bookmark]]]]]]");
+    console.log(bookname+"[[[[[[bookname]]]]]]");
+    console.log(bookmark+"[[[[[[bookmark]]]]]]");
     db.transaction(function(tx) {
         //更新Setting表(bookname,bookmark,time) values ('"+bookname+"','"+bookmark+"','"+timer+"');
         var strSQL = "update bookmarks set bookname= '"+bookname+"',bookmark='"+bookmark+ "' where time='"+timer+"'";
@@ -328,8 +330,8 @@ delBookMarks=function(booknames,timer){
             function(tx, res) {
                 console.log(res.rowsAffected+"----------id-sucess----------------");
                 //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-              //  Session.set("sessSearch","*");
-             getBookMarks(booknames);
+                //  Session.set("sessSearch","*");
+                getBookMarks(booknames);
             }, function(e) {
                 console.log("ERROR: setSetting " + e.message);
             });
@@ -345,24 +347,23 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
     tx.executeSql(strSQL, [],
         function(tx, res) {
             var arrBookMark=[];
-console.log("---------2222222---------");
+            console.log("---------2222222---------");
 
             for(var i=0;i<res.rows.length;i++)
-        { var objBMitem={};
-            console.log("-------3333333---------");
-             objBMitem.objbookmarkTime=res.rows.item(i).time;
-            objBMitem.objbookname=res.rows.item(i).bookname;
-            objBMitem.objbookmark=res.rows.item(i).bookmark;
-            objBMitem.objbookid=res.rows.item(i).bookID;
-            objBMitem.objchapter=res.rows.item(i).chapterID;
-            objBMitem.objchapterCount=res.rows.item(i).chapterCount;
+            { var objBMitem={};
+                console.log("-------3333333---------");
+                objBMitem.objbookmarkTime=res.rows.item(i).time;
+                objBMitem.objbookname=res.rows.item(i).bookname;
+                objBMitem.objbookmark=res.rows.item(i).bookmark;
+                objBMitem.objbookid=res.rows.item(i).bookID;
+                objBMitem.objchapter=res.rows.item(i).chapterID;
+                objBMitem.objchapterCount=res.rows.item(i).chapterCount;
 
-            arrBookMark.push(objBMitem);
-           console.log(objBMitem.objbookmarkid+"*****objbookmarkid------"+ objBMitem.objbookname+"*****objbookname-------"+ objBMitem.objbookmark+"****objbookmark****");
-        //   console.log(res.rows.item(i).rowid+"--------------rowid--------------");
-          //  console.log(res.rows.item(i).time+"------timerDesc-------");
-            console.log(objBMitem+"+++++++objbmitem+++++++");
-        }
+                arrBookMark.push(objBMitem);
+                console.log(objBMitem.objbookmarkid+"*****objbookmarkid------"+ objBMitem.objbookname+"*****objbookname-------"+ objBMitem.objbookmark+"****objbookmark****");
+
+                console.log(objBMitem+"+++++++objbmitem+++++++");
+            }
             Session.set('sessBookMark',arrBookMark);
 
             //  console.log(res.rowsAffected+"----------id-----------------");
