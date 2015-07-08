@@ -6,7 +6,6 @@ Template.systemSettings.events({
 Template.systemSettings.helpers({
     booksList: function () {
         getBooksList(Session.get("bibleOldOrNew"));
-
         return Session.get('booksList');
     },
     bookName: function () {

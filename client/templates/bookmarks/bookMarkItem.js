@@ -8,7 +8,6 @@ Template.temBookmarkItem.rendered=function(){
         paginationClickable: true,
         spaceBetween: 30
     });
-  //  $("#divBible").scrollTop(60);
 
 }
 Template.temBookmarkItem.events(
@@ -25,32 +24,17 @@ Template.temBookmarkItem.events(
                 onOk: function() {
                     if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<6)
                     {
-                        // var d=new Date();
-                        //  var day=d.getDate();
-                        // var month=d.getMonth() + 1;
-                        // var year=d.getFullYear();
                         var timer= Session.get("time");
-
                         console.log(timer+"//////------timer--------///////////");
-
-                        //year+"-"+month+"-"+day+" "+ d.getHours()+ d.getMinutes()+ d.getSeconds();
                         var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
                         updateBookMarks(booknames,$("input[name='prompt']").val(),timer);
-
-
-
                     }
                     else
                     {
                         $("input[name='prompt']").focus();
-
-
                     }
-
                 },
                 onCancel: function() {
-                    // console.log('Cancelled');
-                    // alert("no ok");
                 }})
 
         },
@@ -60,11 +44,10 @@ Template.temBookmarkItem.events(
             var timer= Session.get("time");
             var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
             delBookMarks(booknames,timer);
-            // alert("dddd");
         },
         "click .item": function()
         {
-            var bookname=this.objbookname.replace(/[\d]/g,"");
+           var bookname=this.objbookname.replace(/[\d]/g,"");
             bookname=bookname.substr(0,bookname.indexOf(":"));
             Session.set('currentBook',this.objbookid);
             Session.set('currentChapter',this.objchapter);
@@ -80,6 +63,5 @@ Template.temBookmarkItem.events(
             getLection(currentBook, currentChapter);
             setSetting(Session.get('currentBook'), Session.get('currentChapter'));
         }
-
     }
 )

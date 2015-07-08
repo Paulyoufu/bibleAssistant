@@ -2,13 +2,11 @@ Template.chaptersMenu.helpers({
 	chapters: function () {
 		var currentChapterCount = Session.get('selectedChapterCount');
 		var chapters = [];
-
 		for (var i = 0; i < currentChapterCount; i++) {
 			var chapterItem = {};
 			chapterItem.chapterSN = i + 1;
 			chapters.push(chapterItem);
 		};
-
 		return chapters;
 	},
 	bookName: function () {
@@ -21,10 +19,8 @@ Template.chaptersMenu.helpers({
 		return Session.get('selectedBookName');
 	}
 });
-
 Template.chaptersMenu.events({
 	'click .pull-left': function () {
-        //alert("booksMunu");
 		Router.go('bookMenu');
 	},"click #btnBooks": function()
     {

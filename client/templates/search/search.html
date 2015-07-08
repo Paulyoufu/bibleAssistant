@@ -1,68 +1,36 @@
 <!-- 搜索管理 -->
 <template name="search">
-
  {{#contentFor "headerButtonLeft"}}
-   <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-     菜单
-   </button> 
+   <button class="button button-clear pull-left" data-ion-menu-toggle="left"> 菜单</button>
  {{/contentFor}}
-
  {{#contentFor "headerTitle"}}
     <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
  {{/contentFor}}
-
  <div class="bar bar-header bar-dark">
- 	<button class="button button-clear pull-left">
-	       返回
-	</button>
-    <h1 class="title">搜索管理</h1>
+ 	<button class="button button-clear pull-left">返回</button> <h1 class="title">搜索管理</h1>
  </div>
-    {{#contentFor "headerTitle"}}
-        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-            书卷
-        </button>
-        <h1 class="title ">{{bookName}} 第{{chapterSN}}章</h1>
-        <button class="button button-clear pull-right" data-ion-menu-toggle="right">
-            {{#if isAndroid}}
-                {{> ionIcon icon='android-more-vertical'}}
-            {{else}}
-                {{> ionIcon icon='navicon'}}
-            {{/if}}
-        </button>
-    {{/contentFor}}
     {{#ionView}}
-
         {{#ionContent}}
+            <div style="background-color:beige;">
         <div style="margin-top:10px;margin-left:10px">
                     <select id="selbookname" style="width:95%;">
-                        <option>全书</option>
-                        <option>旧约</option>
-                        <option>新约</option>
-                        {{#each oldBookName}}
-                            <option>
-                                {{> bookNameItem}}
-                            </option>
-                        {{/each}}
-                        {{#each newBookName}}
-                            <option>
-                                {{> bookNameItem}}
-                            </option>
-                        {{/each}}
+                        <option>全书</option><option>旧约</option> <option>新约</option>
+                        {{#each oldBookName}} <option>{{> olnyBookNameItem}} </option> {{/each}}
+                        {{#each newBookName}}<option>{{> olnyBookNameItem}}</option> {{/each}}
                     </select>
         </div>
             <div class=" item-input-inset">
                 <label class="item-input-wrapper">
                     <i class="icon ion-ios7-search placeholder-icon"></i>
-                    <input id="scriptSearch" type="text" placeholder="请输入关键字">
+                    <input id="inpSearchScript" type="text" placeholder="请输入关键字">
                 </label>
-                <button id="btnSearch" class=" ion-search " style="background-color: lightgray;height:30px;border-style:none">
-
-                </button>
+                <button id="btnSearchScript" class=" ion-search " style="background-color: lightgray;height:30px;border-style:none"></button>
             </div>
 
+
+            <div id="divsearch" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">
+            </div>
+            </div>
         {{/ionContent}}
-
     {{/ionView}}
-
-
 </template>

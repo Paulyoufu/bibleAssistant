@@ -1,9 +1,3 @@
-Template.main.rendered = function()
-{
-   //
-//$("#divBible").scrollTop(160);
-    // getBooksList(0);
-};
 
 Template.ionNavBar.events({
 	'click .title': function () {
@@ -12,15 +6,13 @@ Template.ionNavBar.events({
        Router.go('menu');
 	}
 });
-
 Template.main.helpers({
 	lectionList: function () {
 		var currentBook = Session.get('currentBook');
 		var currentChapter = Session.get('currentChapter');
-
+      //  var index=Session.get("index");
+         // console.log(currentBook,currentChapter+"  1=index,2=currbook,3=currentchapter main  in current -------------------------");
         getLection(currentBook, currentChapter);
-
-
         return Session.get('lectionList');
 	},
 	bookName: function () {

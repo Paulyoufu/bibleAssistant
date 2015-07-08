@@ -1,12 +1,8 @@
 Session.setDefault("sessSearch","*");
 Session.setDefault("time","");
-
 Template.bookMarks.events({
 	'click #btnreturn': function () {
 		Router.go('menu');
-        console.log("------------------------------setbookmarks");
-		//  getBookMarks();
-
     },'click #btnSearch': function(){
     var searchStr=$("#txtSearch").val();
         if(searchStr.length>0){Session.set("sessSearch",searchStr);
@@ -14,7 +10,6 @@ Template.bookMarks.events({
         }
     }
 });
-
 Template.bookMarks.helpers({
     arrBookMark: function(){
         console.log("-----------5555555555--------");
@@ -22,11 +17,8 @@ Template.bookMarks.helpers({
         console.log(searchStr+" this is a helper searchstr")
         console.log(searchStr+" this is a helpers searchstr")
         getBookMarks(searchStr);
-    //    console.log(Session.get('sessBookMark')+"----------getbookmarkshelps--------");
         return Session.get('sessBookMark');
-
     },
-
     bookName: function () {
         return Session.get('currentBookName');
     },
