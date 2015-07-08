@@ -171,7 +171,7 @@ SearchGetLection = function (searchType,searchStr) {
                //  console.log(arrNew[0].bookName+"bookname---************--------------");
 
                     objLectionItem.verseSN=res.rows.item(i).VerseSN;
-                    objLectionItem.lection = res.rows.item(i).Lection.replace(new RegExp(searchStr,"g"),'<font  color="blue">'+searchStr+'</font>');
+                    objLectionItem.lection = res.rows.item(i).Lection.replace(new RegExp(searchStr,"g"),'<span  style="color:red;"><span style="display:none">'+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":"+objLectionItem.volumeSN+" "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+'&</span>'+searchStr+'</span>');
                     // objLectionItem.soundEnd = res.rows.item(i).soundend;+res.rows.item(i).CharpterSN+":"+(i+1)+" "
                     $("#divsearch").append("<p class='item item-text-wrap' ><span style='display:none'>"+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":</span>"+objLectionItem.volumeSN+"  "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+"<span style='display:none'>&</span> "+ objLectionItem.lection+"</p>");
                     //arrLection.push(objLectionItem);

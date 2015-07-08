@@ -10,8 +10,8 @@ Template.search.events({
     {
      var chapter=$(e.target).text();
         if(chapter=="")
-        {
-            chapter=$(e.target).html();
+        {console.log(e.currentTarget);
+            chapter= $( e.target ).find(".item").text();
         }
         console.log(chapter,typeof(chapter)+"1113332222sssssss");
         var currBookNames=chapter.replace(/[\d  :]/g,"");
