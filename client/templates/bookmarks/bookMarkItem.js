@@ -58,10 +58,10 @@ Template.temBookmarkItem.events(
             var currentChapter = Session.get('currentChapter');
             var currindex=this.objbookname;
             currindex=currindex.substr(currindex.indexOf(":")+1);
-            console.log(currindex+"    index   index   index   index   ");
+           // console.log(currindex+"    index   index   index   index   ");
             Session.set("index",parseInt(currindex));
-            getLection(currentBook, currentChapter);
-            setSetting(Session.get('currentBook'), Session.get('currentChapter'));
+           // getLection(currentBook, currentChapter);
+           // setSetting(Session.get('currentBook'), Session.get('currentChapter'));
         }
     }
 )

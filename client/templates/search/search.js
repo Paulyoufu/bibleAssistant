@@ -9,13 +9,15 @@ Template.search.events({
     'click #divsearch p': function(e)
     {
      var chapter=$(e.target).text();
+     var searchWork=Session.get("searchStr");
         if(chapter=="")
         {console.log(e.currentTarget);
             chapter= $( e.target ).find(".item").text();
         }
+        Session.set("keyWordBlog",1);
+        console.log(Session.get("searchStr")+"   searchStr   *****");
         console.log(chapter,typeof(chapter)+"1113332222sssssss");
         var currBookNames=chapter.replace(/[\d  :]/g,"");
-
         currBookNames=currBookNames.substr(0,currBookNames.indexOf("&"));
         console.log(currBookNames+"   this.is a current BookNames  WAITING");
         Session.set("currentBookName",currBookNames);
@@ -32,14 +34,13 @@ Template.search.events({
         Session.set('currentBook',arrcurrentBook);
         Session.set('currentChapter',arrcurrentChapter);
         Session.set('currentChapterCount',arrcurrentCount);
-       var currentBook = Session.get('currentBook');
-        getLection(arrcurrentBook, arrcurrentChapter);
+     //  var currentBook = Session.get('currentBook');
+       // getLection(arrcurrentBook, arrcurrentChapter);
        // setSetting(Session.get('currentBook'), Session.get('currentChapter'));
     },
     'change select': function(e,t)
     {
-        var currBookINdex=1;
-      //  console.log($("#selbookname").text()+"  text selected    ");
+        var currBookINdex=$("#selbookname").get(0).selectedIndex;
         console.log($("#selbookname").get(0).selectedIndex+"  index selected    ");
         if($("#selbookname").get(0).selectedIndex>2)
         {
@@ -50,12 +51,16 @@ Template.search.events({
         Session.set("searchType",$("#selbookname").get(0).selectedIndex);
     },
     'click #btnSearchScript': function(){
+        var searchType=parseInt(Session.get("searchType"));
+        var searchStr=Session.get("searchStr");
+
+      //  if(searchType===""){searchType=0; console.log(searchStr+"   empty  searchType");}
         if($("inpSearchScript").val()!="")
         {
-            $("#divsearch").html("");
+            $("#divsearch").empty();
            Session.set("searchStr",$("#inpSearchScript").val());
-            var searchType=parseInt(Session.get("searchType"));
-            var searchStr=Session.get("searchStr");
+
+
             SearchGetLection(searchType,$("#inpSearchScript").val());
         }
     }

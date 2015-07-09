@@ -2,6 +2,7 @@ Session.setDefault("currCharpter",1);
 Session.setDefault("currBookName","");
 Session.setDefault("currSection",1);
 Session.setDefault("currLection",null);
+
 Template.lectionItem.events({
     'click .item': function () {
 Session.set("currSection",this.sectionSN);
@@ -56,7 +57,6 @@ Session.set("currLection",this.lection);
                     },
                     onCancel: function() {
                     }})
-
             }
             return true;
         },

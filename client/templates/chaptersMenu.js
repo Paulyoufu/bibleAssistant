@@ -25,6 +25,5 @@ Template.chaptersMenu.events({
 	},"click #btnBooks": function()
     {
         Router.go('bookMenu');
-
     }
 });

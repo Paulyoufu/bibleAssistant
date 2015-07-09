@@ -10,9 +10,8 @@ Template.main.helpers({
 	lectionList: function () {
 		var currentBook = Session.get('currentBook');
 		var currentChapter = Session.get('currentChapter');
-      //  var index=Session.get("index");
-         // console.log(currentBook,currentChapter+"  1=index,2=currbook,3=currentchapter main  in current -------------------------");
-        getLection(currentBook, currentChapter);
+        var index=Session.get("index");
+        getLection(currentBook, currentChapter,index);
         return Session.get('lectionList');
 	},
 	bookName: function () {
