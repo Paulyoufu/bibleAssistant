@@ -8,22 +8,9 @@
     </button> 
     {{/contentFor}}
 
-<<<<<<< HEAD
-{{#contentFor "headerTitle"}}
-    <h1 class="title" data-ion-menu-toggle="left">{{bookName}} 第{{chapterSN}}章</h1>
-{{/contentFor}}
-
-{{#contentFor "headerButtonRight"}}
-    <button id="btnVoice" class="button button-clear pull-right">
-        <!-- data-ion-modal="right" -->
-        语音
-    </button>
-{{/contentFor}}
-=======
     {{#contentFor "headerTitle"}}
     <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
     {{/contentFor}}
->>>>>>> caiyufan
 
     <div class="bar bar-header bar-dark">
         <h1 class="title">菜单选项</h1>
@@ -47,7 +34,7 @@
         {{/ionItem}}
     </div>
 
-    <div id="btnDownload">
+    <div id="btnDownload" class="btnDownload">
         {{#ionItem path="download" iconLeft=true iconRight=true}}
         {{> ionIcon icon="ios-checkmark" class="positive"}}
         下载管理
