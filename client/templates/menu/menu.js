@@ -29,3 +29,13 @@ Template.menu.events({
        
 	}
 });
+Template.menu.helpers({
+
+    bookName: function () {
+        console.log(Session.get('currentBookName'));
+        return Session.get('currentBookName');
+    },
+    chapterSN: function () {
+        return Session.get('currentChapter');
+    }
+});
