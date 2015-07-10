@@ -7,26 +7,31 @@
     <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
  {{/contentFor}}
  <div class="bar bar-header bar-dark">
- 	<button class="button button-clear pull-left">返回</button> <h1 class="title">搜索管理</h1>
+ 	<button id="btnSearchRet" class="button button-clear pull-left">返回</button> <h1 class="title">搜索管理</h1>
  </div>
     {{#ionView}}
         {{#ionContent}}
-            <div style="background-color:beige;">
-        <div style="margin-top:10px;margin-left:10px">
-                    <select id="selbookname" style="width:95%;">
-                        <option>全书</option><option>旧约</option> <option>新约</option>
-                        {{#each oldBookName}} <option>{{> olnyBookNameItem}} </option> {{/each}}
-                        {{#each newBookName}}<option>{{> olnyBookNameItem}}</option> {{/each}}
-                    </select>
-        </div>
-            <div class=" item-input-inset">
+
+            <div style="background-color:gray;height:45px;">
+
+            <div class=" item-input-inset" style="margin-top:-8px;width:100%">
                 <label class="item-input-wrapper">
                     <i class="icon ion-ios7-search placeholder-icon"></i>
                     <input id="inpSearchScript" type="text" placeholder="请输入关键字">
                 </label>
                 <button id="btnSearchScript" class=" ion-search " style="background-color: lightgray;height:30px;border-style:none"></button>
             </div>
-            <div id="divsearch" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">
+                <div style="margin-top: -20px" >
+                    <button id="btnRange" class="button button-full ">
+                        按范围选择
+                    </button>
+                </div>
+                    <ul  id="selbookname"  style="display:none;position: fixed;position: absolute;bottom: 0; width:100%;height:60%;overflow-y: scroll;border:solid 1px #c3c3c3;">
+                        <li><div class="item">全书</div></li><li><div class="item">旧约</div></li><li><div class="item">新约</div></li>
+                        {{#each oldBookName}} <li>{{> olnyBookNameItem}} </li> {{/each}}
+                        {{#each newBookName}}<li >{{> olnyBookNameItem}}</li> {{/each}}
+                    </ul>
+            <div id="divsearch" class="list" style="position: fixed;position: absolute;height:80%;overflow-y:scroll;overflow-x:hidden;border:solid 1px #c3c3c3;">
             </div>
             </div>
         {{/ionContent}}

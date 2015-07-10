@@ -8,7 +8,6 @@ Template.temBookmarkItem.rendered=function(){
         paginationClickable: true,
         spaceBetween: 30
     });
-
 }
 Template.temBookmarkItem.events(
     {
@@ -25,7 +24,7 @@ Template.temBookmarkItem.events(
                     if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<6)
                     {
                         var timer= Session.get("time");
-                        console.log(timer+"//////------timer--------///////////");
+                 //       console.log(timer+"//////------timer--------///////////");
                         var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
                         updateBookMarks(booknames,$("input[name='prompt']").val(),timer);
                     }
@@ -53,7 +52,7 @@ Template.temBookmarkItem.events(
             Session.set('currentChapter',this.objchapter);
             Session.set('currentChapterCount',this.objchapterCount);
             Session.set('currentBookName',bookname);
-            console.log(Session.get('currentChapterCount')+"  this is chapter count");
+       //     console.log(Session.get('currentChapterCount')+"  this is chapter count");
             var currentBook = Session.get('currentBook');
             var currentChapter = Session.get('currentChapter');
             var currindex=this.objbookname;
