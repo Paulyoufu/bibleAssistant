@@ -10,12 +10,11 @@ BibleScroll=function(sectionIndex){
 	if(sectionIndex == Session.get('sectionIndex')){//scrollPosition=0;
 		return;
 	}
-    console.log(sectionIndex+"____________ index_________")
+ //   console.log(sectionIndex+"____________ index_________")
 	Session.set('sectionIndex', sectionIndex);
         if(Session.get("sumSectionHeight") < window.screen.height/2-50)
-        {   console.log(window.screen.height/2+"===========8881115667777777788888888888=========");
+        {
             Session.set("sumSectionHeight",Session.get("sumSectionHeight") + $("#divBible p:eq(" + sectionIndex + ")").outerHeight(true));
-           console.log(Session.get("sumSectionHeight")+"++++sum++++");
             $("#divBible p").removeClass("blue");
             $("#divBible p:eq(" + sectionIndex + ")").addClass("blue");
         }
@@ -24,14 +23,14 @@ BibleScroll=function(sectionIndex){
             $("#divBible").scrollTop(Session.get("scrollPosition")) ;
             $("div p").removeClass("blue");
             $("#divBible p:eq(" + sectionIndex + ")").addClass("blue");
-            console.log($("#divBible p:eq(" + sectionIndex + ")").position().top);
 
         }
 }
-BibleScrollTop=function(){
-    $("#divBible").scrollTop($("div p:eq(0)").position().top);
-    Session.set("sumSectionHeight",0);
-    Session.set("scrollPosition",0);
+BibleScrollTop=function(){Session.set("index",1);
+  //  $("#divBible").scrollTop(60);
+   // $("#divBible").scrollTop($("div p:eq(1)").position().top);
+  //  Session.set("sumSectionHeight",0);
+   // Session.set("scrollPosition",0);
 }
 CharpterScrollTop=function(){
     $("#charpterList").scrollTop($("div div:eq(0)").position().top);

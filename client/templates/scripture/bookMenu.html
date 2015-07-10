@@ -1,37 +1,37 @@
 <template name="bookMenu">
-
-    {{#contentFor "headerButtonLeft"}}
+    
+{{#contentFor "headerButtonLeft"}}
     <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-        <!-- data-ion-modal="menu" -->
-        <!-- data-ion-menu-toggle 左拉菜单-->
-        菜单
+            <!-- data-ion-modal="menu" -->
+            <!-- data-ion-menu-toggle 左拉菜单-->
+            菜单
+    </button> 
+{{/contentFor}}
+
+{{#contentFor "headerTitle"}}
+    <h1 class="title" data-ion-menu-toggle="left">{{bookName}} 第{{chapterSN}}章</h1>
+{{/contentFor}}
+
+{{#contentFor "headerButtonRight"}}
+    <button id="btnVoice" class="button button-clear pull-right">
+        <!-- data-ion-modal="right" -->
+        语音
     </button>
-    {{/contentFor}}
-
-    {{#contentFor "headerTitle"}}
-        <h1 class="title" data-ion-menu-toggle="left">{{bookName}} 第{{chapterSN}}章</h1>
-    {{/contentFor}}
-
-    {{#contentFor "headerButtonRight"}}
-        <button id="btnVoice" class="button button-clear pull-right">
-            <!-- data-ion-modal="right" -->
-            语音
-        </button>
-    {{/contentFor}}
+{{/contentFor}}
 
 
-            <div class="bar bar-header" style="background-color: black;height:115px">
+            <div class="bar bar-header" style="background-color:black;height:112px">
 
-               <div style="height:20px">
-                   <h4  style="margin-left:90px;color:white;text-align:center">书卷选择</h4>
+               <div style="height:20px;margin-left:90px;border-style:none;">
+                   <h4  style="color:white;text-align:center;border-style:none;" >书卷选择</h4>
                </div>
 
-                <div class="tabs" style="border-color: black;margin-left:-168px;border-style:none">
-                    <a class="tab-item chooseOrAndNew " id="old" style="border-style:none">
+                <div class="tabs" style="border-style:none;margin-left:-167px">
+                    <a class="tab-item chooseOrAndNew " id="old" style="border-style:none;">
                     旧约
                 </a>
 
-                    <a class="tab-item chooseOrAndNewDefault " id="new" style="border-style:none">
+                    <a class="tab-item chooseOrAndNewDefault " id="new" style="border-style:none;">
                         新约
                     </a>
                 </div>
@@ -42,12 +42,6 @@
 {{#ionView}}
       {{#ionContent}}
         {{#ionList}}
-
-        {{#ionItem path="search" iconLeft=true iconRight=true}}
-            {{> ionIcon icon="ios-checkmark" class="positive"}}
-            创世纪
-            {{> ionIcon icon="ios-arrow-right"}}
-        {{/ionItem}}
 
 
         {{/ionList}}

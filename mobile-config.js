@@ -1,4 +1,3 @@
-App.accessRule("*");
 App.info({
   name: '圣经助手',
   description: '一键聆听神的话语',

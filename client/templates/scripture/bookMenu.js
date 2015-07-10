@@ -1,13 +1,12 @@
-Template.ionNavBar.events({
+Template.bookMenu.events({
 	'click .title': function () {
        Router.go('bookMenu');
 	},'click .pull-left': function () {
        Router.go('bookMenu');
 	}
 });
-
 Session.setDefault("bibleOldOrNew",0);
-var arrOld=[
+ arrOld=[
     {bookID:1,bookName:'创世记',charpterCount:'50'},
     {bookID:2,bookName:'出埃及记',charpterCount:'40'},
     {bookID:3,bookName:'利未记',charpterCount:'27'},
@@ -48,7 +47,7 @@ var arrOld=[
     {bookID:38,bookName:'撒迦利亚书',charpterCount:'14'},
     {bookID:39,bookName:'玛拉基书',charpterCount:'4'}
 ];
-var arrNew=[
+ arrNew=[
     {bookID:40,bookName:'马太福音',charpterCount:'28'},
     {bookID:41,bookName:'马可福音',charpterCount:'16'},
     {bookID:42,bookName:'路加福音',charpterCount:'24'},
@@ -79,21 +78,19 @@ var arrNew=[
 ];
 Template.bookMenu.helpers({
     postBookName:function(){
-      if(Session.get("bibleOldOrNew")==0)
-      {
-          return arrOld;
-      }
-      else if(Session.get("bibleOldOrNew")==1)
-      {
-          return arrNew
-      }
+        if(Session.get("bibleOldOrNew")==0)
+        {
+            return arrOld;
+        }
+        else if(Session.get("bibleOldOrNew")==1)
+        {
+            return arrNew
+        }
     },
     bookName: function () {
-        console.log(Session.get('currentBookName')+"bookmenu booknamefun");
         return Session.get('currentBookName');
     },
     chapterSN: function () {
-        console.log(Session.get('currentChapter')+"bookmenu charpterSNfun");
         return Session.get('currentChapter');
     }
 });
@@ -101,7 +98,7 @@ Template.bookMenu.events({
     "click #old": function(){
         Session.set("bibleOldOrNew",0);console.log("session======000");
 
-            $("#divBookLists").scrollTop($("div div:eq(0)").position().top);
+        $("#divBookLists").scrollTop($("div div:eq(0)").position().top);
         Session.set("bibleOldOrNew",0);
         $("#new").removeClass("chooseOrAndNew");
         $("#new").addClass("chooseOrAndNewDefault");
@@ -122,14 +119,13 @@ Template.bookMenu.events({
         $("#new").attr("disabled","disabled"); // 禁用
         $("#old").removeAttr("disabled"); // 启用
     },
-'click .booksColor': function () {
+    'click .item': function () {
 
-    Session.set('selectedBook', this.bookID);
-    Session.set('selectedChapterCount', this.charpterCount);
-    Session.set('selectedBookName', this.bookName);
-  console.log(    Session.get('selectedBookName')+"  bookitem");
-
-    Router.go('chaptersMenu');
-}
+        Session.set('selectedBook', this.bookID);
+        Session.set('selectedChapterCount', this.charpterCount);
+        Session.set('selectedBookName', this.bookName);
+        console.log(Session.get('selectedBookName'));
+        Router.go('chaptersMenu');
+    }
 
 });
