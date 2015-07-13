@@ -124,6 +124,7 @@ Template.bookMenu.events({
         Session.set('selectedBook', this.bookID);
         Session.set('selectedChapterCount', this.charpterCount);
         Session.set('selectedBookName', this.bookName);
+        Session.set("keyWordBlog",2);
         console.log(Session.get('selectedBookName'));
         Router.go('chaptersMenu');
     }

@@ -13,7 +13,7 @@ Template.search.events({
     {
      var chapter=$(e.target).text();
      var searchWork=Session.get("searchStr");
-        if(chapter=="")
+       if(chapter=="")
         {//console.log(e.currentTarget);
             chapter= $( e.target ).find(".item").text();
         }
@@ -33,9 +33,7 @@ Template.search.events({
         Session.set('currentChapter',arrcurrentChapter);
         Session.set('currentChapterCount',arrcurrentCount);
         Session.set("keyWordBlog",1);
-
     },
-
     'click #btnSearchScript': function(){
         var searchType=parseInt(Session.get("searchType"));
         var searchStr=Session.get("searchStr");
@@ -45,10 +43,23 @@ Template.search.events({
         {
             $("#divsearch").empty();
            Session.set("searchStr",$("#inpSearchScript").val());
-
-
             SearchGetLection(searchType,$("#inpSearchScript").val());
         }
+    },"click #selbookname li": function(e){
+
+      var typeSearch=$(e.target).find("span").text();
+        $("ul li").find(".ion-android-done").removeClass("ion-android-done");
+        $(e.target).find(".item-note").addClass("ion-android-done");
+        if(typeSearch==""){
+            Session.set("searchType",0);
+            Session.set("currBookIndex",parseInt(this.bookID));
+            console.log(  Session.get("searchType"), Session.get("currBookIndex"),"  ------  searType currBookIndex ------");
+        }
+        else{
+            Session.set("searchType",parseInt(typeSearch));
+            console.log(Session.get("searchType"));
+        }
+
     }
 });
 Template.search.helpers({
