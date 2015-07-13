@@ -13,7 +13,9 @@ Template.search.events({
     {
      var chapter=$(e.target).text();
      var searchWork=Session.get("searchStr");
+
        if(chapter=="")
+
         {//console.log(e.currentTarget);
             chapter= $( e.target ).find(".item").text();
         }
@@ -34,6 +36,8 @@ Template.search.events({
         Session.set('currentChapterCount',arrcurrentCount);
         Session.set("keyWordBlog",1);
     },
+
+
     'click #btnSearchScript': function(){
         var searchType=parseInt(Session.get("searchType"));
         var searchStr=Session.get("searchStr");
@@ -43,6 +47,7 @@ Template.search.events({
         {
             $("#divsearch").empty();
            Session.set("searchStr",$("#inpSearchScript").val());
+
             SearchGetLection(searchType,$("#inpSearchScript").val());
         }
     },"click #selbookname li": function(e){
@@ -59,6 +64,7 @@ Template.search.events({
             Session.set("searchType",parseInt(typeSearch));
             console.log(Session.get("searchType"));
         }
+
 
     }
 });

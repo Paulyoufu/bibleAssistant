@@ -11,7 +11,7 @@ Session.setDefault('selectedBook', null);             //padding的书卷SN
 Session.setDefault('selectedChapterCount', null);     //padding的书卷章数
 Session.setDefault('selectedBookName', null);         //padding的书卷名字
 Session.setDefault("index",1);
-Session.setDefault("searchType",-1);// 1代表初始化模式后面没有where条件的，2代表 全书有where  3代表旧约  4代表新约
+Session.setDefault("searchType",-1);
 //Session.setDefault("searchStr","");
 Session.setDefault("currBookIndex",1);
 Session.setDefault("keyWordBlog",0);
@@ -20,7 +20,7 @@ Session.setDefault("keyWordBlog",0);
 // volumeSN 书卷号 chapterSN 章号
 getLection = function (volumeSN, chapterSN,index) {
     // 打开数据库
-    if(Session.setDefault("keyWordBlog")==2){ return;}
+
     // var db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
     db.transaction(function(tx) {
         //单次查询Bible表
@@ -49,17 +49,21 @@ getLection = function (volumeSN, chapterSN,index) {
                     {
                         $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+68-$("#divBible p:eq(0)").position().top);
                     }
-                  console.log(Session.get("keyWordBlog"));
-                  if(Session.get("keyWordBlog")==1){
+
+
+                    if(Session.get("keyWordBlog")==1){
+
                         console.log(Session.get("keyWordBlog")+"  keywordblog");
                         $("#divBible p").removeClass("scriptColor");
                         $("#divBible p:eq("+(index-1)+")").addClass("scriptColor");
                         Session.set("keyWordBlog",0);
                         console.log(Session.get("keyWordBlog")+"  keywordblog is  zero1");
                     }
+
                     if(Session.get("keyWordBlog")!=0 && Session.get("keyWordBlog")!=1) {
                         $("#divBible p").removeClass("scriptColor");
                     }
+
                 }
                 else
                 {
@@ -119,6 +123,7 @@ SearchGetLection = function (searchType,searchStr) {
      //   console.log(searchType+"     searchType      ");
         switch(searchType)
         {
+
             case -1:strSQL =strSQL+" Lection like '%"+searchStr+"%' order by ID;";
                 break;
             case -2:strSQL =strSQL+" VolumeSN>0 and VolumeSN<40 and Lection like '%"+searchStr+"%' order by ID;";
@@ -127,6 +132,7 @@ SearchGetLection = function (searchType,searchStr) {
                 strSQL =strSQL+ "  VolumeSN>39 and VolumeSN<66 and Lection like '%"+searchStr+"%' order by ID;";
                 break;
             case 0:
+
                 strSQL =strSQL+" VolumeSN="+currBookIndex+"  and Lection like '%"+searchStr+"%' order by ID;";
                 break;
         }
