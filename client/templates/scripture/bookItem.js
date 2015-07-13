@@ -1,0 +1,7 @@
+
+
+
+
+Template.bookItem.events({
+
+});

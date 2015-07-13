@@ -1,72 +1,79 @@
 <template name="menu">
     
-    {{#contentFor "headerButtonLeft"}}
+{{#contentFor "headerButtonLeft"}}
     <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-        <!-- data-ion-modal="menu" -->
-        <!-- data-ion-menu-toggle 左拉菜单-->
-        菜单
+            <!-- data-ion-modal="menu" -->
+            <!-- data-ion-menu-toggle 左拉菜单-->
+            菜单
     </button> 
-    {{/contentFor}}
+{{/contentFor}}
 
-    {{#contentFor "headerTitle"}}
-    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
-    {{/contentFor}}
+{{#contentFor "headerTitle"}}
+    <h1 class="title" data-ion-menu-toggle="left">{{bookName}} 第{{chapterSN}}章</h1>
+{{/contentFor}}
 
-    <div class="bar bar-header bar-dark">
-        <h1 class="title">菜单选项</h1>
-    </div>
-    {{#ionView}}
-    {{#ionContent}}
-    {{#ionList}}
-    <div id="btnSerach">
+{{#contentFor "headerButtonRight"}}
+    <button id="btnVoice" class="button button-clear pull-right">
+        <!-- data-ion-modal="right" -->
+        语音
+    </button>
+{{/contentFor}}
+
+<div class="bar bar-header bar-dark">
+    <h1 class="title">菜单选项</h1>
+  </div>
+{{#ionView}}
+      {{#ionContent}}
+        {{#ionList}}
+        <div id="btnSearch" >
         {{#ionItem path="search" iconLeft=true iconRight=true}}
-        {{> ionIcon icon="ios-checkmark" class="positive"}}
-        搜索
-        {{> ionIcon icon="ios-arrow-right"}}
+            {{> ionIcon icon="ios-checkmark" class="positive"}}
+            搜索
+            {{> ionIcon icon="ios-arrow-right"}}
         {{/ionItem}}
-    </div>
+        </div>
 
-    <div id="btnBookMarks">
+        <div id="btnBookMarks" >
         {{#ionItem path="bookMarks" iconLeft=true iconRight=true}}
-        {{> ionIcon icon="ios-checkmark" class="positive"}}
-        书签管理
-        {{> ionIcon icon="ios-arrow-right"}}
+            {{> ionIcon icon="ios-checkmark" class="positive"}}
+            书签管理
+            {{> ionIcon icon="ios-arrow-right"}}
         {{/ionItem}}
-    </div>
+        </div>
 
-    <div id="btnDownload">
+        <div id="btnDownload" >
         {{#ionItem path="download" iconLeft=true iconRight=true}}
-        {{> ionIcon icon="ios-checkmark" class="positive"}}
-        下载管理
-        {{> ionIcon icon="ios-arrow-right"}}
+            {{> ionIcon icon="ios-checkmark" class="positive"}}
+            下载管理
+            {{> ionIcon icon="ios-arrow-right"}}
         {{/ionItem}}
-    </div>
+        </div>
 
-    <div id="btnSystemSettings">
+        <div id="btnSystemSettings" >
         {{#ionItem path="systemSettings" iconLeft=true iconRight=true}}
-        {{> ionIcon icon="ios-checkmark" class="positive"}}
-        系统设置
-        {{> ionIcon icon="ios-arrow-right"}}
+            {{> ionIcon icon="ios-checkmark" class="positive"}}
+            系统设置
+            {{> ionIcon icon="ios-arrow-right"}}
         {{/ionItem}}
-    </div>
+        </div>
 
-    <div id="btnDedication">
+        <div id="btnDedication" >
         {{#ionItem path="dedication" iconLeft=true iconRight=true}}
-        {{> ionIcon icon="ios-checkmark" class="positive"}}
-        奉献支持
-        {{> ionIcon icon="ios-arrow-right"}}
+            {{> ionIcon icon="ios-checkmark" class="positive"}}
+            奉献支持
+            {{> ionIcon icon="ios-arrow-right"}}
         {{/ionItem}}
-    </div>
+        </div>
 
-    <div id="btnReturn">
+        <div id="btnReturn" data-ion-menu-close>
         {{#ionItem path="main" iconLeft=true iconRight=true}}
-        {{> ionIcon icon="ios-checkmark" class="positive"}}
-        返回主页
-        {{> ionIcon icon="ios-arrow-right"}}
+            {{> ionIcon icon="ios-checkmark" class="positive"}}
+            返回主页
+            {{> ionIcon icon="ios-arrow-right"}}
         {{/ionItem}}
-    </div>
+        </div>
 
-    {{/ionList}}
-    {{/ionContent}}
+        {{/ionList}}
+      {{/ionContent}}
     {{/ionView}}
 </template>

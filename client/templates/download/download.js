@@ -1,41 +1,24 @@
-Template.download.helpers({
-	booksList: function () {
-		return Session.get('booksList');
-	},
-	bookName: function () {
-		return Session.get('currentBookName'); 
-	},
-	chapterSN: function () {
-		return Session.get('currentChapter');
-	},
-	chapters: function () {
-		var currentChapterCount = Session.get('selectedChapterCount');
-		var chapters = [];
-
-		for (var i = 0; i < currentChapterCount; i++) {
-			var chapterItem = {};
-			chapterItem.chapterSN = i + 1;
-			chapters.push(chapterItem);
-		};
-
-		return chapters;
-	},
-	availWidth: function () {
-		return window.screen.availWidth;
-	}
-	// bookName: function () {
-	// 	return Session.get('currentBookName'); 
-	// },
-	// chapterSN: function () {
-	// 	return Session.get('currentChapter');
-	// },
-	// selectedBookName: function () {
-	// 	return Session.get('selectedBookName');
-	// }
-});
-
 Template.download.events({
 	'click button': function () {
 		Router.go('menu');
 	}
+});
+Template.download.helpers({
+    bookName: function () {
+        return Session.get('currentBookName');
+    },
+    chapterSN: function () {
+        return Session.get('currentChapter');
+    },
+    position: function(){
+        return Session.get('timeValue');
+    },
+    section: function(){
+        var position = Session.get('timeValue');
+        var sectionSN = getCurrSection(position);
+        return sectionSN;
+    },
+    dur:function(){
+        return Session.get('dur');
+    }
 });

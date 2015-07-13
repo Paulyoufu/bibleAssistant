@@ -1,14 +1,18 @@
-Template.main.rendered = function()
-{
-	
-};
 
+Template.ionNavBar.events({
+	'click .title': function () {
+       Router.go('bookMenu');
+	},'click .pull-left': function () {
+       Router.go('menu');
+	}
+});
 Template.main.helpers({
 	lectionList: function () {
 		var currentBook = Session.get('currentBook');
 		var currentChapter = Session.get('currentChapter');
-		getLection(currentBook, currentChapter);
-		return Session.get('lectionList');
+        var index=Session.get("index");
+        getLection(currentBook, currentChapter,index);
+        return Session.get('lectionList');
 	},
 	bookName: function () {
 		return Session.get('currentBookName'); 
@@ -28,4 +32,16 @@ Template.main.helpers({
 		return Session.get('dur');
 	}
 });
+Template.main.events({
+    "click #btnNext": function(){
+        console.log("next");Session.set("index",1);
+        nextChapter();
+        BibleScrollTop();
+    },
+    "click #btnPrev": function(){
+        console.log("prev");Session.set("index",1);
+        lastChapter();
+       // BibleScrollTop();
+    }
 
+})

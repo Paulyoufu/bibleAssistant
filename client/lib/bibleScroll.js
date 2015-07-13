@@ -10,28 +10,27 @@ BibleScroll=function(sectionIndex){
 	if(sectionIndex == Session.get('sectionIndex')){//scrollPosition=0;
 		return;
 	}
-    console.log(sectionIndex+"____________ index_________")
+ //   console.log(sectionIndex+"____________ index_________")
 	Session.set('sectionIndex', sectionIndex);
         if(Session.get("sumSectionHeight") < window.screen.height/2-50)
-        {   console.log(window.screen.height/2+"===========8881115667777777788888888888=========");
-            Session.set("sumSectionHeight",Session.get("sumSectionHeight") + $("#divBible span:eq(" + sectionIndex + ")").outerHeight(true));
-           console.log(Session.get("sumSectionHeight")+"++++sum++++");
-            $("#divBible span").removeClass("blue");
-            $("#divBible span:eq(" + sectionIndex + ")").addClass("blue");
+        {
+            Session.set("sumSectionHeight",Session.get("sumSectionHeight") + $("#divBible p:eq(" + sectionIndex + ")").outerHeight(true));
+            $("#divBible p").removeClass("blue");
+            $("#divBible p:eq(" + sectionIndex + ")").addClass("blue");
         }
         else{
-           Session.set("scrollPosition", Session.get("scrollPosition")+$("#divBible span:eq(" + sectionIndex + ")").outerHeight());console.log($("#divBible span:eq(" + sectionIndex + ")").outerHeight()+"    hhhhhhhhhhhhhhhhhhhh");
+           Session.set("scrollPosition", Session.get("scrollPosition")+$("#divBible p:eq(" + sectionIndex + ")").outerHeight());console.log($("#divBible p:eq(" + sectionIndex + ")").outerHeight()+"    hhhhhhhhhhhhhhhhhhhh");
             $("#divBible").scrollTop(Session.get("scrollPosition")) ;
-            $("div span").removeClass("blue");
-            $("#divBible span:eq(" + sectionIndex + ")").addClass("blue");
-            console.log($("#divBible span:eq(" + sectionIndex + ")").position().top);
+            $("div p").removeClass("blue");
+            $("#divBible p:eq(" + sectionIndex + ")").addClass("blue");
 
         }
 }
-BibleScrollTop=function(){
-    $("#divBible").scrollTop($("div span:eq(0)").position().top);
-    Session.set("sumSectionHeight",0);
-    Session.set("scrollPosition",0);
+BibleScrollTop=function(){Session.set("index",1);
+  //  $("#divBible").scrollTop(60);
+   // $("#divBible").scrollTop($("div p:eq(1)").position().top);
+  //  Session.set("sumSectionHeight",0);
+   // Session.set("scrollPosition",0);
 }
 CharpterScrollTop=function(){
     $("#charpterList").scrollTop($("div div:eq(0)").position().top);
