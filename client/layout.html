@@ -1,11 +1,11 @@
 <template name="layout">
   {{#ionBody}}
 
-    {{#ionSideMenuContainer side="left"}}
+    {{#ionSideMenuContainer}}
 
       {{#ionSideMenus}}
 
-        {{#ionSideMenu}}
+        {{#ionSideMenu side="left"}}
           {{> yield}}
         {{/ionSideMenu}}
 
@@ -26,6 +26,7 @@
 
     {{/ionSideMenuContainer}}
 
-   <!-- {{> footer}}-->
+<!--     {{> footer}} -->
+
   {{/ionBody}}
 </template>

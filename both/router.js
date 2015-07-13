@@ -12,14 +12,11 @@ Meteor.startup(function () {
 });
 
 Router.map(function() {
-
   this.route('menu', {path: '/'});//向右滑动弹出菜单
+  this.route('chaptersMenu', {path: '/chapters'});
 
-  this.route('bookMenu', {path: '/bookMenu'});
-  // this.route('menu', {path: '/menu'});
-  this.route("chaptersMenu",{path:"/chaptersMenu"});
-  this.route('search', {path: '/search'});
 
+  this.route('serach', {path: '/serach'});
   this.route('bookMarks', {path: '/bookMarks'});
   this.route('download', {path: '/download'});
   this.route('systemSettings', {path: '/systemSettings'});
