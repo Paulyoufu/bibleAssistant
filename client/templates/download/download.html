@@ -17,55 +17,36 @@
 		</button>
 		<h1 class="title">下载管理</h1>
 	</div>
-	<!-- 书卷 -->
-	<button>qwe</button>
-	{{#ionView}}
-	{{#ionContent}}
-	<!-- position:fixed 固定位置 overflow-x:hidden 隐藏x滚动条-->
-	<table style="width:250px;">
-		<tr style="height:40%;overflow-y:scroll;overflow-x:hidden;position:fixed;">
-			<td style="width:250px;">
-				<div id="charpterList" class="list">
-					{{#each chapters}}
-					{{> download_chapterItem}}
-					{{/each}}
-				</div>
-			</td>
-		</tr>
-		<tr style="height:40%;overflow-y:scroll;overflow-x:hidden;position:fixed;top:60%;">
-			<td style="width:250px;">
-				<div class="list">
-					{{#each booksList}}
-					{{> download_bookItem}}
-					{{/each}}
-
-				</div> 
-			</td>
-		</tr>
-	</table>
-<!-- 	<div id="charpterList" class="list" style="position:fixed;heigth:60%;width:100%;">
-		{{#each chapters}}
-		{{> download_chapterItem}}
-		{{/each}}
+	<div class="list">
+		<div class="item">
+			1章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+			<span class="item-note">
+				未下载
+			</span>
+		</div>
+		<div class="item">
+			2章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+				<span class="item-note">
+				未下载
+			</span>
+		</div>
+		<div class="item">
+			3章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+			<span class="item-note">
+				未下载
+			</span>
+		</div>
+		<div class="item">
+			4章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+			<span class="item-note">
+				未下载
+			</span>
+		</div>
+		<div class="item">
+			5章 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+			<span class="item-note">
+				未下载
+			</span>
+		</div>
 	</div>
-
-	<div class="list" style="position:fixed;width:100%;heigth:40%;">
-		{{#each booksList}}
-		{{> download_bookItem}}
-		{{/each}}
-
-	</div>  -->
-<!-- 	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button> -->
-
-
-	{{/ionContent}}
-	{{/ionView}}
-	<!-- 章节 -->
-	
 </template>
