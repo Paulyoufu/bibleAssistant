@@ -11,7 +11,7 @@ Session.setDefault('selectedBook', null);             //padding的书卷SN
 Session.setDefault('selectedChapterCount', null);     //padding的书卷章数
 Session.setDefault('selectedBookName', null);         //padding的书卷名字
 Session.setDefault("index",1);
-Session.setDefault("searchType",0);// 1代表初始化模式后面没有where条件的，2代表 全书有where  3代表旧约  4代表新约
+Session.setDefault("searchType",0);
 //Session.setDefault("searchStr","");
 Session.setDefault("currBookIndex",1);
 Session.setDefault("keyWordBlog",0);

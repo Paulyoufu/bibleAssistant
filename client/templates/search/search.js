@@ -49,6 +49,9 @@ Template.search.events({
 
             SearchGetLection(searchType,$("#inpSearchScript").val());
         }
+    },
+    "click #selbookname .item" : function(){
+
     }
 });
 Template.search.helpers({
