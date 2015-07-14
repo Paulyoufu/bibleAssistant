@@ -37,17 +37,22 @@ getLection = function (volumeSN, chapterSN,index) {
                     lectionList.push(lectionItem);
                 }
                 //将查询结果存入Session
+
                 Session.set('lectionList', lectionList);
+
                 if(index>=1)
-                {
-                    $("#divBible").scrollTop($("#divBible p:eq(0)").position().top);
+                {    console.log("1111111");
+                    $("#divBible").scrollTop(60);
                     if($("#divBible p:eq(0)").position().top>=68)
                     {
                         $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
+                        console.log($("#divBible p:eq("+(index-1)+")").position().top+"22222222");
                     }
                     else
                     {
                         $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+68-$("#divBible p:eq(0)").position().top);
+                        console.log($("#divBible p:eq("+(index-1)+")").position().top+"3333333333else");
+
                     }
 
 
@@ -67,7 +72,8 @@ getLection = function (volumeSN, chapterSN,index) {
                 }
                 else
                 {
-                    $("#divBible").scrollTop(60);
+                    $("#divBible").scrollTop(60);             console.log("aaaaaaaaaa");
+
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);

@@ -5,7 +5,7 @@
 Template.search.rendered=function(){}
 Template.search.events({
     'click #btnSearchRet': function () {
-        Router.go('menu');
+
     },
     'click #btnRange': function(){
         $("#backGrand").fadeToggle("slow");
@@ -36,6 +36,8 @@ Template.search.events({
         Session.set('currentBook',arrcurrentBook);
         Session.set('currentChapter',arrcurrentChapter);
         Session.set('currentChapterCount',arrcurrentCount);
+        $("#divsearch").empty();
+        Router.go('menu');
         Session.set("keyWordBlog",1);
     },
     'click #btnSearchScript': function(){

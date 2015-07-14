@@ -45,7 +45,7 @@ Template.temBookmarkItem.events(
             delBookMarks(booknames,timer);
         },
         "click .item": function()
-        {
+        { Session.set("keyWordBlog",1);
            var bookname=this.objbookname.replace(/[\d]/g,"");
             bookname=bookname.substr(0,bookname.indexOf(":"));
             Session.set('currentBook',this.objbookid);
@@ -59,7 +59,12 @@ Template.temBookmarkItem.events(
             currindex=currindex.substr(currindex.indexOf(":")+1);
            // console.log(currindex+"    index   index   index   index   ");
             Session.set("index",parseInt(currindex));
-            Session.set("keyWordBlog",1);
+
+            getLection(currentBook, currentChapter,currindex);
+          //  $("#books .list").empty();
+           // Router.go('menu');
+
+
            // getLection(currentBook, currentChapter);
            // setSetting(Session.get('currentBook'), Session.get('currentChapter'));
         }
