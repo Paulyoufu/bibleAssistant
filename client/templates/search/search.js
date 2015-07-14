@@ -10,7 +10,6 @@ Template.search.events({
     'click #btnRange': function(){
         $("#backGrand").fadeToggle("slow");
         $("#selbookname").slideToggle("slow");
-     //  $("#ViewContent").find(".content").attr("style","overflow-y:hidden");
     },
     'click .item': function(e)
     {
