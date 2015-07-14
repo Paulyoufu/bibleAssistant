@@ -39,8 +39,6 @@ Template.search.events({
         Session.set("keyWordBlog",1);
     },
     'click #btnSearchScript': function(){
-
-        //  if(searchType===""){searchType=0; console.log(searchStr+"   empty  searchType");}
         if($("inpSearchScript").val()!="" &&  $("#inpSearchScript").val().length>0)
         {   var searchType=parseInt(Session.get("searchType"));
             var searchStr=Session.get("searchStr");
