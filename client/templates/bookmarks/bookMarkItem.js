@@ -59,6 +59,7 @@ Template.temBookmarkItem.events(
             currindex=currindex.substr(currindex.indexOf(":")+1);
            // console.log(currindex+"    index   index   index   index   ");
             Session.set("index",parseInt(currindex));
+            Session.set("keyWordBlog",1);
            // getLection(currentBook, currentChapter);
            // setSetting(Session.get('currentBook'), Session.get('currentChapter'));
         }
