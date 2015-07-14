@@ -35,11 +35,13 @@ Template.main.helpers({
 Template.main.events({
     "click #btnNext": function(){
         console.log("next");Session.set("index",1);
+        Session.set("keyWordBlog",2);
         nextChapter();
         BibleScrollTop();
     },
     "click #btnPrev": function(){
         console.log("prev");Session.set("index",1);
+        Session.set("keyWordBlog",2);
         lastChapter();
        // BibleScrollTop();
     }

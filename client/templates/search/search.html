@@ -1,39 +1,44 @@
 <!-- 搜索管理 -->
 <template name="search">
- {{#contentFor "headerButtonLeft"}}
-   <button class="button button-clear pull-left" data-ion-menu-toggle="left"> 菜单</button>
- {{/contentFor}}
- {{#contentFor "headerTitle"}}
-    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
- {{/contentFor}}
- <div class="bar bar-header bar-dark">
- 	<button id="btnSearchRet" class="button button-clear pull-left">返回</button> <h1 class="title">搜索管理</h1>
- </div>
+    {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left"> 菜单</button>
+    {{/contentFor}}
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
+    {{/contentFor}}
+    <div class="bar bar-header bar-dark" style="height:70px">
+        <button id="btnSearchRet" class="button button-clear pull-left">返回</button>
+        <h1 class="title" style="margin-top:22px;height: 40px;">搜索管理</h1>
+        <button id="btnRange" class="button button-clear " style="margin-left:185px;"><i style="font-size:large" class="ion-ios-book"></i></button>
+        <div style="margin-top:60px;margin-left:-250px;background-color:#51575F;height:40px;position: fixed;position: absolute;width:100%">
+            <div class=" item-input-inset" style="margin-top:-5px;width:100%">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios7-search placeholder-icon"></i>
+                    <input id="inpSearchScript" type="text" placeholder="请输入关键字" style="-webkit-border-radius:25px;">
+                </label>
+                <button id="btnSearchScript" class=" ion-search " style="height:30px;border-style:none;background-color:#3D3D3D"></button>
+            </div>
+        </div>
+    </div>
+    <div id="ViewContent">
     {{#ionView}}
         {{#ionContent}}
 
-            <div style="background-color:gray;height:45px;">
+            <div id="divsearch" class="list" style="z-index:-1;position: fixed;position: absolute;margin-top:35px;height:100%;overflow-y:scroll;overflow-x:hidden;border:solid 1px #c3c3c3;">
+            </div>
+        <div id="backGrand" style="display:none;z-index:5;height:100%;background-color:gray;-webkit-filter:opacity(0.7); ">
 
-            <div class=" item-input-inset" style="margin-top:-8px;width:100%">
-                <label class="item-input-wrapper">
-                    <i class="icon ion-ios7-search placeholder-icon"></i>
-                    <input id="inpSearchScript" type="text" placeholder="请输入关键字">
-                </label>
-                <button id="btnSearchScript" class=" ion-search " style="background-color: lightgray;height:30px;border-style:none"></button>
-            </div>
-                <div style="margin-top: -20px" >
-                    <button id="btnRange" class="button button-full ">
-                        按范围选择
-                    </button>
-                </div>
-                    <ul  id="selbookname"  style="display:none;position: fixed;position: absolute;bottom: 0; width:100%;height:60%;overflow-y: scroll;border:solid 1px #c3c3c3;">
-                        <li><div class="item">全书</div></li><li><div class="item">旧约</div></li><li><div class="item">新约</div></li>
-                        {{#each oldBookName}} <li>{{> olnyBookNameItem}} </li> {{/each}}
-                        {{#each newBookName}}<li >{{> olnyBookNameItem}}</li> {{/each}}
-                    </ul>
-            <div id="divsearch" class="list" style="position: fixed;position: absolute;height:80%;overflow-y:scroll;overflow-x:hidden;border:solid 1px #c3c3c3;">
-            </div>
-            </div>
+
+        </div>
+            <ul  id="selbookname"  style="z-index:100;display:none;position: fixed;position: absolute;bottom:0px; width:100%;height:55%;overflow-y: scroll;border:solid 1px #c3c3c3;">
+                <li class="item" style="background-color:#F3F3F3;"><span style="display: none">-1</span>全书<span class="item-note ion-checkmark-circled positive" style="font-size:x-large"></span></li>
+                <li class="item" style="background-color:#F3F3F3;"><span style="display: none">-2</span>旧约<span class="item-note"></span></li>
+                <li class="item" style="background-color:#F3F3F3;"><span style="display: none">-3</span>新约<span class="item-note"></span></li>
+                {{#each oldBookName}} <li class="item" style="background-color:#F3F3F3;">{{> olnyBookNameItem}} </li> {{/each}}
+                {{#each newBookName}}<li class="item" style="background-color:#F3F3F3;">{{> olnyBookNameItem}}</li> {{/each}}
+            </ul>
+
         {{/ionContent}}
     {{/ionView}}
+    </div>
 </template>

@@ -11,7 +11,7 @@ Session.setDefault('selectedBook', null);             //padding的书卷SN
 Session.setDefault('selectedChapterCount', null);     //padding的书卷章数
 Session.setDefault('selectedBookName', null);         //padding的书卷名字
 Session.setDefault("index",1);
-Session.setDefault("searchType",0);
+Session.setDefault("searchType",-1);
 //Session.setDefault("searchStr","");
 Session.setDefault("currBookIndex",1);
 Session.setDefault("keyWordBlog",0);
@@ -20,6 +20,7 @@ Session.setDefault("keyWordBlog",0);
 // volumeSN 书卷号 chapterSN 章号
 getLection = function (volumeSN, chapterSN,index) {
     // 打开数据库
+
     // var db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
     db.transaction(function(tx) {
         //单次查询Bible表
@@ -49,15 +50,20 @@ getLection = function (volumeSN, chapterSN,index) {
                         $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+68-$("#divBible p:eq(0)").position().top);
                     }
 
-                 /*   if(Session.get("keyWordBlog")==1){
-                        console.log(Session.get("keyWordBlog")+"  keywordblog");
+
+                    if(Session.get("keyWordBlog")==1){
+
+                        // console.log(Session.get("keyWordBlog")+"  keywordblog");
                         $("#divBible p").removeClass("scriptColor");
                         $("#divBible p:eq("+(index-1)+")").addClass("scriptColor");
                         Session.set("keyWordBlog",0);
-                        console.log(Session.get("keyWordBlog")+"  keywordblog is  zero1");
+                        //  console.log(Session.get("keyWordBlog")+"  keywordblog is  zero1");
                     }
-                    else{                        $("#divBible p").removeClass("scriptColor");
-                    }*/
+
+                    if(Session.get("keyWordBlog")!=0 && Session.get("keyWordBlog")!=1) {
+                        $("#divBible p").removeClass("scriptColor");
+                    }
+
                 }
                 else
                 {
@@ -71,7 +77,7 @@ getLection = function (volumeSN, chapterSN,index) {
 // 获取书卷目录 sn 章数 书名
 // newOrOld 0 旧约 1 新约 2全部
 getBooksList = function (newOrOld) {
-  // console.log(newOrOld+"oooooooooo");
+    // console.log(newOrOld+"oooooooooo");
     if (Session.get('booksList') != [] && Session.get('bookNameIndex') != null && Session.get('chapterCountIndex') != null){
         return;
     }
@@ -85,20 +91,20 @@ getBooksList = function (newOrOld) {
         var strSQL = "select SN as sn,  ChapterNumber as chapternumber, FullName as fullname from BibleID" + strWhere;
         tx.executeSql(strSQL, [],
             function(tx, res) {
-                 var booksList = [];
+                var booksList = [];
                 var bookNameIndex = {};
                 var chapterCountIndex = {};
                 for(var i=0;i<res.rows.length;i++)
                 {
-                     var bookItem = {};
-                     bookItem.bookSN = res.rows.item(i).sn;
-                     bookItem.chapterCount = res.rows.item(i).chapternumber;
-                     bookItem.fullName = res.rows.item(i).fullname;
+                    var bookItem = {};
+                    bookItem.bookSN = res.rows.item(i).sn;
+                    bookItem.chapterCount = res.rows.item(i).chapternumber;
+                    bookItem.fullName = res.rows.item(i).fullname;
                     bookNameIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).fullname;
                     chapterCountIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).chapternumber;
                 }
                 //将查询结果存入Session
-                 Session.set('booksList', booksList);
+                Session.set('booksList', booksList);
                 Session.set('bookNameIndex', bookNameIndex);
                 Session.set('chapterCountIndex', chapterCountIndex);
             }, function(e) {
@@ -109,26 +115,28 @@ getBooksList = function (newOrOld) {
 SearchGetLection = function (searchType,searchStr) {
     // 打开数据库
     // var db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
-     // console.log(Session.get('bookNameIndex')['bookSN40']+"gggggggggg");
+    // console.log(Session.get('bookNameIndex')['bookSN40']+"gggggggggg");
     db.transaction(function(tx) {
         //单次查询Bible表
         var strSQL ="select Lection,ChapterSN,VerseSN,VolumeSN from Bible  where";
         var currBookIndex=Session.get("currBookIndex");
-     //   console.log(searchType+"     searchType      ");
+        //   console.log(searchType+"     searchType      ");
         switch(searchType)
         {
-            case 0:strSQL =strSQL+" Lection like '%"+searchStr+"%' order by ID;";
+
+            case -1:strSQL =strSQL+" Lection like '%"+searchStr+"%' order by ID;";
                 break;
-            case 1:strSQL =strSQL+" VolumeSN>0 and VolumeSN<40 and Lection like '%"+searchStr+"%' order by ID;";
+            case -2:strSQL =strSQL+" VolumeSN>0 and VolumeSN<40 and Lection like '%"+searchStr+"%' order by ID;";
                 break;
-            case 2:
+            case -3:
                 strSQL =strSQL+ "  VolumeSN>39 and VolumeSN<66 and Lection like '%"+searchStr+"%' order by ID;";
                 break;
-            case 3:
+            case 0:
+
                 strSQL =strSQL+" VolumeSN="+currBookIndex+"  and Lection like '%"+searchStr+"%' order by ID;";
                 break;
         }
-    //   console.log(strSQL+"             strsql    [[[[[[");
+        //   console.log(strSQL+"             strsql    [[[[[[");
         tx.executeSql(strSQL, [],
             function(tx, res) {
                 for(var i=0;i<res.rows.length;i++)
@@ -145,7 +153,7 @@ SearchGetLection = function (searchType,searchStr) {
                         objLectionItem.volumeSN=arrNew[res.rows.item(i).VolumeSN-40].bookName;
                         objLectionItem.chapterCount=arrNew[res.rows.item(i).VolumeSN-40].charpterCount;
                     }
-               //  console.log(arrNew[0].bookName+"bookname---************--------------");
+                    //  console.log(arrNew[0].bookName+"bookname---************--------------");
                     objLectionItem.verseSN=res.rows.item(i).VerseSN;
                     objLectionItem.lection = res.rows.item(i).Lection.replace(new RegExp(searchStr,"g"),'<span  style="color:blue;"><span style="display:none">'+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":"+objLectionItem.volumeSN+" "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+'&</span>'+searchStr+'</span>');
                     // objLectionItem.soundEnd = res.rows.item(i).soundend;+res.rows.item(i).CharpterSN+":"+(i+1)+" "
@@ -220,7 +228,7 @@ lastChapter = function () {
     currentChapter=parseInt(currentChapter);
     currentBook=parseInt(currentBook);
     currentChapterCount=parseInt(currentChapterCount);
-  //  console.log(currentBook,typeof(currentChapter),currentChapterCount,typeof(1)+"   this is three value");
+    //  console.log(currentBook,typeof(currentChapter),currentChapterCount,typeof(1)+"   this is three value");
     //判断是否是本卷书第一章
     if (currentChapter === 1){
         //是第一章，切换上一卷书
@@ -296,7 +304,7 @@ setSetting = function (lastBook, lastChapter) {
 
         tx.executeSql(strSQL, [],
             function(tx, res) {
-              //  console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                //  console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
             }, function(e) {
                 console.log("ERROR: setSetting " + e.message);
             });
@@ -307,9 +315,9 @@ setSetting = function (lastBook, lastChapter) {
 setBookMarks=function(bookname,bookmark,timer,currbook,currchapter,currchapterCount)
 {
     db.transaction(function(tx) {
-      //  console.log("insert two");  //更新Setting表
+        //  console.log("insert two");  //更新Setting表
         var strSQL = "insert into bookmarks (bookname,bookmark,time,bookID,chapterID,chapterCount) values ('"+bookname+"','"+bookmark+"','"+timer+"','"+currbook+"','"+currchapter+"','"+currchapterCount+"'); ";
-     //   console.log(strSQL+"((((((( insert   )))))))");
+        //   console.log(strSQL+"((((((( insert   )))))))");
         tx.executeSql(strSQL, [],
             function(tx, res) {
                 //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
