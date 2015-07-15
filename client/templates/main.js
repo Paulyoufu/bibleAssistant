@@ -1,11 +1,12 @@
 
 Template.ionNavBar.events({
-	'click .title': function () {
+	'click .title:contains("章")': function () {
        Router.go('bookMenu');
-	},'click .pull-left': function () {
+	},'click .pull-left:contains("菜单")': function () {
        Router.go('menu');
 	}
 });
+
 Template.main.helpers({
 	lectionList: function () {
 		var currentBook = Session.get('currentBook');

@@ -1,10 +1,4 @@
-Template.bookMenu.events({
-	'click .title': function () {
-       Router.go('bookMenu');
-	},'click .pull-left': function () {
-       Router.go('bookMenu');
-	}
-});
+
 Session.setDefault("bibleOldOrNew",0);
  arrOld=[
     {bookID:1,bookName:'创世记',charpterCount:'50'},
@@ -78,26 +72,14 @@ Session.setDefault("bibleOldOrNew",0);
 ];
 Template.bookMenu.helpers({
     postBookName:function(){
-        if(Session.get("bibleOldOrNew")==0)
-        {
-            return arrOld;
-        }
-        else if(Session.get("bibleOldOrNew")==1)
-        {
-            return arrNew
-        }
-    },
-    bookName: function () {
-        return Session.get('currentBookName');
-    },
-    chapterSN: function () {
-        return Session.get('currentChapter');
-    }
+        if(Session.get("bibleOldOrNew")==0)  { return arrOld;}
+        else if(Session.get("bibleOldOrNew")==1) { return arrNew;} },
+    bookName: function () {return Session.get('currentBookName');},
+    chapterSN: function () {return Session.get('currentChapter'); }
 });
 Template.bookMenu.events({
     "click #old": function(){
         Session.set("bibleOldOrNew",0);console.log("session======000");
-
         $("#divBookLists").scrollTop($("div div:eq(0)").position().top);
         Session.set("bibleOldOrNew",0);
         $("#new").removeClass("chooseOrAndNew");
@@ -106,7 +88,6 @@ Template.bookMenu.events({
         $("#old").addClass("chooseOrAndNew");
         $("#old").attr("disabled","disabled"); // 禁用
         $("#new").removeAttr("disabled"); // 启用
-
     },
     "click #new": function(){
         Session.set("bibleOldOrNew",1); console.log("session======1");
@@ -120,12 +101,10 @@ Template.bookMenu.events({
         $("#old").removeAttr("disabled"); // 启用
     },
     'click .item': function () {
-
         Session.set('selectedBook', this.bookID);
         Session.set('selectedChapterCount', this.charpterCount);
         Session.set('selectedBookName', this.bookName);
         console.log(Session.get('selectedBookName'));
         Router.go('chaptersMenu');
     }
-
 });

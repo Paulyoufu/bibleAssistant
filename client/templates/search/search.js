@@ -5,7 +5,7 @@
 Template.search.rendered=function(){}
 Template.search.events({
     'click #btnSearchRet': function () {
-
+        Router.go('menu');
     },
     'click #btnRange': function(){
         $("#backGrand").fadeToggle("slow");
@@ -47,7 +47,10 @@ Template.search.events({
             $("#divsearch").empty();
             Session.set("searchStr",$("#inpSearchScript").val());
             SearchGetLection(searchType,$("#inpSearchScript").val());
+            $("#selbookname").slideUp("slow");
+            $("#backGrand").fadeOut("slow");
         }
+
     },"click #selbookname li": function(e){
         var typeSearch=$(e.target).find("span").text();
         $("ul li").find(".ion-checkmark-circled").removeClass("ion-checkmark-circled positive");//font-size:x-large

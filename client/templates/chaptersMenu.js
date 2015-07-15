@@ -20,10 +20,9 @@ Template.chaptersMenu.helpers({
 	}
 });
 Template.chaptersMenu.events({
-	'click .pull-left': function () {
-		Router.go('bookMenu');
-	},"click #btnBooks": function()
+    "click #returnBook": function()
     {
         Router.go('bookMenu');
+        console.log(" chapter---------------------------------");
     }
 });
