@@ -11,7 +11,7 @@ Template.search.events({
         $("#backGrand").fadeToggle("slow");
         $("#selbookname").slideToggle("slow");
     },
-    'click .item': function(e)
+    'click #divsearch ': function(e)
     {
         $("#selbookname").slideUp("slow");
         $("#backGrand").fadeOut("slow");
@@ -36,8 +36,8 @@ Template.search.events({
         Session.set('currentBook',arrcurrentBook);
         Session.set('currentChapter',arrcurrentChapter);
         Session.set('currentChapterCount',arrcurrentCount);
-        $("#divsearch").empty();
-        Router.go('menu');
+        $("#divsearch p").empty();
+      Router.go('menu');
         Session.set("keyWordBlog",1);
     },
     'click #btnSearchScript': function(){
@@ -63,7 +63,7 @@ Template.search.events({
             Session.set("searchType",parseInt(typeSearch));
             console.log(Session.get("searchType"));
         }
-        $("#slideToggle").slideUp("slow");
+        $("#selbookname").slideUp("slow");
         $("#backGrand").fadeOut("slow");
 
     }
