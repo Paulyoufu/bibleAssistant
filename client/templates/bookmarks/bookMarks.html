@@ -1,22 +1,15 @@
-<!-- 书签管理 -->
 <template name="bookMarks">
- {{#contentFor "headerButtonLeft"}}
-   <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-     菜单
-   </button>
- {{/contentFor}}
- {{#contentFor "headerTitle"}}
-    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
- {{/contentFor}}
+ {{#contentFor "headerButtonLeft"}}<button class="button button-clear pull-left" data-ion-menu-toggle="left"> 菜单 </button>{{/contentFor}}
+ {{#contentFor "headerTitle"}}<h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>{{/contentFor}}
  <div class="bar bar-header bar-dark" style="height:86px;background-color: black">
  	<div>
      <button id="btnreturn" class="button button-clear pull-left" style="width:50px"> 返回</button>
     <h1 class="title" style="margin-top:21px">书签管理</h1>
+        <button id="btnAll" class="button button-clear pull-right ion-ios-bookmarks" style="margin-top: 17px;font-size: large"></button>
     </div>
      <div >
          <div style="margin-top:40px;margin-left:-55px;background-color:#51575F;width:139%;padding:7px" class=" item-input-inset">             <label class="item-input-wrapper">
-             <i class="icon ion-ios7-search placeholder-icon"></i>
-             <input id="txtSearch" type="text" placeholder="请输入书签名">
+             <i class="icon ion-ios7-search placeholder-icon"></i> <input id="txtSearch" type="text" placeholder="请输入书签名">
          </label>
          <button id="btnSearch" class=" ion-search " style="background-color: #3D3D3D;height:30px;border-style:none"> </button>
      </div>
@@ -24,11 +17,8 @@
  </div>
     {{#ionView}}
         {{#ionContent}}
-
-<div id="books" class="list" style="margin-top:40px;"  data-ion-menu-close>
-    {{#each arrBookMark}}
-            {{> temBookmarkItem}}
-        {{/each}}
+<div id="books" class="list" style="margin-top:40px;"  data-ion-menu-close>{{#each arrBookMark}} {{> temBookmarkItem}} {{/each}}
+<div id="message" style="margin-top:20px;width:100%;text-align: center"></div>
 </div>
         {{/ionContent}}
     {{/ionView}}

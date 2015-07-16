@@ -11,14 +11,14 @@ Template.search.events({
         $("#backGrand").fadeToggle("slow");
         $("#selbookname").slideToggle("slow");
     },
-    'click #divsearch ': function(e)
+    'click #divsearch .item': function(e)
     {
         $("#selbookname").slideUp("slow");
         $("#backGrand").fadeOut("slow");
         var chapter=$(e.target).text();
         var searchWork=Session.get("searchStr");
         if(chapter=="")
-        {//console.log(e.currentTarget);
+        {
             chapter= $( e.target ).find(".item").text();
         }
         var currBookNames=chapter.replace(/[\d  :]/g,"");
@@ -36,7 +36,7 @@ Template.search.events({
         Session.set('currentBook',arrcurrentBook);
         Session.set('currentChapter',arrcurrentChapter);
         Session.set('currentChapterCount',arrcurrentCount);
-        $("#divsearch p").empty();
+        $("#divsearch .item").empty();
       Router.go('menu');
         Session.set("keyWordBlog",1);
     },
@@ -50,10 +50,9 @@ Template.search.events({
             $("#selbookname").slideUp("slow");
             $("#backGrand").fadeOut("slow");
         }
-
     },"click #selbookname li": function(e){
         var typeSearch=$(e.target).find("span").text();
-        $("ul li").find(".ion-checkmark-circled").removeClass("ion-checkmark-circled positive");//font-size:x-large
+        $("ul li").find(".ion-checkmark-circled").removeClass("ion-checkmark-circled positive");
         $("ul li").find(".ion-checkmark-circled").removeAttr("style");
         $(e.target).find(".item-note").addClass("ion-checkmark-circled positive");
         $(e.target).find(".item-note").attr("style","font-size:x-large")
@@ -68,7 +67,6 @@ Template.search.events({
         }
         $("#selbookname").slideUp("slow");
         $("#backGrand").fadeOut("slow");
-
     }
 });
 Template.search.helpers({
@@ -77,8 +75,6 @@ Template.search.helpers({
     },
     newBookName:function(){
         return arrNew;
-    }, searchlectionList: function () {
-
     },
     bookName: function () {
         return Session.get('currentBookName');

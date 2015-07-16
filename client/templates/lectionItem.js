@@ -2,7 +2,6 @@ Session.setDefault("currCharpter",1);
 Session.setDefault("currBookName","");
 Session.setDefault("currSection",1);
 Session.setDefault("currLection",null);
-
 Template.lectionItem.events({
     'click .item': function () {
 Session.set("currSection",this.sectionSN);
@@ -46,7 +45,6 @@ Session.set("currLection",this.lection);
                            var currbook=Session.get('currentBook');
                             var currchapter=Session.get("currentChapter");
                             var currchapterCount=Session.get('currentChapterCount');
-                           // console.log(currbook,currchapter+"||||||||||||currbook currchapter");
                             setBookMarks(booknames,$("input[name='prompt']").val(),timer,currbook,currchapter,currchapterCount);
                             getBookMarks("*");
                         }
@@ -61,8 +59,6 @@ Session.set("currLection",this.lection);
             return true;
         },
         destructiveButtonClicked: function() {
-            console.log('Destructive Action!');
-            console.log(this.lection+"lection");
             return true;
         }
     });}

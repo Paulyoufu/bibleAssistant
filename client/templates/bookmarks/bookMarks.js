@@ -6,18 +6,14 @@ Template.bookMarks.events({
     },'click #btnSearch': function(){
     var searchStr=$("#txtSearch").val();
         if(searchStr.length>0){Session.set("sessSearch",searchStr);
-         //   console.log(Session.get("sessSearch",searchStr)+"this is a click searchstr");
         }
-    }
+    },"click #btnAll": function(){Session.set("sessSearch","*");}
 });
 Template.bookMarks.helpers({
     arrBookMark: function(){
-    //    console.log("-----------5555555555--------");
        var searchStr=Session.get("sessSearch");
-       // console.log(searchStr+" this is a helper searchstr")
-      //  console.log(searchStr+" this is a helpers searchstr")
         getBookMarks(searchStr);
-        return Session.get('sessBookMark');
+       return Session.get('sessBookMark');
     },
     bookName: function () {
         return Session.get('currentBookName');

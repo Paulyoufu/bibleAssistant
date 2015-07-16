@@ -119,11 +119,7 @@ getBooksList = function (newOrOld) {
     });
 }
 SearchGetLection = function (searchType,searchStr) {
-    // 打开数据库
-    // var db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
-    // console.log(Session.get('bookNameIndex')['bookSN40']+"gggggggggg");
     db.transaction(function(tx) {
-        //单次查询Bible表
         var strSQL ="select Lection,ChapterSN,VerseSN,VolumeSN from Bible  where";
         var currBookIndex=Session.get("currBookIndex");
         //   console.log(searchType+"     searchType      ");
@@ -142,7 +138,6 @@ SearchGetLection = function (searchType,searchStr) {
                 strSQL =strSQL+" VolumeSN="+currBookIndex+"  and Lection like '%"+searchStr+"%' order by ID;";
                 break;
         }
-        //   console.log(strSQL+"             strsql    [[[[[[");
         tx.executeSql(strSQL, [],
             function(tx, res) {
                 for(var i=0;i<res.rows.length;i++)
@@ -159,13 +154,12 @@ SearchGetLection = function (searchType,searchStr) {
                         objLectionItem.volumeSN=arrNew[res.rows.item(i).VolumeSN-40].bookName;
                         objLectionItem.chapterCount=arrNew[res.rows.item(i).VolumeSN-40].charpterCount;
                     }
-                    //  console.log(arrNew[0].bookName+"bookname---************--------------");
                     objLectionItem.verseSN=res.rows.item(i).VerseSN;
                     objLectionItem.lection = res.rows.item(i).Lection.replace(new RegExp(searchStr,"g"),'<span  style="color:blue;"><span style="display:none">'+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":"+objLectionItem.volumeSN+" "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+'&</span>'+searchStr+'</span>');
-                    // objLectionItem.soundEnd = res.rows.item(i).soundend;+res.rows.item(i).CharpterSN+":"+(i+1)+" "
-                    $("#divsearch").append("<p class='item item-text-wrap' ><span style='display:none'>"+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":</span><span style='color:green'>"+objLectionItem.volumeSN+"  "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+"</span><span style='display:none'>&</span> "+ objLectionItem.lection+"</p>");
-                    //arrLection.push(objLectionItem);
-                    //    $("#divsearch").append("<div class='item'>"+res.rows.item(i).Lection+"</div>");
+                    $("#divsearch").append("<p data-ion-menu-close class='item item-text-wrap' ><span style='display:none'>"+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":</span><span style='color:green'>"+objLectionItem.volumeSN+"  "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+"</span><span style='display:none'>&</span> "+ objLectionItem.lection+"</p>");
+                }
+                if($("#divsearch p").length==0){
+                    $("#divsearch").append("<p  disabled='disabled'' style='margin-top:20px;margin-left:10px;width:200%;font-size:18px;align-text:center' >&nbsp;&nbsp;&nbsp;&nbsp;没有搜索到相关的数据!!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>");
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
@@ -382,8 +376,9 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
                 arrBookMark.push(objBMitem);
             }
             Session.set('sessBookMark',arrBookMark);
-            //  console.log(res.rowsAffected+"----------id-----------------");
-            //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            console.log(arrBookMark.length+"----------id-----------------");
+            if(!arrBookMark.length){$("#message").text("没有数据！！！");}
+            else{$("#message").text("");}
         }, function(e) {
             console.log("ERROR: setSetting " + e.message);
         });

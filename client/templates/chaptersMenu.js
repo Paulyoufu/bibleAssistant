@@ -23,6 +23,5 @@ Template.chaptersMenu.events({
     "click #returnBook": function()
     {
         Router.go('bookMenu');
-        console.log(" chapter---------------------------------");
     }
 });
