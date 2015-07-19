@@ -1,21 +1,71 @@
 <!-- 下载管理 -->
 <template name="download">
 
- {{#contentFor "headerButtonLeft"}}
-   <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-     菜单
-   </button> 
- {{/contentFor}}
+	{{#contentFor "headerButtonLeft"}}
+	<button class="button button-clear pull-left" data-ion-menu-toggle="left">
+		菜单
+	</button> 
+	{{/contentFor}}
 
- {{#contentFor "headerTitle"}}
-    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
- {{/contentFor}}
+	{{#contentFor "headerTitle"}}
+	<h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
+	{{/contentFor}}
 
- <div class="bar bar-header bar-dark">
- 	<button class="button button-clear pull-left">
-	       返回
-	</button>
-    <h1 class="title">下载管理</h1>
- </div>
+	<div class="bar bar-header bar-dark">
+		<button class="button button-clear pull-left">
+			返回
+		</button>
+		<h1 class="title">下载管理</h1>
+	</div>
+	<!-- 书卷 -->
+	<button>qwe</button>
+	{{#ionView}}
+	{{#ionContent}}
+	<!-- position:fixed 固定位置 overflow-x:hidden 隐藏x滚动条-->
+	<table style="width:250px;">
+		<tr style="height:40%;overflow-y:scroll;overflow-x:hidden;position:fixed;">
+			<td style="width:250px;">
+				<div id="charpterList" class="list">
+					{{#each chapters}}
+					{{> download_chapterItem}}
+					{{/each}}
+				</div>
+			</td>
+		</tr>
+		<tr style="height:40%;overflow-y:scroll;overflow-x:hidden;position:fixed;top:60%;">
+			<td style="width:250px;">
+				<div class="list">
+					{{#each booksList}}
+					{{> download_bookItem}}
+					{{/each}}
 
+				</div> 
+			</td>
+		</tr>
+	</table>
+<!-- 	<div id="charpterList" class="list" style="position:fixed;heigth:60%;width:100%;">
+		{{#each chapters}}
+		{{> download_chapterItem}}
+		{{/each}}
+	</div>
+
+	<div class="list" style="position:fixed;width:100%;heigth:40%;">
+		{{#each booksList}}
+		{{> download_bookItem}}
+		{{/each}}
+
+	</div>  -->
+<!-- 	<button>123123</button>
+	<button>123123</button>
+	<button>123123</button>
+	<button>123123</button>
+	<button>123123</button>
+	<button>123123</button>
+	<button>123123</button> -->
+
+
+	{{/ionContent}}
+	{{/ionView}}
+	<!-- 章节 -->
+	
 </template>

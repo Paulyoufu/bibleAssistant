@@ -1,6 +1,7 @@
-/*Template.serach.events({
+Template.serach.events({
 	'click button': function () {
 		Router.go('menu');
+<<<<<<< HEAD
 });*/
 Template.search.events({
     'click #btnSearchRet': function () {
@@ -86,3 +87,7 @@ Template.search.helpers({
 });
 
 
+=======
+	}
+});
+>>>>>>> origin/caiyufan

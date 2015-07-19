@@ -1,6 +1,7 @@
 Template.systemSettings.events({
 	'click button': function () {
 		Router.go('menu');
+<<<<<<< HEAD
 	},'click .ad_class' : function() {
         if (document.getElementById('ad_id1').checked) {
             Session.set('automaticallyDL',true);
@@ -36,4 +37,7 @@ Template.systemSettings.helpers({
     chapterSN: function () {
         return Session.get('currentChapter');
     }
+=======
+	}
+>>>>>>> origin/caiyufan
 });

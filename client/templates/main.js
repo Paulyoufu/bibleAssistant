@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Session.setDefault('isPlaying', false);   //当前是否正在播放
 
 Template.main.rendered = function()
@@ -10,6 +11,11 @@ Template.main.rendered = function()
 	// 	//设置小字体
 	// 	document.getElementById('divBible').style.fontSize = "11";
 	// }	
+=======
+Template.main.rendered = function()
+{
+	
+>>>>>>> origin/caiyufan
 };
 
 Template.main.helpers({
@@ -34,6 +40,7 @@ Template.main.helpers({
 
 });
 
+<<<<<<< HEAD
 
 Template.main.events({
 	'click button[data-play]': function () {
@@ -93,3 +100,5 @@ Template.ionNavBar.events({
 		}
 	}
 });
+=======
+>>>>>>> origin/caiyufan

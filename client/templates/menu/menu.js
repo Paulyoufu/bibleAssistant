@@ -1,7 +1,7 @@
 Template.menu.events({
-	'click #btnSearch': function () {
+	'click #btnSerach': function () {
 
-		Router.go('search');
+		Router.go('serach');
 
 	},'click #btnBookMarks': function () {
 
@@ -19,28 +19,5 @@ Template.menu.events({
 
 		Router.go('dedication');
 
-	},'click .pull-left': function () {
-
-       Router.go('menu');
-       
 	}
-});
-Template.menu.helpers({
-    bookName: function () {
-        return Session.get('currentBookName');
-    },
-    chapterSN: function () {
-        return Session.get('currentChapter');
-    },
-    position: function(){
-        return Session.get('timeValue');
-    },
-    section: function(){
-        var position = Session.get('timeValue');
-        var sectionSN = getCurrSection(position);
-        return sectionSN;
-    },
-    dur:function(){
-        return Session.get('dur');
-    }
 });

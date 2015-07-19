@@ -1,34 +1,21 @@
 <!-- 奉献支持 -->
 <template name="dedication">
 
-    {{#contentFor "headerButtonLeft"}}
-        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-            菜单
-        </button>
-    {{/contentFor}}
+ {{#contentFor "headerButtonLeft"}}
+   <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+     菜单
+   </button> 
+ {{/contentFor}}
 
-    {{#contentFor "headerTitle"}}
-        <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
-    {{/contentFor}}
+ {{#contentFor "headerTitle"}}
+    <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
+ {{/contentFor}}
 
-    <div class="bar bar-header bar-dark">
-        <button class="button button-clear pull-left">
-            返回
-        </button>
-        <h1 class="title">奉献支持</h1>
-    </div>
-    {{#ionView}}
-        {{#ionContent}}
-            <div class="padding">
-                <button class="button button-large button-stable button-block" data-action="share">
-                    分享给朋友
-                </button>
-
-                <button class="button button-large button-stable button-block" data-action="donate">
-                    奉献支持
-                </button>
-            </div>
-        {{/ionContent}}
-    {{/ionView}}
+ <div class="bar bar-header bar-dark">
+ 	<button class="button button-clear pull-left">
+	       返回
+	</button>
+    <h1 class="title">奉献支持</h1>
+ </div>
 
 </template>
