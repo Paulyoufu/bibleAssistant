@@ -9,7 +9,6 @@ Session.setDefault('bookNameIndex', null);      //每卷书名字索引
 Session.setDefault('selectedBook', null);             //padding的书卷SN
 Session.setDefault('selectedChapterCount', null);     //padding的书卷章数
 Session.setDefault('selectedBookName', null);         //padding的书卷名字
-<<<<<<< HEAD
 Session.setDefault("index",1);
 Session.setDefault("searchType",-1);
 //Session.setDefault("searchStr","");
@@ -76,7 +75,6 @@ getLection = function (volumeSN, chapterSN,index) {
                 console.log("ERROR: getLection " + e.message);
             });
     });
-=======
 
 // 获取指定书卷、章的经文列表
 // volumeSN 书卷号 chapterSN 章号
@@ -109,7 +107,6 @@ getLection = function (volumeSN, chapterSN) {
         console.log("ERROR: getLection " + e.message);
       });
   });
->>>>>>> origin/caiyufan
 }
 
 // 获取书卷目录 sn 章数 书名
@@ -142,7 +139,6 @@ getBooksList = function (newOrOld) {
         //循环显示结果
         for(var i=0;i<res.rows.length;i++)
         {
-<<<<<<< HEAD
 
             case -1:strSQL =strSQL+" Lection like '%"+searchStr+"%' order by ID;";
                 break;
@@ -155,7 +151,6 @@ getBooksList = function (newOrOld) {
 
                 strSQL =strSQL+" VolumeSN="+currBookIndex+"  and Lection like '%"+searchStr+"%' order by ID;";
                 break;
-=======
           var bookItem = {};
           bookItem.bookSN = res.rows.item(i).sn;
           bookItem.chapterCount = res.rows.item(i).chapternumber;
@@ -166,7 +161,6 @@ getBooksList = function (newOrOld) {
           //初始化书名索引、章数索引
           bookNameIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).fullname;
           chapterCountIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).chapternumber;
->>>>>>> origin/caiyufan
         }
         //将查询结果存入Session
         Session.set('booksList', booksList);
@@ -301,7 +295,6 @@ setSetting = function (lastBook, lastChapter) {
         }, function(e) {
           console.log("ERROR: setSetting " + e.message);
         });
-<<<<<<< HEAD
 });}
 
 // 获取设置信息
@@ -352,8 +345,6 @@ setFontSize = function(judge){
         }, function(e) {
           console.log("ERROR: setSetting " + e.message);
         });
-=======
->>>>>>> origin/caiyufan
     });
 }
 
