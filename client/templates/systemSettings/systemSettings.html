@@ -14,4 +14,27 @@
 	</button>
     <h1 class="title">系统设置</h1>
  </div>
+
+{{#ionView}}
+      {{#ionContent}}
+        {{#ionList}}
+         {{#ionItem }}
+            自动下载语音文件
+            <!-- Automatically download -->
+            <input type="radio" name="ad_name" class="ad_class" id="ad_id1" value="1" />是
+            <input type="radio" name="ad_name" class="ad_class" id="ad_id0" value="0" checked="checked"/>否
+        {{/ionItem}}
+        
+
+        <div id="btnBookMarks" >
+        {{#ionItem }}
+            开启大字号模式
+            <input type="radio" name="fs_name" class="fs_class" id="fs_id1" value="1"/>是
+            <input type="radio" name="fs_name" class="fs_class" id="fs_id0" value="0" checked="checked"/>否
+        {{/ionItem}}
+        </div>
+
+       {{/ionList}}
+     {{/ionContent}}
+{{/ionView}}
 </template>

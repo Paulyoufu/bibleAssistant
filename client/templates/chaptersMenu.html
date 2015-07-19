@@ -1,15 +1,34 @@
 <template name="chaptersMenu">
-	{{#contentFor "headerTitle"}}
-      <button id="btnBooks" class="button button-clear pull-left" data-ion-menu-toggle="left"> 书卷 </button>
-      <h1 class="title ">{{bookName}} 第{{chapterSN}}章</h1>
-      <button class="button button-clear pull-right" data-ion-menu-toggle="right">
-        {{#if isAndroid}}{{> ionIcon icon='android-more-vertical'}}{{else}} {{> ionIcon icon='navicon'}} {{/if}} </button>{{/contentFor}}
+ 	{{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            <!-- data-ion-modal="menu" -->
+            <!-- data-ion-menu-toggle 左拉菜单-->
+            菜单
+        </button> 
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonRight"}}
+        <button id="btnVoice" class="button button-clear pull-right">
+             <!-- data-ion-modal="right" -->
+            语音
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 id="ChooseBook" class="title" data-ion-menu-toggle="left" >{{bookName}} 第{{chapterSN}}章</h1>
+    {{/contentFor}}
+
 	<div class="bar bar-header bar-dark">
 		<button id="returnBook" class="button button-clear pull-left">返回 </button><h1 class="title">{{selectedBookName}}</h1>
 	</div>
+
 	{{#ionView}}
-	{{#ionContent}}
-        <div id="charpterList" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">{{#each chapters}}{{> chapterItem}}{{/each}}</div>
-	{{/ionContent}}
+		{{#ionContent}}
+	        <div id="charpterList" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">
+	        	{{#each chapters}}
+	        		{{> chapterItem}}
+	        	{{/each}}
+	       	</div>
+		{{/ionContent}}
 	{{/ionView}}
 </template>
