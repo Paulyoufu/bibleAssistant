@@ -12,9 +12,14 @@ Session.setDefault('selectedChapterCount', null);     //padding的书卷章数
 Session.setDefault('selectedBookName', null);         //padding的书卷名字
 Session.setDefault("index",1);
 Session.setDefault("searchType",-1);
-//Session.setDefault("searchStr","");
 Session.setDefault("currBookIndex",1);
 Session.setDefault("keyWordBlog",0);
+
+
+Session.setDefault("automaticallyDL",false);  //自动下载
+Session.setDefault("fontSize",false);   //是否开启大号字体
+
+
 //arrLection =[];
 // 获取指定书卷、章的经文列表
 // volumeSN 书卷号 chapterSN 章号
@@ -382,11 +387,69 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
         }, function(e) {
             console.log("ERROR: setSetting " + e.message);
         });
-});}
+});
+
+
+    // 获取设置信息
+    getSystemSetting = function(attribute){
+        // 打开数据库
+        db.transaction(function(tx) {
+            //单次查询Bible表
+            var strSQL = "select fontSize, automaticallyDL from SystemSettings";
+
+            tx.executeSql(strSQL, [],
+                function(tx, res) {
+                    var setting = {};
+                    for(var i=0;i<res.rows.length;i++)
+                    {
+                        setting.fontSize = res.rows.item(i).fontSize;
+                        setting.automaticallyDL = res.rows.item(i).automaticallyDL;
+                    }
+                    Session.set('automaticallyDL', setting.automaticallyDL);
+                    Session.set('fontSize', setting.fontSize);
+                }, function(e) {
+                    console.log("ERROR: getLection " + e.message);
+                });
+        });
+    }
+
+//设置是否自动下载
+    setAutomaticallyDL = function(judge){
+        db.transaction(function(tx) {
+            //更新SystemSettings表
+            var strSQL = "update SystemSettings set automaticallyDL = '" + judge + "';";
+            tx.executeSql(strSQL, [],
+                function(tx, res) {
+                    //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                }, function(e) {
+                    console.log("ERROR: setSetting " + e.message);
+                });
+        });
+    }
+
+//设置字体大小
+    setFontSize = function(judge){
+        db.transaction(function(tx) {
+            //更新SystemSettings表
+            var strSQL = "update SystemSettings set FontSize = '" + judge + "';";
+            tx.executeSql(strSQL, [],
+                function(tx, res) {
+                    //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                }, function(e) {
+                    console.log("ERROR: setSetting " + e.message);
+                });
+        });
+    }
+
+
+
+}
 Meteor.startup(function () {
     db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
     //将整本书卷名从数据库查询到，存到Session:booksList
+
     getBooksList(2);
     //获取设置项，更新Session
     getSetting();
+
 });

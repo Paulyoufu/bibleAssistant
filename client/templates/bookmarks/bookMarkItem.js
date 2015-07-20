@@ -32,14 +32,14 @@ Template.temBookmarkItem.events(
                 onCancel: function() {
                 }})
         },
-        "click #buttonDel": function()
+        "click #buttonDel:not(.item)": function()
         {
             Session.set("time",this.objbookmarkTime);
             var timer= Session.get("time");
             var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
             delBookMarks(booknames,timer);
         },
-        "click .item": function()
+        "click .item:not(button)": function()
         { Session.set("keyWordBlog",1);
            var bookname=this.objbookname.replace(/[\d]/g,"");
             bookname=bookname.substr(0,bookname.indexOf(":"));

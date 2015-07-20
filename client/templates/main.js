@@ -1,3 +1,6 @@
+Meteor.startup(function () {
+    $('body').hammer();
+});
 
 Template.ionNavBar.events({
 	'click .title:contains("章")': function () {
@@ -43,6 +46,14 @@ Template.main.events({
         Session.set("index",1);
         Session.set("keyWordBlog",2);
         lastChapter();
+    },
+    'swipeleft #divBible': function(event) {
+        console.log("1111111111111");
+        event.stopPropagation();
+alert("kkkkk");
+    } ,'hold #divBible': function(event) {
+        event.stopPropagation();
+        alert("Hold!");
     }
 
 })

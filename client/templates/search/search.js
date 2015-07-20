@@ -2,7 +2,6 @@
 	'click button': function () {
 		Router.go('menu');
 });*/
-Template.search.rendered=function(){}
 Template.search.events({
     'click #btnSearchRet': function () {
         Router.go('menu');

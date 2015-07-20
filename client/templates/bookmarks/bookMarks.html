@@ -8,17 +8,18 @@
         <button id="btnAll" class="button button-clear pull-right ion-ios-bookmarks" style="margin-top: 17px;font-size: large"></button>
     </div>
      <div >
-         <div style="margin-top:40px;margin-left:-55px;background-color:#51575F;width:139%;padding:7px" class=" item-input-inset">             <label class="item-input-wrapper">
-             <i class="icon ion-ios7-search placeholder-icon"></i> <input id="txtSearch" type="text" placeholder="请输入书签名">
+         <div style="margin-top:40px;margin-left:-55px;background-color:#51575F;width:129%;padding:7px" class=" item-input-inset">
+             <label class="item item-input">
+             <i class="icon ion-search placeholder-icon"></i> <input id="txtSearch" type="text" placeholder="Search">
          </label>
-         <button id="btnSearch" class=" ion-search " style="background-color: #3D3D3D;height:30px;border-style:none"> </button>
-     </div>
+         <button id="btnSearch" class="button icon ion-search " style="height:50px;border-style:none"> </button>
+         </div>
      </div>
  </div>
     {{#ionView}}
         {{#ionContent}}
-<div id="books" class="list" style="margin-top:40px;"  data-ion-menu-close>{{#each arrBookMark}} {{> temBookmarkItem}} {{/each}}
-<div id="message" style="margin-top:20px;width:100%;text-align: center"></div>
+<div id="books" class="list" style="margin-top:60px;">{{#each arrBookMark}} {{> temBookmarkItem}} {{/each}}
+<div id="message" style="display:none;margin-top:20px;width:100%;text-align: center"></div>
 </div>
         {{/ionContent}}
     {{/ionView}}
