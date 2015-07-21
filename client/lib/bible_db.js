@@ -113,6 +113,7 @@ getBooksList = function (newOrOld) {
                     bookItem.fullName = res.rows.item(i).fullname;
                     bookNameIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).fullname;
                     chapterCountIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).chapternumber;
+                    booksList.push(bookItem);
                 }
                 //将查询结果存入Session
                 Session.set('booksList', booksList);
