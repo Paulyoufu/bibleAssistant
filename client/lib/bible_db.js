@@ -42,15 +42,15 @@ getLection = function (volumeSN, chapterSN,index) {
 
                 if(index>=1)
                 {    console.log("1111111");
-                    $("#divBible").scrollTop(60);
-                    if($("#divBible p:eq(0)").position().top>=68)
+                    $("#divBible").scrollTop(0);
+                    if($("#divBible p:eq(0)").position().top>=8)
                     {
                         $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
                         console.log($("#divBible p:eq("+(index-1)+")").position().top+"22222222");
                     }
                     else
                     {
-                        $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+68-$("#divBible p:eq(0)").position().top);
+                        $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+8-$("#divBible p:eq(0)").position().top);
                         console.log($("#divBible p:eq("+(index-1)+")").position().top+"3333333333else");
 
                     }
@@ -67,12 +67,13 @@ getLection = function (volumeSN, chapterSN,index) {
 
                     if(Session.get("keyWordBlog")!=0 && Session.get("keyWordBlog")!=1) {
                         $("#divBible p").removeClass("scriptColor");
+                        $("#divBible").scrollTop(0);
                     }
 
                 }
                 else
                 {
-                    $("#divBible").scrollTop(60);             console.log("aaaaaaaaaa");
+                    $("#divBible").scrollTop(0);             console.log("aaaaaaaaaa");
 
                 }
             }, function(e) {
@@ -108,6 +109,7 @@ getBooksList = function (newOrOld) {
                     bookItem.fullName = res.rows.item(i).fullname;
                     bookNameIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).fullname;
                     chapterCountIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).chapternumber;
+                    booksList.push(bookItem);
                 }
                 //将查询结果存入Session
                 Session.set('booksList', booksList);
@@ -383,7 +385,7 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
             console.log("ERROR: setSetting " + e.message);
         });
 });}
-Meteor.startup(function () {
+Meteor.startup(function () { $('body').hammer();
     db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
     //将整本书卷名从数据库查询到，存到Session:booksList
     getBooksList(2);

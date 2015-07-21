@@ -8,11 +8,33 @@
   	{{#contentFor "headerTitle"}}
     	<h1 id="ChooseBook" class="title" data-ion-menu-toggle="left" >{{bookName}} 第{{chapterSN}}章</h1>
   	{{/contentFor}}
-    {{#ionView}}{{#ionContent}}
+    {{#ionView}}{{#ionContent }}
+
 	    	<div id="divBible" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">
-              <button id="btnPrev" class="button button-full button-light">上一章</button>
+              <button id="btnPrev" class="button button-full button-light" style="display:none">上一章</button>
+                <p class="item" data-ion-menu-close>11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+                <p class="item" data-ion-menu-close >11111111</p>
+
                 {{#each lectionList}}{{>lectionItem }}{{/each}}
-               <p> <button  id="btnNext" class="button button-full button-light">下一章</button></p>
+               <p> <button  id="btnNext" class="button button-full button-light" style="display:none">下一章</button></p>
             </div>
+
         {{/ionContent}}{{/ionView}}
 </template>

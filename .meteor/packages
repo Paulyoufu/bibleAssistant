@@ -24,5 +24,7 @@ pba:jquery-svg-class
 rochal:slimscroll
 natestrauser:jquery-scrollto
 mrt:uniform-package
+
+standard-app-packages
+noorderstorm:hammer
 swiper:swiper
-gadicohen:jquery2
