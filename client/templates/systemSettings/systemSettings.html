@@ -1,17 +1,46 @@
 <!-- 系统设置 -->
 <template name="systemSettings">
+
  {{#contentFor "headerButtonLeft"}}
    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
      菜单
    </button> 
  {{/contentFor}}
+
  {{#contentFor "headerTitle"}}
     <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
  {{/contentFor}}
+
  <div class="bar bar-header bar-dark">
  	<button class="button button-clear pull-left">
 	       返回
 	</button>
     <h1 class="title">系统设置</h1>
  </div>
+
+{{#ionView}}
+      {{#ionContent}}
+        {{#ionList}}
+         {{#ionItem }}
+              <li class="item item-checkbox">
+                 <label class="checkbox">
+                   <input id="automaticallyDl_id" type="checkbox">
+                 </label>
+                 自动下载语音文件
+              </li>
+        {{/ionItem}}
+        
+        {{#ionItem }}
+            <li class="item item-checkbox">
+                <label class="checkbox">
+                    <input id="largeFont_id" type="checkbox">
+                </label>
+                 开启大字号模式
+            </li>
+        {{/ionItem}}
+
+       {{/ionList}}
+     {{/ionContent}}
+{{/ionView}}
+
 </template>
