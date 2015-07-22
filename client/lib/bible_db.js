@@ -14,7 +14,9 @@ Session.setDefault("index",1);
 Session.setDefault("searchType",-1);
 Session.setDefault("currBookIndex",1);
 Session.setDefault("keyWordBlog",0);
-
+//caiyufan
+Session.setDefault("downloadBookName",'创世记');
+Session.setDefault("downloadChapterCount",'50');
 
 Session.setDefault("automaticallyDL",false);  //自动下载
 Session.setDefault("fontSize",false);   //是否开启大号字体

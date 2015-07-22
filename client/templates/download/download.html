@@ -24,6 +24,19 @@
 	{{#ionContent}}
 	<!-- position:fixed 固定位置 overflow-x:hidden 隐藏x滚动条-->
 	<table style="width:250px;">
+		<tr>
+			<td style="width:250px;">
+				<div class="item allDownload">
+					{{downloadbookName}}
+					全部下载 <!-- {{> ionIcon icon="ios-arrow-right"}}  -->
+					<span class="item-note">
+						共{{chapterCount}}章
+					</span>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table style="width:250px;">
 		<tr style="height:40%;overflow-y:scroll;overflow-x:hidden;position:fixed;">
 			<td style="width:250px;">
 				<div id="charpterList" class="list">
@@ -36,7 +49,7 @@
 		<tr style="height:40%;overflow-y:scroll;overflow-x:hidden;position:fixed;top:60%;">
 			<td style="width:250px;">
 				<div class="list">
-					<li class="item"><span style="display: none">-1</span>全书<span class="item-note ion-android-done"></span></li>
+<!-- 					<li class="item"><span style="display: none">-1</span>全书<span class="item-note ion-android-done"></span></li> -->
 					<li class="item oldTestament"><span style="display: none">-2</span>旧约<span class="item-note"></span></li>
 					<li class="item newTestament"><span style="display: none">-3</span>新约<span class="item-note"></span></li>
 					{{#each booksList}}
