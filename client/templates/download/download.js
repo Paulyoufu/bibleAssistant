@@ -93,6 +93,14 @@
     },
     availWidth: function () {
         return window.screen.availWidth;
+    },
+    //书卷名
+    downloadbookName:function() {
+        return Session.get('downloadBookName'); 
+    },
+    //总章节
+    chapterCount: function() {
+        return Session.get('downloadChapterCount');
     }
     // bookName: function () {
     //  return Session.get('currentBookName'); 
@@ -111,10 +119,21 @@ Template.download.events({
     },
     //旧约语音下载
     'click .oldTestament':function () {
-      //提示用户是否下载全部新约语音？
-        IonPopup.confirm({
+        Session.set('downloadBookName', '旧约');
+        Session.set('downloadChapterCount', 929);
+    },
+//新约语音下载
+'click .newTestament':function () {
+    Session.set('downloadBookName', '新约');
+    Session.set('downloadChapterCount', 260);
+
+},
+'click .allDownload':function () {
+    if (Session.get('downloadBookName') == "旧约") {
+         //提示用户是否下载全部旧约语音？
+         IonPopup.confirm({
             title: '提示信息',
-            template: '是否下载本章全部语音？',
+            template: '是否下载旧约全部语音？',
             okText: '确定',
             cancelText:"取消",   
             onOk: function() {
@@ -135,42 +154,15 @@ Template.download.events({
     },
     onCancel: function() {
         console.log('Cancelled');
-        alert("选择了否");
     },
 });
-
-
-
-
-
-    // if(confirm('是否下载旧约全部语音?'))
-    // {
-    //      alert('选择了是');
-    //     for(var i = 0; i < arrOld.length; i++)
-    //     {
-    //         // arrOld[i].charpterCount 总章
-    //         for(var j = 0; j <arrOld[i].charpterCount; j++)
-    //         {
-    //             var volumeSN = arrOld[i].bookName;
-    //             var bookSN = arrOld[i].bookID;
-    //             var chapterSN = j + 1;
-    //             //download(volumeSN, bookSN, chapterSN);
-    //             alert(arrOld[i].bookName + "-" + bookSN + "-" + chapterSN);
-    //         };  
-    //     };
-    // }
-    // else
-    // {
-    //  alert('选择了否'); 
-    // }
-
-},
-//新约语音下载
-'click .newTestament':function () {
-        //提示用户是否下载全部新约语音？
-        IonPopup.confirm({
+     } 
+     if(Session.get('downloadBookName') == "新约"){
+        //alert(Session.get('downloadBookName') + "-新约");
+         //提示用户是否下载全部新约语音？
+         IonPopup.confirm({
             title: '提示信息',
-            template: '是否下载本章全部语音？',
+            template: '是否下载新约全部语音？',
             okText: '确定',
             cancelText:"取消",   
             onOk: function() {
@@ -191,11 +183,34 @@ Template.download.events({
     },
     onCancel: function() {
         console.log('Cancelled');
-        alert("选择了否");
     },
 });
-
-
+     }
+     //下载书卷
+     if(Session.get('downloadBookName') != "旧约" && Session.get('downloadBookName') != "新约"){
+        //alert(Session.get('downloadBookName'));
+        IonPopup.confirm({
+            title: '提示信息',
+            template: '是否下载' + Session.get('downloadBookName') + '全部语音？',
+            okText: '确定',
+            cancelText:"取消",   
+            onOk: function() {
+                console.log('Confirmed');
+            //alert("选择了是");
+            for(var i = 0;i<Session.get('selectedChapterCount');i++)
+            {
+                var chapterSN = i + 1;
+                //alert(Session.get('selectedBookName') + "-" + Session.get('selectedBook') + "-" + chapterSN);
+                download(Session.get('selectedBookName'), Session.get('selectedBook'), chapterSN);
+            };
+        },
+        onCancel: function() {
+            console.log('Cancelled');
+        //alert("选择了否");
+    },
+});
+    }
+}
 
    //      if(confirm('是否下载旧约全部语音?'))
    //      {
@@ -218,5 +233,5 @@ Template.download.events({
    //     alert('选择了否'); 
    // }
 
-}
+
 });
