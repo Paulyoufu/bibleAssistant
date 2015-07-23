@@ -45,5 +45,3 @@ download = function(volumeSN, bookSN, chapterSN){
       console.log("download error code" + error.code);
     },false);
 }
-
-

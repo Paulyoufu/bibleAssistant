@@ -105,7 +105,7 @@ Template.main.events({
 		//播放
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
-			// 判断文件是否存在
+			
 			abcGlobal.media.playAudio();
 		}
         // 记录本次读经位置
