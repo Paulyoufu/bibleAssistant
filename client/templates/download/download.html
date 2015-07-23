@@ -16,7 +16,9 @@
 			返回
 		</button>
 		<h1 class="title">下载管理</h1>
-
+		<button class="button button-clear pull-right allDelete">
+			清空
+		</button>
 	</div>
 	<!-- 书卷 -->
 	<button>qwe</button>
@@ -49,7 +51,7 @@
 		<tr style="height:40%;overflow-y:scroll;overflow-x:hidden;position:fixed;top:60%;">
 			<td style="width:250px;">
 				<div class="list">
-<!-- 					<li class="item"><span style="display: none">-1</span>全书<span class="item-note ion-android-done"></span></li> -->
+					<!-- 					<li class="item"><span style="display: none">-1</span>全书<span class="item-note ion-android-done"></span></li> -->
 					<li class="item oldTestament"><span style="display: none">-2</span>旧约<span class="item-note"></span></li>
 					<li class="item newTestament"><span style="display: none">-3</span>新约<span class="item-note"></span></li>
 					{{#each booksList}}
@@ -60,27 +62,6 @@
 			</td>
 		</tr>
 	</table>
-<!-- 	<div id="charpterList" class="list" style="position:fixed;heigth:60%;width:100%;">
-		{{#each chapters}}
-		{{> download_chapterItem}}
-		{{/each}}
-	</div>
-
-	<div class="list" style="position:fixed;width:100%;heigth:40%;">
-		{{#each booksList}}
-		{{> download_bookItem}}
-		{{/each}}
-
-	</div>  -->
-<!-- 	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button>
-	<button>123123</button> -->
-
-
 	{{/ionContent}}
 	{{/ionView}}
 	<!-- 章节 -->
