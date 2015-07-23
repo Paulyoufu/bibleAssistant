@@ -128,6 +128,7 @@ Template.download.events({
     Session.set('downloadChapterCount', 260);
 
 },
+//语音全部下载
 'click .allDownload':function () {
     if (Session.get('downloadBookName') == "旧约") {
          //提示用户是否下载全部旧约语音？
@@ -211,27 +212,5 @@ Template.download.events({
 });
     }
 }
-
-   //      if(confirm('是否下载旧约全部语音?'))
-   //      {
-   //         alert('选择了是');
-   //         for(var i = 0; i < arrNew.length; i++)
-   //         {
-   //          // arrOld[i].charpterCount 总章
-   //          for(var j = 0; j <arrNew[i].charpterCount; j++)
-   //          {
-   //              var volumeSN = arrNew[i].bookName;
-   //              var bookSN = arrNew[i].bookID;
-   //              var chapterSN = j + 1;
-   //              //download(volumeSN, bookSN, chapterSN);
-   //              alert(arrNew[i].bookName + "-" + bookSN + "-" + chapterSN);
-   //          };
-   //      };
-   //  }
-   //  else
-   //  {
-   //     alert('选择了否'); 
-   // }
-
 
 });
