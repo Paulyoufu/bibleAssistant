@@ -105,11 +105,12 @@ Template.main.events({
 		//播放
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
+			// 判断文件是否存在
 			abcGlobal.media.playAudio();
 		}
-
         // 记录本次读经位置
 		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
+
 	},'click .ion-ios-undo': function () {
 		//判断文件是否存在
 		// volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
