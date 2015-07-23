@@ -68,8 +68,13 @@
  {bookID:65,bookName:'犹大书',charpterCount:'1'},
  {bookID:66,bookName:'启示录',charpterCount:'22'}
  ];
+//一进来就开始运行
+Template.download.rendered = function () {
 
- Template.download.helpers({
+    initFileSystem();
+};
+
+Template.download.helpers({
     booksList: function () {
         return Session.get('booksList');
     },
@@ -114,7 +119,7 @@
 });
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号
 Template.download.events({
-    'click button': function () {
+    'click .pull-left': function () {
         Router.go('menu');
     },
     //旧约语音下载
@@ -203,6 +208,7 @@ Template.download.events({
                 //alert(Session.get('selectedBookName') + "-" + Session.get('selectedBook') + "-" + chapterSN);
                 download(Session.get('selectedBookName'), Session.get('selectedBook'), chapterSN);
             };
+            alert('下载完成');
         },
         onCancel: function() {
             console.log('Cancelled');
@@ -210,28 +216,53 @@ Template.download.events({
     },
 });
     }
+},
+// //动态显示总章数
+//         Session.set('downloadChapterCount', this.chapterCount);
+//         //动态显示书卷
+//         Session.set('downloadBookName', this.fullName);
+//删除文件
+'click .allDelete': function () {
+
+    IonPopup.confirm({
+        title: '提示信息',
+        template: '是否删除' + Session.get('downloadBookName') + '全部语音？',
+        okText: '确定',
+        cancelText:"取消",   
+        onOk: function() {
+            console.log('Confirmed');
+            //alert("选择了是");
+            for(var i = 0;i<Session.get('selectedChapterCount');i++)
+            {
+                var chapterSN = i + 1;
+                fs.root.getFile("voice/" + Session.get('selectedBook') + "-" + chapterSN + ".mp3", {}, function(fileEntry) {
+
+                    fileEntry.remove(function() {
+            //alert('Directory removed.');
+            //alert('已删除' + Session.get('downloadBookName') + "第" + chapterSN +"章");
+                //遍历根目录 不添加这句必须点进文件夹一次才能看见效果
+                readDir(fs.root);
+            }, errorHandler);
+
+                }, errorHandler);
+            };
+            alert("已删除" + Session.get('downloadBookName') + '全部语音!')
+        },
+        onCancel: function() {
+            console.log('Cancelled');
+        //alert("选择了否");
+    },
+});
+    // fs.root.getFile("voice/1-1.mp3", {}, function(fileEntry) {
+
+    //     fileEntry.remove(function() {
+    //         //alert('Directory removed.');
+    //         alert('已删除');
+    //             //遍历根目录 不添加这句必须点进文件夹一次才能看见效果
+    //             readDir(fs.root);
+    //         }, errorHandler);
+
+    // }, errorHandler);
 }
-
-   //      if(confirm('是否下载旧约全部语音?'))
-   //      {
-   //         alert('选择了是');
-   //         for(var i = 0; i < arrNew.length; i++)
-   //         {
-   //          // arrOld[i].charpterCount 总章
-   //          for(var j = 0; j <arrNew[i].charpterCount; j++)
-   //          {
-   //              var volumeSN = arrNew[i].bookName;
-   //              var bookSN = arrNew[i].bookID;
-   //              var chapterSN = j + 1;
-   //              //download(volumeSN, bookSN, chapterSN);
-   //              alert(arrNew[i].bookName + "-" + bookSN + "-" + chapterSN);
-   //          };
-   //      };
-   //  }
-   //  else
-   //  {
-   //     alert('选择了否'); 
-   // }
-
 
 });
