@@ -48,22 +48,22 @@ getLection = function (volumeSN, chapterSN,index) {
                 Session.set('lectionList', lectionList);
 
                 if(index>=1)
-                {    console.log("1111111");
-                    $("#divBible").scrollTop(60);
-                    if($("#divBible p:eq(0)").position().top>=68)
-                    {
-                        $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
-                        console.log($("#divBible p:eq("+(index-1)+")").position().top+"22222222");
-                    }
-                    else
-                    {
-                        $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+68-$("#divBible p:eq(0)").position().top);
-                        console.log($("#divBible p:eq("+(index-1)+")").position().top+"3333333333else");
+                    {    console.log("1111111");
+                $("#divBible").scrollTop(60);
+                if($("#divBible p:eq(0)").position().top>=68)
+                {
+                    $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
+                    console.log($("#divBible p:eq("+(index-1)+")").position().top+"22222222");
+                }
+                else
+                {
+                    $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+68-$("#divBible p:eq(0)").position().top);
+                    console.log($("#divBible p:eq("+(index-1)+")").position().top+"3333333333else");
 
-                    }
+                }
 
 
-                    if(Session.get("keyWordBlog")==1){
+                if(Session.get("keyWordBlog")==1){
 
                         // console.log(Session.get("keyWordBlog")+"  keywordblog");
                         $("#divBible p").removeClass("scriptColor");
@@ -85,8 +85,9 @@ getLection = function (volumeSN, chapterSN,index) {
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
             });
-    });
+});
 }
+
 // 获取书卷目录 sn 章数 书名
 // newOrOld 0 旧约 1 新约 2全部
 getBooksList = function (newOrOld) {
@@ -124,8 +125,9 @@ getBooksList = function (newOrOld) {
             }, function(e) {
                 console.log("ERROR: getBooksList " + e.message);
             });
-    });
+});
 }
+
 SearchGetLection = function (searchType,searchStr) {
     db.transaction(function(tx) {
         var strSQL ="select Lection,ChapterSN,VerseSN,VolumeSN from Bible  where";
@@ -135,16 +137,16 @@ SearchGetLection = function (searchType,searchStr) {
         {
 
             case -1:strSQL =strSQL+" Lection like '%"+searchStr+"%' order by ID;";
-                break;
+            break;
             case -2:strSQL =strSQL+" VolumeSN>0 and VolumeSN<40 and Lection like '%"+searchStr+"%' order by ID;";
-                break;
+            break;
             case -3:
-                strSQL =strSQL+ "  VolumeSN>39 and VolumeSN<66 and Lection like '%"+searchStr+"%' order by ID;";
-                break;
+            strSQL =strSQL+ "  VolumeSN>39 and VolumeSN<66 and Lection like '%"+searchStr+"%' order by ID;";
+            break;
             case 0:
 
-                strSQL =strSQL+" VolumeSN="+currBookIndex+"  and Lection like '%"+searchStr+"%' order by ID;";
-                break;
+            strSQL =strSQL+" VolumeSN="+currBookIndex+"  and Lection like '%"+searchStr+"%' order by ID;";
+            break;
         }
         tx.executeSql(strSQL, [],
             function(tx, res) {
@@ -172,8 +174,9 @@ SearchGetLection = function (searchType,searchStr) {
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
             });
-    });
+});
 }
+
 //下一章
 nextChapter = function () {
     var currentBook = Session.get('currentBook');
@@ -203,6 +206,7 @@ nextChapter = function () {
         Session.set('currentChapterCount', Session.get('chapterCountIndex')['bookSN'+currentBook]);
     }
 }
+
 gotoBookCharpter= function () {
     var currentBook ="1"; //Session.get('currentBook');//
     var currentChapter ="1"; //Session.get('currentChapter');
@@ -228,6 +232,7 @@ gotoBookCharpter= function () {
         Session.set('currentChapterCount', Session.get('chapterCountIndex')['bookSN'+currentBook]);
     }
 }
+
 //上一章
 lastChapter = function () {
     var currentBook = Session.get('currentBook');
@@ -258,6 +263,7 @@ lastChapter = function () {
         Session.set('currentChapter', currentChapter);
     }
 }
+
 //获取当前播放的节
 getCurrSection = function (position) {
     var currentLection = Session.get('lectionList');
@@ -271,6 +277,7 @@ getCurrSection = function (position) {
     };
     return sectionSN;
 }
+
 // 获取设置项
 getSetting = function () {
     // 打开数据库
@@ -318,8 +325,8 @@ setSetting = function (lastBook, lastChapter) {
             });
     });
 }
-//设置书签
 
+//设置书签
 setBookMarks=function(bookname,bookmark,timer,currbook,currchapter,currchapterCount)
 {
     db.transaction(function(tx) {
@@ -334,6 +341,7 @@ setBookMarks=function(bookname,bookmark,timer,currbook,currchapter,currchapterCo
             });
     });
 }
+
 // update talbe
 updateBookMarks=function(bookname,bookmark,timer)
 {
@@ -349,6 +357,7 @@ updateBookMarks=function(bookname,bookmark,timer)
             });
     });
 }
+
 //delete table
 delBookMarks=function(booknames,timer){
     db.transaction(function(tx) {
@@ -364,6 +373,7 @@ delBookMarks=function(booknames,timer){
             });
     });
 }
+
 // select talbe
 getBookMarks=function(searchStr){db.transaction(function(tx) {
     //更新Setting表
@@ -374,79 +384,78 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
         function(tx, res) {
             var arrBookMark=[];
             for(var i=0;i<res.rows.length;i++)
-            { var objBMitem={};
-                objBMitem.objbookmarkTime=res.rows.item(i).time;
-                objBMitem.objbookname=res.rows.item(i).bookname;
-                objBMitem.objbookmark=res.rows.item(i).bookmark;
-                objBMitem.objbookid=res.rows.item(i).bookID;
-                objBMitem.objchapter=res.rows.item(i).chapterID;
-                objBMitem.objchapterCount=res.rows.item(i).chapterCount;
-                arrBookMark.push(objBMitem);
-            }
-            Session.set('sessBookMark',arrBookMark);
-            console.log(arrBookMark.length+"----------id-----------------");
-            if(!arrBookMark.length){$("#message").text("没有数据！！！");}
-            else{$("#message").text("");}
-        }, function(e) {
-            console.log("ERROR: setSetting " + e.message);
-        });
+                { var objBMitem={};
+            objBMitem.objbookmarkTime=res.rows.item(i).time;
+            objBMitem.objbookname=res.rows.item(i).bookname;
+            objBMitem.objbookmark=res.rows.item(i).bookmark;
+            objBMitem.objbookid=res.rows.item(i).bookID;
+            objBMitem.objchapter=res.rows.item(i).chapterID;
+            objBMitem.objchapterCount=res.rows.item(i).chapterCount;
+            arrBookMark.push(objBMitem);
+        }
+        Session.set('sessBookMark',arrBookMark);
+        console.log(arrBookMark.length+"----------id-----------------");
+        if(!arrBookMark.length){$("#message").text("没有数据！！！");}
+        else{$("#message").text("");}
+    }, function(e) {
+        console.log("ERROR: setSetting " + e.message);
+    });
 });
 
 
-    // 获取设置信息
-    getSystemSetting = function(attribute){
-        // 打开数据库
-        db.transaction(function(tx) {
-            //单次查询Bible表
-            var strSQL = "select fontSize, automaticallyDL from SystemSettings";
+// 获取设置信息
+getSystemSetting = function(attribute){
+    // 打开数据库
+    db.transaction(function(tx) {
+        //单次查询Bible表
+        var strSQL = "select fontSize, automaticallyDL from SystemSettings";
 
-            tx.executeSql(strSQL, [],
-                function(tx, res) {
-                    var setting = {};
-                    for(var i=0;i<res.rows.length;i++)
-                    {
-                        setting.fontSize = res.rows.item(i).fontSize;
-                        setting.automaticallyDL = res.rows.item(i).automaticallyDL;
-                    }
-                    Session.set('automaticallyDL', setting.automaticallyDL);
-                    Session.set('fontSize', setting.fontSize);
-                }, function(e) {
-                    console.log("ERROR: getLection " + e.message);
-                });
-        });
-    }
+        tx.executeSql(strSQL, [],
+            function(tx, res) {
+                var setting = {};
+                for(var i=0;i<res.rows.length;i++)
+                {
+                    setting.fontSize = res.rows.item(i).fontSize;
+                    setting.automaticallyDL = res.rows.item(i).automaticallyDL;
+                }
+                Session.set('automaticallyDL', setting.automaticallyDL);
+                Session.set('fontSize', setting.fontSize);
+            },
+            function(e) {
+                console.log("ERROR: getLection " + e.message);
+            });
+    });
+}
 
 //设置是否自动下载
-    setAutomaticallyDL = function(judge){
-        db.transaction(function(tx) {
-            //更新SystemSettings表
-            var strSQL = "update SystemSettings set automaticallyDL = '" + judge + "';";
-            tx.executeSql(strSQL, [],
-                function(tx, res) {
-                    //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-                }, function(e) {
-                    console.log("ERROR: setSetting " + e.message);
-                });
-        });
-    }
+setAutomaticallyDL = function(judge){
+    db.transaction(function(tx) {
+        //更新SystemSettings表
+        var strSQL = "update SystemSettings set automaticallyDL = '" + judge + "';";
+        tx.executeSql(strSQL, [],
+            function(tx, res) {
+                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            }, function(e) {
+                console.log("ERROR: setSetting " + e.message);
+            });
+    });
+}
 
 //设置字体大小
-    setFontSize = function(judge){
-        db.transaction(function(tx) {
-            //更新SystemSettings表
-            var strSQL = "update SystemSettings set FontSize = '" + judge + "';";
-            tx.executeSql(strSQL, [],
-                function(tx, res) {
-                    //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-                }, function(e) {
-                    console.log("ERROR: setSetting " + e.message);
-                });
-        });
-    }
-
-
-
+setFontSize = function(judge){
+    db.transaction(function(tx) {
+        //更新SystemSettings表
+        var strSQL = "update SystemSettings set FontSize = '" + judge + "';";
+        tx.executeSql(strSQL, [],
+            function(tx, res) {
+                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            }, function(e) {
+                console.log("ERROR: setSetting " + e.message);
+            });
+    });
 }
+}
+
 Meteor.startup(function () {
     db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
     //将整本书卷名从数据库查询到，存到Session:booksList

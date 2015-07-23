@@ -1,18 +1,43 @@
 <template name="main">
-	{{#contentFor "headerButtonLeft"}}
-	    <button class="button button-clear pull-left" data-ion-menu-toggle="left">菜单</button>
+	 {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            菜单
+        </button> 
     {{/contentFor}}
-  	{{#contentFor "headerButtonRight"}}
-	    <button id="btnVoice" class="button button-clear pull-right">语音</button>
-  	{{/contentFor}}
-  	{{#contentFor "headerTitle"}}
-    	<h1 id="ChooseBook" class="title" data-ion-menu-toggle="left" >{{bookName}} 第{{chapterSN}}章</h1>
-  	{{/contentFor}}
-    {{#ionView}}{{#ionContent}}
-	    	<div id="divBible" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">
-              <button id="btnPrev" on-swipe-right="lastChapter();" class="button button-full button-light">上一章</button>
-                {{#each lectionList}}{{>lectionItem }}{{/each}}
-               <p> <button  id="btnNext" class="button button-full button-light">下一章</button></p>
+
+    {{#contentFor "headerButtonRight"}}
+        <button id="btnVoice" class="button button-clear pull-right">
+            语音
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 id="ChooseBook" class="title" data-ion-menu-toggle="left" >{{bookName}} 第{{chapterSN}}章</h1>
+    {{/contentFor}}
+
+    {{#ionView}}
+        {{#ionContent}}
+            <div id="divBible" class="list" style="height:100%;overflow-y:scroll;overflow-x:hidden;">
+                {{#each lectionList}}
+                    {{>lectionItem }}
+                {{/each}}
             </div>
-        {{/ionContent}}{{/ionView}}
+        {{/ionContent}}
+    {{/ionView}}
+
+    <div id="playerDiv">
+        {{#ionSubheaderBar }}
+            <div class="button-bar">
+                <button class="button button-icon icon ion-ios-skipbackward" data-skipbackward></button>
+                {{#if isPlaying}}
+                    <button class="button button-icon icon ion-ios-pause" data-play></button>
+                {{else}}
+                    <button class="button button-icon icon ion-ios-play" data-play></button>
+                {{/if}}
+                <button class="button button-icon icon ion-ios-undo"></button>
+                <button class="button button-icon icon ion-ios-skipforward" data-skipforward></button>
+            </div>
+        {{/ionSubheaderBar}}
+    </div>
+
 </template>

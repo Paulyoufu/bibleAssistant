@@ -27,6 +27,7 @@ abcGlobal.media.playAudio = function(){
   if (myMedia != null){
       myMedia.release(); 
   }
+  alert(url);
   myMedia = new Media(url, successCallback, errorCallback, statusCallback);
   myMedia.play();
   // Session.set('isPlaying', true);

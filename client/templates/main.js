@@ -1,12 +1,28 @@
+Session.setDefault('isPlaying', false);   //当前是否正在播放
+
+Template.main.rendered = function()
+{
+	$("#playerDiv").hide();
+	//初始化 
+	getSystemSetting();
+};
+
 Meteor.startup(function () {
     $('body').hammer();
 });
 
 Template.ionNavBar.events({
-	'click .title:contains("章")': function () {
+	'click .title': function () {
        Router.go('bookMenu');
-	},'click .pull-left:contains("菜单")': function () {
+	},'click .pull-left': function () {
        Router.go('menu');
+	},'click #btnVoice': function() {
+		Session.set('isPlayView', ! Session.get('isPlayView'));
+		if(Session.get('isPlayView')){
+			$("#playerDiv").show();
+		}else{
+			$("#playerDiv").hide();
+		}
 	}
 });
 Template.main.helpers({
@@ -33,7 +49,11 @@ Template.main.helpers({
 	},
 	dur:function(){
 		return Session.get('dur');
+	},
+	isPlaying: function () {
+		return Session.get('isPlaying');
 	}
+
 });
 Template.main.events({
     "click #btnNext": function(){
@@ -48,12 +68,51 @@ Template.main.events({
         lastChapter();
     },
     'swipeleft #divBible': function(event) {
-        console.log("1111111111111");
         event.stopPropagation();
-alert("kkkkk");
-    } ,'hold #divBible': function(event) {
+    },
+    'hold #divBible': function(event) {
         event.stopPropagation();
-        alert("Hold!");
-    }
+    },
+	'click button[data-play]': function () {
+		//播放
+		Session.set('isPlaying', ! Session.get('isPlaying'));
+		if(Session.get('isPlaying')){
+			abcGlobal.media.playAudio();
+			Session.set('lrcStyle',true);
+		}else{
+			abcGlobal.media.pauseAudio();
+			Session.set('lrcStyle',false);
+            $("#divBible span").removeClass("blue");
+		}
+	},'click button[data-skipbackward]': function () {
 
+        BibleScrollTop();
+		lastChapter();
+
+		//播放
+		abcGlobal.media.initAudio();
+		if(Session.get('isPlaying')){
+			abcGlobal.media.playAudio();
+		}
+        // 记录本次读经位置
+		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
+
+	},'click button[data-skipforward]': function () {
+
+        BibleScrollTop();
+		nextChapter();
+
+		//播放
+		abcGlobal.media.initAudio();
+		if(Session.get('isPlaying')){
+			abcGlobal.media.playAudio();
+		}
+
+        // 记录本次读经位置
+		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
+	},'click .ion-ios-undo': function () {
+		//判断文件是否存在
+		// volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
+		download(Session.get('selectedBookName'), Session.get('selectedBook'), Session.get('currentChapter'));
+	}
 })
