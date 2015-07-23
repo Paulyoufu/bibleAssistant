@@ -17,7 +17,7 @@ Meteor.startup(function () {
 
 //设置url
 abcGlobal.media.initAudio = function(){
-    url = "application/voice/" + Session.get('currentBook') + "-" + Session.get('currentChapter') + ".mp3";
+    url = "documents://voice/" + Session.get('currentBook') + "-" + Session.get('currentChapter') + ".mp3";
 }
 
 //播放
@@ -27,7 +27,6 @@ abcGlobal.media.playAudio = function(){
   if (myMedia != null){
       myMedia.release(); 
   }
-  alert(url);
   myMedia = new Media(url, successCallback, errorCallback, statusCallback);
   myMedia.play();
   // Session.set('isPlaying', true);
