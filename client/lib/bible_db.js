@@ -49,7 +49,7 @@ getLection = function (volumeSN, chapterSN,index) {
 
                 if(index>=1)
                     {    console.log("1111111");
-                $("#divBible").scrollTop(60);
+                $("#divBible").scrollTop(68);
                 if($("#divBible p:eq(0)").position().top>=68)
                 {
                     $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
@@ -79,7 +79,7 @@ getLection = function (volumeSN, chapterSN,index) {
                 }
                 else
                 {
-                    $("#divBible").scrollTop(60);             console.log("aaaaaaaaaa");
+                    $("#divBible").scrollTop(68);             console.log("aaaaaaaaaa");
 
                 }
             }, function(e) {

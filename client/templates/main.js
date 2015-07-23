@@ -19,9 +19,9 @@ Template.ionNavBar.events({
 	},'click #btnVoice': function() {
 		Session.set('isPlayView', ! Session.get('isPlayView'));
 		if(Session.get('isPlayView')){
-			$("#playerDiv").show();
+			$("#playerDiv").slideDown("slow");
 		}else{
-			$("#playerDiv").hide();
+			$("#playerDiv").slideUp("slow");
 		}
 	}
 });
