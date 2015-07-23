@@ -47,3 +47,27 @@ download = function(volumeSN, bookSN, chapterSN){
 }
 
 
+          //实例化文件传输对象
+          var fileTransfer = new FileTransfer();
+          //开始下载
+          fileTransfer.download(
+            uri,
+            fileURL,
+            function(entry) {
+                  //下载成功
+                  console.log("download complete: " + entry.toURL());
+                  //弹出下载路径
+                  //alert("download complete: " + entry.toURL());
+
+                },
+                function(error) {
+                  //下载失败
+                  console.log("download error source " + error.source);
+                  console.log("download error target " + error.target);
+                  console.log("download error code" + error.code);
+                  //alert("download error: " + error);
+                  alert(volumeSN + "第" +chapterSN+ "章下载失败，请重新下载")
+                },
+                false
+                );
+        }
