@@ -133,7 +133,6 @@ Template.download.events({
     Session.set('downloadChapterCount', 260);
 
 },
-//语音全部下载
 'click .allDownload':function () {
     if (Session.get('downloadBookName') == "旧约") {
          //提示用户是否下载全部旧约语音？
@@ -245,8 +244,6 @@ Template.download.events({
                 readDir(fs.root);
             }, errorHandler);
 
-<<<<<<< HEAD
-=======
                 }, errorHandler);
             };
             alert("已删除" + Session.get('downloadBookName') + '全部语音!')
@@ -268,5 +265,4 @@ Template.download.events({
     // }, errorHandler);
 }
 
->>>>>>> caiyufan_adddelete
 });
