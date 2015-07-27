@@ -1,10 +1,19 @@
 <!-- 搜索管理 -->
 <template name="search">
-    {{#contentFor "headerButtonLeft"}}
-        <button class="button button-clear pull-left" data-ion-menu-toggle="left"> 菜单</button>
+   {{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            菜单
+        </button> 
     {{/contentFor}}
+
+    {{#contentFor "headerButtonRight"}}
+        <button id="btnVoice" class="button button-clear pull-right">
+            语音
+        </button>
+    {{/contentFor}}
+
     {{#contentFor "headerTitle"}}
-        <h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
+        <h1 id="ChooseBook" class="title" data-ion-menu-toggle="left" >{{bookName}} 第{{chapterSN}}章</h1>
     {{/contentFor}}
     <div class="bar bar-header bar-dark" style="height:70px;background-color: #444444">
         <button id="btnSearchRet" class="button button-clear pull-left">返回</button>

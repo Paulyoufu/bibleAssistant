@@ -2,7 +2,6 @@ Session.setDefault('isPlaying', false);   //当前是否正在播放
 
 Template.main.rendered = function()
 {
-	$("#playerDiv").hide();
 	//初始化 
 	getSystemSetting();
 };
@@ -114,6 +113,6 @@ Template.main.events({
 	},'click .ion-ios-undo': function () {
 		//判断文件是否存在
 		// volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
-		download(Session.get('selectedBookName'), Session.get('selectedBook'), Session.get('currentChapter'));
+		download(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
 	}
 })

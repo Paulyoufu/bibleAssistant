@@ -1,10 +1,10 @@
 Template.systemSettings.rendered = function()
 {
-    if(Session.get('automaticallyDL')){
+    if(Session.get('automaticallyDL')=="true"){
         $("#automaticallyDl_id").prop("checked",true); 
     }
-    if(Session.get('settingFont')){
-        $("#automaticallyDl_id").prop("checked",true); 
+    if(Session.get('fontSize')=="true"){
+        $("#largeFont_id").prop("checked",true);
     } 
 };
 
@@ -14,24 +14,26 @@ Template.systemSettings.events({
     },'click #automaticallyDl_id' : function() {
         if($("#automaticallyDl_id").is(':checked')) 
         {
-            Session.set('automaticallyDL',true);
             setAutomaticallyDL("true");
+            Session.set('automaticallyDL',true);
+            $("#automaticallyDl_id").prop("checked",true); 
         }else{
-            Session.set('automaticallyDL',false);
             setAutomaticallyDL("false");
+            Session.set('automaticallyDL',false);
+            $("#automaticallyDl_id").prop("checked",false);
         }
     },'click #largeFont_id' : function() {
         if($("#largeFont_id").is(':checked')) 
-        {        
-            $("#size_Id").addClass("settingFont");
+        {      
+            $("p[name='size_Id']").addClass("settingFont");
             Session.set('fontSize',true);
+            $("#largeFont_id").prop("checked",true);
             setFontSize("true");
-
         }else{
-            $("#size_Id").removeClass("settingFont");
+            $("p[name='size_Id']").removeClass("settingFont");
             Session.set('fontSize',false);
+            $("#largeFont_id").prop("checked",false);
             setFontSize("false");
-
         }
     }
 });

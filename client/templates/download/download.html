@@ -2,14 +2,20 @@
 <template name="download">
 
 	{{#contentFor "headerButtonLeft"}}
-	<button class="button button-clear pull-left" data-ion-menu-toggle="left">
-		菜单
-	</button> 
-	{{/contentFor}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            菜单
+        </button> 
+    {{/contentFor}}
 
-	{{#contentFor "headerTitle"}}
-	<h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>
-	{{/contentFor}}
+    {{#contentFor "headerButtonRight"}}
+        <button id="btnVoice" class="button button-clear pull-right">
+            语音
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 id="ChooseBook" class="title" data-ion-menu-toggle="left" >{{bookName}} 第{{chapterSN}}章</h1>
+    {{/contentFor}}
 
 	<div class="bar bar-header bar-dark">
 		<button class="button button-clear pull-left">

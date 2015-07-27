@@ -18,9 +18,6 @@ Session.setDefault("keyWordBlog",0);
 Session.setDefault("downloadBookName",'创世记');
 Session.setDefault("downloadChapterCount",'50');
 
-Session.setDefault("automaticallyDL",false);  //自动下载
-Session.setDefault("fontSize",false);   //是否开启大号字体
-
 
 //arrLection =[];
 // 获取指定书卷、章的经文列表
@@ -79,13 +76,13 @@ getLection = function (volumeSN, chapterSN,index) {
                 }
                 else
                 {
-                    $("#divBible").scrollTop(60);             console.log("aaaaaaaaaa");
+                    $("#divBible").scrollTop(60);             
 
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
             });
-});
+    });
 }
 
 // 获取书卷目录 sn 章数 书名
@@ -125,7 +122,7 @@ getBooksList = function (newOrOld) {
             }, function(e) {
                 console.log("ERROR: getBooksList " + e.message);
             });
-});
+    });
 }
 
 SearchGetLection = function (searchType,searchStr) {
@@ -174,7 +171,7 @@ SearchGetLection = function (searchType,searchStr) {
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
             });
-});
+    });
 }
 
 //下一章
@@ -403,57 +400,6 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
 });
 
 
-// 获取设置信息
-getSystemSetting = function(attribute){
-    // 打开数据库
-    db.transaction(function(tx) {
-        //单次查询Bible表
-        var strSQL = "select fontSize, automaticallyDL from SystemSettings";
-
-        tx.executeSql(strSQL, [],
-            function(tx, res) {
-                var setting = {};
-                for(var i=0;i<res.rows.length;i++)
-                {
-                    setting.fontSize = res.rows.item(i).fontSize;
-                    setting.automaticallyDL = res.rows.item(i).automaticallyDL;
-                }
-                Session.set('automaticallyDL', setting.automaticallyDL);
-                Session.set('fontSize', setting.fontSize);
-            },
-            function(e) {
-                console.log("ERROR: getLection " + e.message);
-            });
-    });
-}
-
-//设置是否自动下载
-setAutomaticallyDL = function(judge){
-    db.transaction(function(tx) {
-        //更新SystemSettings表
-        var strSQL = "update SystemSettings set automaticallyDL = '" + judge + "';";
-        tx.executeSql(strSQL, [],
-            function(tx, res) {
-                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-            }, function(e) {
-                console.log("ERROR: setSetting " + e.message);
-            });
-    });
-}
-
-//设置字体大小
-setFontSize = function(judge){
-    db.transaction(function(tx) {
-        //更新SystemSettings表
-        var strSQL = "update SystemSettings set FontSize = '" + judge + "';";
-        tx.executeSql(strSQL, [],
-            function(tx, res) {
-                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-            }, function(e) {
-                console.log("ERROR: setSetting " + e.message);
-            });
-    });
-}
 }
 
 Meteor.startup(function () {

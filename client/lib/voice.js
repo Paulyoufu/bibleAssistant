@@ -27,16 +27,20 @@ abcGlobal.media.playAudio = function(){
   if (myMedia != null){
       myMedia.release(); 
   }
-
+  myMedia = new Media(url, successCallback, errorCallback, statusCallback);
   // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
   findfile(Session.get('currentBook'),Session.get('currentChapter'));
-  alert(Session.get("book" + Session.get('currentBook') + "-" + Session.get('currentChapter')));
-  if(!Session.get("book" + Session.get('currentBook') + "-" + Session.get('currentChapter'))){
-    alert("不存在");
-    download(Session.get('selectedBookName'), Session.get('selectedBook'), Session.get('currentChapter'));
+  
+  if(Session.get("book" + Session.get('currentBook') + "-" + Session.get('currentChapter'))){
+    myMedia.play();
+  }else{
+    if(Session.get('automaticallyDL')){
+      automaticDownload(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
+    }else{
+      //取消播放模式
+      Session.set('lrcStyle',false);
+    }
   }
-  myMedia = new Media(url, successCallback, errorCallback, statusCallback);
-  myMedia.play();
 }
 
  //暂停

@@ -1,6 +1,19 @@
 <template name="bookMarks">
- {{#contentFor "headerButtonLeft"}}<button class="button button-clear pull-left" data-ion-menu-toggle="left"> 菜单 </button>{{/contentFor}}
- {{#contentFor "headerTitle"}}<h1 class="title">{{bookName}} 第{{chapterSN}}章</h1>{{/contentFor}}
+{{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            菜单
+        </button> 
+{{/contentFor}}
+
+{{#contentFor "headerButtonRight"}}
+        <button id="btnVoice" class="button button-clear pull-right">
+            语音
+        </button>
+{{/contentFor}}
+
+{{#contentFor "headerTitle"}}
+        <h1 id="ChooseBook" class="title" data-ion-menu-toggle="left" >{{bookName}} 第{{chapterSN}}章</h1>
+    {{/contentFor}}
  <div class="bar bar-header bar-dark" style="height:86px;background-color: black">
  	<div>
      <button id="btnreturn" class="button button-clear pull-left" style="width:50px"> 返回</button>
