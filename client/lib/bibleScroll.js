@@ -35,3 +35,32 @@ BibleScrollTop=function(){Session.set("index",1);
 CharpterScrollTop=function(){
     $("#charpterList").scrollTop($("div div:eq(0)").position().top);
 }
+//设置是否自动下载
+setAutomaticallyDL = function(judge){
+    db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
+    db.transaction(function(tx) {
+        //更新SystemSettings表
+        var strSQL = "update SystemSettings set automaticallyDL = '" + judge + "';";
+        tx.executeSql(strSQL, [],
+            function(tx, res) {
+                console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            }, function(e) {
+                console.log("ERROR: setSetting " + e.message);
+            });
+    });
+}
+
+//设置字体大小
+setFontSize = function(judge){
+    db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
+    db.transaction(function(tx) {
+        //更新SystemSettings表
+        var strSQL = "update SystemSettings set FontSize = '" + judge + "';";
+        tx.executeSql(strSQL, [],
+            function(tx, res) {
+                console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+            }, function(e) {
+                console.log("ERROR: setSetting " + e.message);
+            });
+    });
+}

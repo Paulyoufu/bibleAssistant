@@ -21,17 +21,17 @@ Template.systemSettings.events({
             setAutomaticallyDL("false");
         }
     },'click #largeFont_id' : function() {
-        if($("#largeFont_id").is(':checked')) 
-        {        
-            $("#size_Id").addClass("settingFont");
+        if($("#largeFont_id").is(':checked'))
+        {
+            $("#divBible p").addClass("settingFont");
             Session.set('fontSize',true);
+            $("#largeFont_id").prop("checked",true);
             setFontSize("true");
-
         }else{
-            $("#size_Id").removeClass("settingFont");
+            $("#divBible p").removeClass("settingFont");
             Session.set('fontSize',false);
+            $("#largeFont_id").prop("checked",false);
             setFontSize("false");
-
         }
     }
 });
