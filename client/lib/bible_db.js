@@ -44,43 +44,33 @@ getLection = function (volumeSN, chapterSN,index) {
                     lectionList.push(lectionItem);
                 }
                 //将查询结果存入Session
-
                 Session.set('lectionList', lectionList);
-
                 if(index>=1)
-                    {    console.log("1111111");
+                    {
                 $("#divBible").scrollTop(68);
-                if($("#divBible p:eq(0)").position().top>=68)
+                if($("#divBible p:eq("+(index-1)+")").position().top>=68)
                 {
                     $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
-                    console.log($("#divBible p:eq("+(index-1)+")").position().top+"22222222");
+                    console.log($("#divBible p:eq("+(index-1)+")").position().top+"    if  ++++++++");
                 }
                 else
                 {
-                    $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+68-$("#divBible p:eq(0)").position().top);
-                    console.log($("#divBible p:eq("+(index-1)+")").position().top+"3333333333else");
-
+                    $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+48-$("#divBible p:eq(0)").position().top);
                 }
-
-
-                if(Session.get("keyWordBlog")==1){
-
+                if(Session.get("keyWordBlog")==1){ $("#playerDiv").hide();
                         // console.log(Session.get("keyWordBlog")+"  keywordblog");
                         $("#divBible p").removeClass("scriptColor");
-                        $("#divBible p:eq("+(index-1)+")").addClass("scriptColor");
+                        $("#divBible p:eq("+(index)+")").addClass("scriptColor");
                         Session.set("keyWordBlog",0);
                         //  console.log(Session.get("keyWordBlog")+"  keywordblog is  zero1");
                     }
-
                     if(Session.get("keyWordBlog")!=0 && Session.get("keyWordBlog")!=1) {
                         $("#divBible p").removeClass("scriptColor");
                     }
-
                 }
                 else
                 {
-                    $("#divBible").scrollTop(68);             console.log("aaaaaaaaaa");
-
+                    $("#divBible").scrollTop(68);
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
@@ -149,7 +139,7 @@ SearchGetLection = function (searchType,searchStr) {
             break;
         }
         tx.executeSql(strSQL, [],
-            function(tx, res) {
+            function(tx, res) {$("#divsearch").append("<p style='height:30px;'></p>");
                 for(var i=0;i<res.rows.length;i++)
                 {
                     var objLectionItem = {};
@@ -166,10 +156,10 @@ SearchGetLection = function (searchType,searchStr) {
                     }
                     objLectionItem.verseSN=res.rows.item(i).VerseSN;
                     objLectionItem.lection = res.rows.item(i).Lection.replace(new RegExp(searchStr,"g"),'<span  style="color:blue;"><span style="display:none">'+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":"+objLectionItem.volumeSN+" "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+'&</span>'+searchStr+'</span>');
-                    $("#divsearch").append("<p data-ion-menu-close class='item item-text-wrap' ><span style='display:none'>"+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":</span><span style='color:green'>"+objLectionItem.volumeSN+"  "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+"</span><span style='display:none'>&</span> "+ objLectionItem.lection+"</p>");
+                    $("#divsearch").append("<p data-ion-menu-close class='item item-text-wrap' >"+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":"+objLectionItem.volumeSN+"  "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+"</span><span style='display:none'>&</span> "+ objLectionItem.lection+"</p>");
                 }
                 if($("#divsearch p").length==0){
-                    $("#divsearch").append("<p  disabled='disabled'' style='margin-top:20px;margin-left:10px;width:200%;font-size:18px;align-text:center' >&nbsp;&nbsp;&nbsp;&nbsp;没有搜索到相关的数据!!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>");
+                    $("#divsearch").append("<p   style='margin-top:20px;margin-left:70px;width:200%;font-size:18px;align-text:center' >&nbsp;&nbsp;&nbsp;&nbsp;没有搜索到相关的数据!!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>");
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);

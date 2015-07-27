@@ -1,0 +1,43 @@
+main.html
+<template name="main">
+	{{#contentFor "headerButtonLeft"}}
+        <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+            菜单
+        </button> 
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonRight"}}
+        <button id="btnVoice" class="button button-clear pull-right">
+            语音
+        </button>
+    {{/contentFor}}
+
+    {{#contentFor "headerTitle"}}
+        <h1 id="ChooseBook" class="title" data-ion-menu-toggle="left" >{{bookName}} 第{{chapterSN}}章</h1>
+    {{/contentFor}}
+
+     {{#ionView}}
+        {{#ionContent}}
+                <div id="playerDiv" class="bar bar-subheader" style="display:none;background-color: #51575F;width:100%;margin-top:-63px">
+                    <div class="button-bar">
+                        <button class="button button-icon icon ion-ios-skipbackward" data-skipbackward></button>
+                        {{#if isPlaying}}
+                            <button class="button button-icon icon ion-ios-pause" data-play></button>
+                        {{else}}
+                            <button class="button button-icon icon ion-ios-play" data-play></button>
+                        {{/if}}
+                        <button class="button button-icon icon ion-ios-undo"></button>
+                        <button class="button button-icon icon ion-ios-skipforward" data-skipforward></button>
+                    </div>
+                </div>
+                <div id="divBible" class="list" style="position:absolute;height:100%;overflow-y:scroll;overflow-x:hidden;">
+                    <p>  <button id="btnPrev"  class="button button-full button-light">上一章</button></p>
+                    {{#each lectionList}}
+                        {{>lectionItem }}
+                    {{/each}}
+                    <p> <button  id="btnNext" class="button button-full button-light">下一章</button></p>
+                </div>
+        {{/ionContent}}
+    {{/ionView}}
+
+</template>

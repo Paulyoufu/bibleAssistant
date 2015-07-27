@@ -90,7 +90,7 @@ Template.bookMenu.events({
         $("#new").removeAttr("disabled"); // 启用
     },
     "click #new": function(){
-        Session.set("bibleOldOrNew",1); console.log("session======1");
+        Session.set("bibleOldOrNew",1);
         $("#divBookLists").scrollTop($("div div:eq(0)").position().top);
         Session.set("bibleOldOrNew",1);
         $("#old").removeClass("chooseOrAndNew");
