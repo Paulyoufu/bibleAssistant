@@ -17,11 +17,11 @@ Template.ionNavBar.events({
        Router.go('menu');
 	},'click #btnVoice': function() {
 		Session.set('isPlayView', ! Session.get('isPlayView'));
-		if(Session.get('isPlayView')){
-			$("#playerDiv").show();
-		}else{
-			$("#playerDiv").hide();
-		}
+        if(Session.get('isPlayView')){
+            $("#playerDiv").fadeIn("slow");
+        }else{
+            $("#playerDiv").fadeOut();
+        }
 	}
 });
 Template.main.helpers({

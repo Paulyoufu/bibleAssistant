@@ -32,7 +32,6 @@ getSystemSetting = function(){
 
 //设置是否自动下载
 setAutomaticallyDL = function(judge){
-    alert("设置是否自动下载");
     db.transaction(function(tx) {
         //更新SystemSettings表
         var strSQL = "update SystemSettings set automaticallyDL = '" + judge + "';";
@@ -47,7 +46,6 @@ setAutomaticallyDL = function(judge){
 
 //设置字体大小
 setFontSize = function(judge){
-    alert("设置字体大小");
     db.transaction(function(tx) {
         //更新SystemSettings表
         var strSQL = "update SystemSettings set fontSize = '" + judge + "';";
