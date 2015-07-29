@@ -2,8 +2,8 @@
 	{{#contentFor "headerTitle"}}
       <button id="btnBooks" class="button button-clear pull-left" data-ion-menu-toggle="left"> 书卷 </button>
       <h1 class="title ">{{bookName}} 第{{chapterSN}}章</h1>
-      <button class="button button-clear pull-right" data-ion-menu-toggle="right">
-        {{#if isAndroid}}{{> ionIcon icon='android-more-vertical'}}{{else}} {{> ionIcon icon='navicon'}} {{/if}} </button>{{/contentFor}}
+            <button id="btnVoice" class="button button-clear pull-right">语音</button>
+    {{/contentFor}}
 	<div class="bar bar-header bar-dark">
 		<button id="returnBook" class="button button-clear pull-left">返回</button><h1 class="title">{{selectedBookName}}</h1>
 	</div>

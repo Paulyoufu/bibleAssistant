@@ -7,18 +7,17 @@ Template.search.events({
         Router.go('menu');
     },
     'click #btnRange': function(){
-        $("#backGrand").fadeToggle("slow");
-        $("#selbookname").slideToggle("slow");
+        $("#divbookname").fadeToggle("slow");
     },
-    'click #divsearch .item': function(e)
+    'click #divsearch': function(e)
     {
-        $("#selbookname").slideUp("slow");
-        $("#backGrand").fadeOut("slow");
+        $("#divbookname").fadeOut("slow");
         var chapter=$(e.target).text();
         var searchWork=Session.get("searchStr");
         if(chapter=="")
         {
             chapter= $( e.target ).find(".item").text();
+            console.log("chapter="+chapter)
         }
         var currBookNames=chapter.replace(/[\d  :]/g,"");
         currBookNames=currBookNames.substr(0,currBookNames.indexOf("&"));
@@ -35,8 +34,8 @@ Template.search.events({
         Session.set('currentBook',arrcurrentBook);
         Session.set('currentChapter',arrcurrentChapter);
         Session.set('currentChapterCount',arrcurrentCount);
-        $("#divsearch .item").empty();
-      Router.go('menu');
+        // $("#divsearch .item").empty();
+        Router.go('menu');
         Session.set("keyWordBlog",1);
     },
     'click #btnSearchScript': function(){
@@ -46,26 +45,24 @@ Template.search.events({
             $("#divsearch").empty();
             Session.set("searchStr",$("#inpSearchScript").val());
             SearchGetLection(searchType,$("#inpSearchScript").val());
-            $("#selbookname").slideUp("slow");
-            $("#backGrand").fadeOut("slow");
+            $("#divbookname").fadeOut("slow");
         }
-    },"click #selbookname li": function(e){
+    },"click ul li": function(e){
         var typeSearch=$(e.target).find("span").text();
         $("ul li").find(".ion-checkmark-circled").removeClass("ion-checkmark-circled positive");
         $("ul li").find(".ion-checkmark-circled").removeAttr("style");
         $(e.target).find(".item-note").addClass("ion-checkmark-circled positive");
-        $(e.target).find(".item-note").attr("style","font-size:x-large")
+        $(e.target).find(".item-note").attr("style","font-size:120%");
         if(typeSearch==""){
             Session.set("searchType",0);
             Session.set("currBookIndex",parseInt(this.bookID));
-            console.log(  Session.get("searchType"), Session.get("currBookIndex"),"  ------  searType currBookIndex ------");
         }
         else{
             Session.set("searchType",parseInt(typeSearch));
             console.log(Session.get("searchType"));
         }
-        $("#selbookname").slideUp("slow");
-        $("#backGrand").fadeOut("slow");
+        $("#divbookname").fadeOut("slow");
+
     }
 });
 Template.search.helpers({
@@ -82,6 +79,3 @@ Template.search.helpers({
         return Session.get('currentChapter');
     }
 });
-
-
-

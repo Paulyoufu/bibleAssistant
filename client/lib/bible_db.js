@@ -24,7 +24,8 @@ Session.setDefault("downloadChapterCount",'50');
 // volumeSN 书卷号 chapterSN 章号
 getLection = function (volumeSN, chapterSN,index) {
     // 打开数据库
-
+    Session.set('isPlayView',false);
+    $("#playerDiv").hide();
     // var db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
     db.transaction(function(tx) {
         //单次查询Bible表
@@ -41,50 +42,40 @@ getLection = function (volumeSN, chapterSN,index) {
                     lectionList.push(lectionItem);
                 }
                 //将查询结果存入Session
-
                 Session.set('lectionList', lectionList);
-
                 if(index>=1)
-                    {    console.log("1111111");
-                $("#divBible").scrollTop(60);
-                if($("#divBible p:eq(0)").position().top>=68)
                 {
-                    $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
-                    console.log($("#divBible p:eq("+(index-1)+")").position().top+"22222222");
-                }
-                else
-                {
-                    $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+68-$("#divBible p:eq(0)").position().top);
-                    console.log($("#divBible p:eq("+(index-1)+")").position().top+"3333333333else");
-
-                }
-
-
-                if(Session.get("keyWordBlog")==1){
+                    $("#divBible").scrollTop(68);
+                    if($("#divBible p:eq("+(index-1)+")").position().top>=68)
+                    {
+                        $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
+                        console.log($("#divBible p:eq("+(index-1)+")").position().top+"    if  ++++++++");
+                    }
+                    else
+                    {
+                        $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+48-$("#divBible p:eq(0)").position().top);
+                    }
+                    if(Session.get("keyWordBlog")==1){
 
                         // console.log(Session.get("keyWordBlog")+"  keywordblog");
                         $("#divBible p").removeClass("scriptColor");
-                        $("#divBible p:eq("+(index-1)+")").addClass("scriptColor");
+                        $("#divBible p:eq("+(index)+")").addClass("scriptColor");
                         Session.set("keyWordBlog",0);
                         //  console.log(Session.get("keyWordBlog")+"  keywordblog is  zero1");
                     }
-
                     if(Session.get("keyWordBlog")!=0 && Session.get("keyWordBlog")!=1) {
                         $("#divBible p").removeClass("scriptColor");
                     }
-
                 }
                 else
                 {
-                    $("#divBible").scrollTop(60);             
-
+                    $("#divBible").scrollTop(68);
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
             });
     });
 }
-
 // 获取书卷目录 sn 章数 书名
 // newOrOld 0 旧约 1 新约 2全部
 getBooksList = function (newOrOld) {
@@ -134,19 +125,19 @@ SearchGetLection = function (searchType,searchStr) {
         {
 
             case -1:strSQL =strSQL+" Lection like '%"+searchStr+"%' order by ID;";
-            break;
+                break;
             case -2:strSQL =strSQL+" VolumeSN>0 and VolumeSN<40 and Lection like '%"+searchStr+"%' order by ID;";
-            break;
+                break;
             case -3:
-            strSQL =strSQL+ "  VolumeSN>39 and VolumeSN<66 and Lection like '%"+searchStr+"%' order by ID;";
-            break;
+                strSQL =strSQL+ "  VolumeSN>39 and VolumeSN<66 and Lection like '%"+searchStr+"%' order by ID;";
+                break;
             case 0:
 
-            strSQL =strSQL+" VolumeSN="+currBookIndex+"  and Lection like '%"+searchStr+"%' order by ID;";
-            break;
+                strSQL =strSQL+" VolumeSN="+currBookIndex+"  and Lection like '%"+searchStr+"%' order by ID;";
+                break;
         }
         tx.executeSql(strSQL, [],
-            function(tx, res) {
+            function(tx, res) {$("#divsearch").append("<p style='height:30px;'></p>");
                 for(var i=0;i<res.rows.length;i++)
                 {
                     var objLectionItem = {};
@@ -163,10 +154,10 @@ SearchGetLection = function (searchType,searchStr) {
                     }
                     objLectionItem.verseSN=res.rows.item(i).VerseSN;
                     objLectionItem.lection = res.rows.item(i).Lection.replace(new RegExp(searchStr,"g"),'<span  style="color:blue;"><span style="display:none">'+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":"+objLectionItem.volumeSN+" "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+'&</span>'+searchStr+'</span>');
-                    $("#divsearch").append("<p data-ion-menu-close class='item item-text-wrap' ><span style='display:none'>"+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":</span><span style='color:green'>"+objLectionItem.volumeSN+"  "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+"</span><span style='display:none'>&</span> "+ objLectionItem.lection+"</p>");
+                    $("#divsearch").append("<p data-ion-menu-close class='item item-text-wrap' ><span style='display:none;'>"+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":</span>"+objLectionItem.volumeSN+" "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+"</span><span style='display:none'>&</span> "+ objLectionItem.lection+"</p>");
                 }
                 if($("#divsearch p").length==0){
-                    $("#divsearch").append("<p  disabled='disabled'' style='margin-top:20px;margin-left:10px;width:200%;font-size:18px;align-text:center' >&nbsp;&nbsp;&nbsp;&nbsp;没有搜索到相关的数据!!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>");
+                    $("#divsearch").append("<p   style='margin-top:20px;margin-left:70px;width:200%;font-size:18px;align-text:center' >&nbsp;&nbsp;&nbsp;&nbsp;没有搜索到相关的数据!!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>");
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
