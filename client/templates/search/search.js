@@ -7,11 +7,11 @@ Template.search.events({
         Router.go('menu');
     },
     'click #btnRange': function(){
-        $("#divbookname").slideToggle("slow");
+        $("#divbookname").fadeToggle("slow");
     },
     'click #divsearch': function(e)
     {
-        $("#divbookname").slideUp("slow");
+        $("#divbookname").fadeOut("slow");
         var chapter=$(e.target).text();
         var searchWork=Session.get("searchStr");
         if(chapter=="")
@@ -45,7 +45,7 @@ Template.search.events({
             $("#divsearch").empty();
             Session.set("searchStr",$("#inpSearchScript").val());
             SearchGetLection(searchType,$("#inpSearchScript").val());
-            $("#divbookname").slideUp("slow");
+            $("#divbookname").fadeOut("slow");
         }
     },"click ul li": function(e){
         var typeSearch=$(e.target).find("span").text();
@@ -61,7 +61,7 @@ Template.search.events({
             Session.set("searchType",parseInt(typeSearch));
             console.log(Session.get("searchType"));
         }
-        $("#divbookname").slideUp("slow");
+        $("#divbookname").fadeOut("slow");
 
     }
 });
