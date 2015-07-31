@@ -13,7 +13,7 @@ Template.temBookmarkItem.events(
             Session.set("time",this.objbookmarkTime);
             IonPopup.prompt({
                 title: Session.get('currentBookName')+" "+Session.get('currentChapter')+"章"+Session.get("currSection"),
-                template: '书签名称：',
+                template: '修改书签名称：',
                 okText: '确定',cancelText:"取消",
                 inputType: 'text',
                 inputPlaceholder: '书签',

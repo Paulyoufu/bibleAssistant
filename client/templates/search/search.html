@@ -12,14 +12,14 @@
             <i style="font-size:large" class="ion-ios-book"></i>
         </button>
     </div>
-    <div class="bar bar-subheader bar-stable" style="height:40px;">
+    <div class="bar bar-subheader bar-stable" style="height:54px;">
         <div class="list" style="width:100%;height:30px;margin-top:-1px;background-color:#F8F8F8">
-            <div class="item item-input-inset" style="width:105%;height:30px;margin-left:-10px;background-color:#F8F8F8">
+            <div class="item item-input-inset" style="width:105%;height:45px;margin-left:-10px;background-color:#F8F8F8">
                 <label class="item-input-wrapper" >
                     <input id="inpSearchScript" type="text" placeholder="search" style="width:101%;margin-left:-10px;background-color:white">
                 </label>
                 <span id="btnSearchScript" class="button button-clear button-small" style="margin-left:-15px;width:60px;background-color:#F8F8F8">
-                    搜索
+                    <b class="ion-ios-search">搜索</b>
                 </span>
             </div>
         </div>
@@ -30,8 +30,11 @@
             <div id="divsearch" class="list" style="z-index:-1;position: fixed;position: absolute;height:100%;overflow-y:scroll;overflow-x:hidden;border:solid 1px #c3c3c3;">
             </div>
             <div id="divbookname"  style="background-color:#F3F3F3;z-index:0;display:none;margin-top:240px; width:100%;height:60%;border:solid 1px slategray;">
+                <div class="bar bar-header bar-balanced" style="margin-top:160px;">
+                    <h1 class="title">圣经书卷</h1>
+                </div>
                 <ul  id="selbookname"  style="width:100%;height:100%;overflow-y: scroll;">
-                    <li class="item" style="background-color:#F3F3F3;"><span style="display: none;">-1</span>全书<span class="item-note ion-checkmark-circled positive" style="font-size: x-large"></span></li>
+                    <li class="item" style="background-color:#F3F3F3;"><span style="display: none;">-1</span>全书<span class="item-note ion-checkmark-circled positive" style="font-size:120%"></span></li>
                     <li class="item" style="background-color:#F3F3F3;"><span style="display: none;">-2</span>旧约<span class="item-note"></span></li>
                     <li class="item" style="background-color:#F3F3F3;"><span style="display: none;">-3</span>新约<span class="item-note"></span></li>
                     {{#each oldBookName}} <li class="item" style="background-color:#F3F3F3;">{{> olnyBookNameItem}} </li> {{/each}}
