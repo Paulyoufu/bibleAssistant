@@ -2,6 +2,7 @@ Session.setDefault('isPlaying', false);   //当前是否正在播放
 
 Template.main.rendered = function()
 {
+	abcGlobal.media.initAudio();
 	//初始化 
 	getSystemSetting();
 };

@@ -18,27 +18,27 @@ Meteor.startup(function () {
 //设置url
 abcGlobal.media.initAudio = function(){
     url = "documents://voice/" + Session.get('currentBook') + "-" + Session.get('currentChapter') + ".mp3";
+    
+    //这句释放资源一定要加，若没有这句会使APP卡住
+    if (myMedia != null){
+        myMedia.release(); 
+    }
+    myMedia = new Media(url, successCallback, errorCallback, statusCallback);
 }
 
 //播放
 abcGlobal.media.playAudio = function(){
-
-  //这句释放资源一定要加，若没有这句会使APP卡住
-  if (myMedia != null){
-      myMedia.release(); 
-  }
-  myMedia = new Media(url, successCallback, errorCallback, statusCallback);
   // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
   findfile(Session.get('currentBook'),Session.get('currentChapter'));
   
   if(Session.get("book" + Session.get('currentBook') + "-" + Session.get('currentChapter'))){
     myMedia.play();
   }else{
-    if(Session.get('automaticallyDL')){
+    if(Session.get('automaticallyDL')==true){
       automaticDownload(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
     }else{
-      //取消播放模式
       Session.set('lrcStyle',false);
+      $("#divBible span").removeClass("blue");
     }
   }
 }

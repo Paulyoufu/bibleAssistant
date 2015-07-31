@@ -13,11 +13,9 @@ getSystemSetting = function(){
                 var setting = {};
                 for(var i=0;i<res.rows.length;i++)
                 {
-                    setting.fontSize = res.rows.item(i).fontSize;
-                    setting.automaticallyDL = res.rows.item(i).automaticallyDL;
+                    Session.set('automaticallyDL', res.rows.item(i).fontSize);
+                    Session.set('fontSize', res.rows.item(i).automaticallyDL);
                 }
-                Session.set('automaticallyDL', setting.automaticallyDL);
-                Session.set('fontSize', setting.fontSize);
                 if(Session.get('fontSize')=='true'){
                     $("p[name='size_Id']").addClass("settingFont");
                 }else{
@@ -29,6 +27,7 @@ getSystemSetting = function(){
             });
     });
 }
+
 
 //设置是否自动下载
 setAutomaticallyDL = function(judge){

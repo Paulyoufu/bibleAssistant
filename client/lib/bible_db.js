@@ -288,7 +288,7 @@ getSetting = function () {
                 Session.set('currentChapterCount', Session.get('chapterCountIndex')['bookSN'+setting.lastbook]);
 
                 //初始化audio
-                abcGlobal.media.initAudio();
+                // abcGlobal.media.initAudio();
 
             }, function(e) {
                 console.log("ERROR: getSetting " + e.message);

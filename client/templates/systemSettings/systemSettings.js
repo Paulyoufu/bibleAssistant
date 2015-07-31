@@ -1,11 +1,11 @@
 Template.systemSettings.rendered = function()
 {
-    if(Session.get('automaticallyDL')=="true"){
+    if(Session.get('automaticallyDL')==true){
         $("#automaticallyDl_id").prop("checked",true); 
     }
-    if(Session.get('fontSize')=="true"){
+    if(Session.get('fontSize')==true){
         $("#largeFont_id").prop("checked",true);
-    } 
+    }
 };
 
 Template.systemSettings.events({

@@ -16,7 +16,6 @@ aldeed:collection2
 aldeed:autoform
 meteoric:ionic-sass
 meteoric:ionicons-sass
-meteoric:ionic
 meteoric:autoform-ionic
 useraccounts:ionic
 mdg:reload-on-resume@1.0.4
@@ -29,3 +28,4 @@ gadicohen:jquery2
 hammer:hammer
 noorderstorm:hammer
 semantic:ui-css
+meteoric:ionic
