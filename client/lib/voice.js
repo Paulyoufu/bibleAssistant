@@ -30,15 +30,31 @@ abcGlobal.media.initAudio = function(){
 abcGlobal.media.playAudio = function(){
   // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
   findfile(Session.get('currentBook'),Session.get('currentChapter'));
-  
+  //判断文件是否存在
   if(Session.get("book" + Session.get('currentBook') + "-" + Session.get('currentChapter'))){
     myMedia.play();
   }else{
+    //判断是否自动下载语音文件
     if(Session.get('automaticallyDL')==true){
       automaticDownload(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
     }else{
-      Session.set('lrcStyle',false);
-      $("#divBible span").removeClass("blue");
+      //取消播放
+      //-------------提示是否下载文件---------------
+      IonPopup.confirm({
+        title: '提示信息',
+        template: '未找到语音文件，是否下载该文件？',
+        okText: '确定',
+        cancelText:"取消",   
+        onOk: function() {
+          automaticDownload(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
+        },
+        //取消
+        onCancel: function() {
+           Session.set('lrcStyle',false);
+          $("#divBible span").removeClass("blue");
+        }
+      });
+      //----------------------------
     }
   }
 }

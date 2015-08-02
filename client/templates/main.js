@@ -59,13 +59,31 @@ Template.main.events({
     "click #btnNext": function(){
         Session.set("index",1);
         Session.set("keyWordBlog",2);
-        nextChapter();
         BibleScrollTop();
+		nextChapter();
+
+		//播放
+		abcGlobal.media.initAudio();
+		if(Session.get('isPlaying')){
+			
+			abcGlobal.media.playAudio();
+		}
+        // 记录本次读经位置
+		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
     },
     "click #btnPrev": function(){
         Session.set("index",1);
         Session.set("keyWordBlog",2);
-        lastChapter();
+        BibleScrollTop();
+		lastChapter();
+
+		//播放
+		abcGlobal.media.initAudio();
+		if(Session.get('isPlaying')){
+			abcGlobal.media.playAudio();
+		}
+        // 记录本次读经位置
+		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
     },
     'swipeleft #divBible': function(event) {
         event.stopPropagation();
