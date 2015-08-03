@@ -38,7 +38,11 @@ Template.search.events({
         Router.go('menu');
         Session.set("keyWordBlog",1);
     },
-    'click #btnSearchScript': function(){
+    'click #btnSearchScript': function(event, template){
+        IonLoading.show({
+            duration: 500,
+            backdrop: true
+        });
         if($("inpSearchScript").val()!="" &&  $("#inpSearchScript").val().length>0)
         {   var searchType=parseInt(Session.get("searchType"));
             var searchStr=Session.get("searchStr");
