@@ -24,8 +24,6 @@ Session.setDefault("downloadChapterCount",'50');
 // volumeSN 书卷号 chapterSN 章号
 getLection = function (volumeSN, chapterSN,index) {
     // 打开数据库
-    Session.set('isPlayView',false);
-    $("#playerDiv").hide();
     // var db = window.sqlitePlugin.openDatabase({name: "bible.db", createFromLocation: 1});
     db.transaction(function(tx) {
         //单次查询Bible表
@@ -43,25 +41,21 @@ getLection = function (volumeSN, chapterSN,index) {
                 }
                 //将查询结果存入Session
                 Session.set('lectionList', lectionList);
-                if(index>=1)
+                if(index>1)
                 {
-                    $("#divBible").scrollTop(68);
-                    if($("#divBible p:eq("+(index-1)+")").position().top>=68)
+                    $("#divBible").scrollTop(0);
+                    if(Session.get('isPlayView'))
                     {
-                        $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top);
-                        console.log($("#divBible p:eq("+(index-1)+")").position().top+"    if  ++++++++");
+                        $("#divBible").scrollTop($("#divBible p:eq("+(index)+")").position().top-50);
                     }
                     else
                     {
-                        $("#divBible").scrollTop($("#divBible p:eq("+(index-1)+")").position().top+48-$("#divBible p:eq(0)").position().top);
+                        $("#divBible").scrollTop($("#divBible p:eq("+(index)+")").position().top);
                     }
                     if(Session.get("keyWordBlog")==1){
-
-                        // console.log(Session.get("keyWordBlog")+"  keywordblog");
                         $("#divBible p").removeClass("scriptColor");
                         $("#divBible p:eq("+(index)+")").addClass("scriptColor");
                         Session.set("keyWordBlog",0);
-                        //  console.log(Session.get("keyWordBlog")+"  keywordblog is  zero1");
                     }
                     if(Session.get("keyWordBlog")!=0 && Session.get("keyWordBlog")!=1) {
                         $("#divBible p").removeClass("scriptColor");
@@ -69,7 +63,16 @@ getLection = function (volumeSN, chapterSN,index) {
                 }
                 else
                 {
-                    $("#divBible").scrollTop(68);
+                    $("#divBible").scrollTop(0);
+                    if(Session.get("keyWordBlog")==1){
+                    $("#divBible p").removeClass("scriptColor");
+                    $("#divBible p:eq("+(index)+")").addClass("scriptColor");
+                        Session.set("keyWordBlog",0);
+                    }
+                    if(Session.get("keyWordBlog")!=0 && Session.get("keyWordBlog")!=1) {
+                        $("#divBible p").removeClass("scriptColor");
+
+                    }
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
@@ -102,6 +105,7 @@ getBooksList = function (newOrOld) {
                     bookItem.bookSN = res.rows.item(i).sn;
                     bookItem.chapterCount = res.rows.item(i).chapternumber;
                     bookItem.fullName = res.rows.item(i).fullname;
+                    bookItem.shortName = res.rows.item(i).shortname;
                     bookNameIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).fullname;
                     chapterCountIndex['bookSN' + res.rows.item(i).sn.toString()] = res.rows.item(i).chapternumber;
                     booksList.push(bookItem);
@@ -316,7 +320,7 @@ setSetting = function (lastBook, lastChapter) {
 
 //设置书签
 setBookMarks=function(bookname,bookmark,timer,currbook,currchapter,currchapterCount)
-{
+{ console.log(bookname+"  bookname");
     db.transaction(function(tx) {
         //  console.log("insert two");  //更新Setting表
         var strSQL = "insert into bookmarks (bookname,bookmark,time,bookID,chapterID,chapterCount) values ('"+bookname+"','"+bookmark+"','"+timer+"','"+currbook+"','"+currchapter+"','"+currchapterCount+"'); ";
@@ -361,7 +365,6 @@ delBookMarks=function(booknames,timer){
             });
     });
 }
-
 // select talbe
 getBookMarks=function(searchStr){db.transaction(function(tx) {
     //更新Setting表

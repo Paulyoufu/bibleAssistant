@@ -4,7 +4,8 @@
 Session.setDefault('sectionIndex', null);        //当前播放的section索引
 Session.setDefault("sumSectionHeight",0);
 Session.setDefault("scrollPosition",0);
-
+//Session.setDefault("shortName","创");
+//Session.setDefault("FullName","创世记");
 BibleScroll=function(sectionIndex){
 
 	if(sectionIndex == Session.get('sectionIndex')){//scrollPosition=0;
