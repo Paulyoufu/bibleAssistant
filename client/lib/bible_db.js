@@ -382,6 +382,9 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
             objBMitem.objbookname=res.rows.item(i).bookname;
             objBMitem.objbookmark=res.rows.item(i).bookmark;
             objBMitem.objbookid=res.rows.item(i).bookID;
+                    if(res.rows.item(i).bookID<39)
+                    { objBMitem.shortname=arrOld[res.rows.item(i).bookID-1].shortName+" "+res.rows.item(i).bookname.replace(/[\u4e00-\u9fa5 ]/g,"");}
+                    else{objBMitem.shortname=arrNew[res.rows.item(i).bookID-40].shortName+" "+res.rows.item(i).bookname.replace(/[\u4e00-\u9fa5 ]/g,"");}
             objBMitem.objchapter=res.rows.item(i).chapterID;
             objBMitem.objchapterCount=res.rows.item(i).chapterCount;
             arrBookMark.push(objBMitem);

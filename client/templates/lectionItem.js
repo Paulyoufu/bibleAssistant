@@ -44,12 +44,7 @@ Template.lectionItem.events({
                             var year=d.getFullYear();
                             var timer= year+"-"+month+"-"+day+" "+ d.getHours()+ d.getMinutes()+ d.getSeconds();
                           var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
-                          var bkn=Session.get('currentBookName');
-                            console.log("bkn="+bkn);
-
                            var currbook=Session.get('currentBook');
-                            console.log("currbook="+currbook);
-                           alert(arrOld[currbook-1].bookName);
                             var currchapter=Session.get("currentChapter");
                             var currchapterCount=Session.get('currentChapterCount');
                             setBookMarks(booknames,$("input[name='prompt']").val(),timer,currbook,currchapter,currchapterCount);
