@@ -103,7 +103,7 @@ Template.main.events({
 
         BibleScrollTop();
 		lastChapter();
-
+        Session.set("keyWordBlog",2);
 		//播放
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
@@ -115,8 +115,8 @@ Template.main.events({
 	},'click button[data-skipforward]': function () {
 		//下一章
         BibleScrollTop();
-		nextChapter();
-		//播放
+		nextChapter();//播放
+        Session.set("keyWordBlog",2);
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
 			abcGlobal.media.playAudio();
