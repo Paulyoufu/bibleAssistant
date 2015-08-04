@@ -1,7 +1,7 @@
 Session.setDefault('isPlaying', false);   //当前是否正在播放
-
 Template.main.rendered = function()
 {
+    IonSideMenu.snapper.disable();
 	getSystemSetting();
 };
 
@@ -85,9 +85,17 @@ Template.main.events({
     },
     'swipeleft #divBible': function(event) {
         event.stopPropagation();
+        Session.set("index",1);
+        Session.set("keyWordBlog",2);
+        IonSideMenu.snapper.disable();
+        lastChapter();
     },
-    'hold #divBible': function(event) {
+    'swiperight #divBible': function(event) {
         event.stopPropagation();
+        Session.set("index",1);
+        Session.set("keyWordBlog",2);
+        IonSideMenu.snapper.disable();
+        nextChapter();
     },
 	'click button[data-play]': function () {
 		//播放
