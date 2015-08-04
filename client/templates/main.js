@@ -88,14 +88,29 @@ Template.main.events({
         Session.set("index",1);
         Session.set("keyWordBlog",2);
         IonSideMenu.snapper.disable();
+        BibleScrollTop();
         lastChapter();
+		//播放
+		abcGlobal.media.initAudio();
+		if(Session.get('isPlaying')){
+			abcGlobal.media.playAudio();
+		}
+        // 记录本次读经位置
+		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
     },
     'swiperight #divBible': function(event) {
         event.stopPropagation();
         Session.set("index",1);
         Session.set("keyWordBlog",2);
         IonSideMenu.snapper.disable();
+        BibleScrollTop();
         nextChapter();
+		abcGlobal.media.initAudio();
+		if(Session.get('isPlaying')){
+			abcGlobal.media.playAudio();
+		}
+        // 记录本次读经位置
+		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
     },
 	'click button[data-play]': function () {
 		//播放
@@ -108,7 +123,7 @@ Template.main.events({
 			Session.set('lrcStyle',false);
 		}
 	},'click button[data-skipbackward]': function () {
-
+		//上一章
         BibleScrollTop();
 		lastChapter();
         Session.set("keyWordBlog",2);
@@ -125,6 +140,7 @@ Template.main.events({
         BibleScrollTop();
 		nextChapter();//播放
         Session.set("keyWordBlog",2);
+
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
 			abcGlobal.media.playAudio();
