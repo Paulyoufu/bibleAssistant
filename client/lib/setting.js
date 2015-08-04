@@ -13,8 +13,17 @@ getSystemSetting = function(){
                 var setting = {};
                 for(var i=0;i<res.rows.length;i++)
                 {
-                    Session.set('automaticallyDL', res.rows.item(i).fontSize);
-                    Session.set('fontSize', res.rows.item(i).automaticallyDL);
+                    if(res.rows.item(i).fontSize=='true'){
+                        Session.set('fontSize', true);
+                    }else{
+                        Session.set('fontSize', false);
+                    }
+                    
+                    if(res.rows.item(i).automaticallyDL == 'true'){
+                        Session.set('automaticallyDL', true);
+                    }else{
+                        Session.set('automaticallyDL', false);
+                    }
                 }
                 if(Session.get('fontSize')=='true'){
                     $("p[name='size_Id']").addClass("settingFont");

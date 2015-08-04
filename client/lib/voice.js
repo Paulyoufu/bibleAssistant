@@ -17,8 +17,8 @@ Meteor.startup(function () {
 
 //设置url
 abcGlobal.media.initAudio = function(){
+
     url = "documents://voice/" + Session.get('currentBook') + "-" + Session.get('currentChapter') + ".mp3";
-    
     //这句释放资源一定要加，若没有这句会使APP卡住
     if (myMedia != null){
         myMedia.release(); 
@@ -29,9 +29,9 @@ abcGlobal.media.initAudio = function(){
 //播放
 abcGlobal.media.playAudio = function(){
   // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
-  findfile(Session.get('currentBook'),Session.get('currentChapter'));
+  findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
   //判断文件是否存在
-  if(Session.get("book" + Session.get('currentBook') + "-" + Session.get('currentChapter'))){
+  if(Session.get("VoiceFile-" + Session.get('currentBook') + "-" + Session.get('currentChapter'))==true){
     myMedia.play();
   }else{
     //判断是否自动下载语音文件

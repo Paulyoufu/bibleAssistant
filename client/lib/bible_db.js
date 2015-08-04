@@ -290,7 +290,9 @@ getSetting = function () {
                 Session.set('currentChapter', setting.lastchapter);
                 Session.set('currentBookName', Session.get('bookNameIndex')['bookSN'+setting.lastbook]);
                 Session.set('currentChapterCount', Session.get('chapterCountIndex')['bookSN'+setting.lastbook]);
-
+                var url = "documents://voice/" + Session.get('currentBook') + "-" + Session.get('currentChapter') + ".mp3";
+                abcGlobal.media.initAudio();
+                
                 //初始化audio
                 // abcGlobal.media.initAudio();
 

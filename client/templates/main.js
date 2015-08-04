@@ -2,8 +2,6 @@ Session.setDefault('isPlaying', false);   //当前是否正在播放
 
 Template.main.rendered = function()
 {
-	abcGlobal.media.initAudio();
-	//初始化 
 	getSystemSetting();
 };
 
@@ -100,7 +98,6 @@ Template.main.events({
 		}else{
 			abcGlobal.media.pauseAudio();
 			Session.set('lrcStyle',false);
-            $("#divBible span").removeClass("blue");
 		}
 	},'click button[data-skipbackward]': function () {
 
@@ -116,14 +113,12 @@ Template.main.events({
 		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
 
 	},'click button[data-skipforward]': function () {
-
+		//下一章
         BibleScrollTop();
 		nextChapter();
-
 		//播放
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
-			
 			abcGlobal.media.playAudio();
 		}
         // 记录本次读经位置
@@ -132,6 +127,19 @@ Template.main.events({
 	},'click .ion-ios-undo': function () {
 		//判断文件是否存在
 		// volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
-		download(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
+		// download(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
+		IonPopup.confirm({
+	        title: '提示信息',
+	        template: '是否重新下载该文件？',
+	        okText: '确定',
+	        cancelText:"取消",   
+	        onOk: function() {
+	          automaticDownload(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
+	        },
+	        //取消
+	        onCancel: function() {
+	           Session.set('lrcStyle',false);
+	        }
+      	});
 	}
 })
