@@ -161,7 +161,7 @@ SearchGetLection = function (searchType,searchStr) {
                     $("#divsearch").append("<p data-ion-menu-close class='item item-text-wrap' ><span style='display:none;'>"+objLectionItem.chapterCount+":"+res.rows.item(i).VolumeSN+":</span>"+objLectionItem.volumeSN+" "+ objLectionItem.chapterSN+":"+ objLectionItem.verseSN+"</span><span style='display:none'>&</span> "+ objLectionItem.lection+"</p>");
                 }
                 if($("#divsearch p").length==0){
-                    $("#divsearch").append("<p   style='margin-top:20px;margin-left:70px;width:200%;font-size:18px;align-text:center' >&nbsp;&nbsp;&nbsp;&nbsp;没有搜索到相关的数据!!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>");
+                    $("#divsearch").append("<p   style='background-color:#EFDECC;margin-top:20px;margin-left:70px;width:200%;font-size:18px;align-text:center' >&nbsp;&nbsp;&nbsp;&nbsp;没有搜索到相关的数据!!!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>");
                 }
             }, function(e) {
                 console.log("ERROR: getLection " + e.message);
