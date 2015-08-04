@@ -152,7 +152,7 @@ Template.download.events({
                 var volumeSN = arrOld[i].bookName;
                 var bookSN = arrOld[i].bookID;
                 var chapterSN = j + 1;
-                //download(volumeSN, bookSN, chapterSN);
+                //downloads(volumeSN, bookSN, chapterSN, j);
                 alert(arrOld[i].bookName + "-" + bookSN + "-" + chapterSN);
             };  
         };
@@ -181,7 +181,7 @@ Template.download.events({
                 var volumeSN = arrNew[i].bookName; //书卷
                 var bookSN = arrNew[i].bookID;      //书卷ID
                 var chapterSN = j + 1;              //章节
-                //download(volumeSN, bookSN, chapterSN);
+                //downloads(volumeSN, bookSN, chapterSN, j);
                 alert(arrNew[i].bookName + "-" + bookSN + "-" + chapterSN);
             }; 
         };
@@ -206,16 +206,16 @@ Template.download.events({
             {
                 var chapterSN = i + 1;
                 //alert(Session.get('selectedBookName') + "-" + Session.get('selectedBook') + "-" + chapterSN);
-                download(Session.get('selectedBookName'), Session.get('selectedBook'), chapterSN);
+                downloads(Session.get('selectedBookName'), Session.get('selectedBook'), chapterSN, i);
+
             };
-            alert('下载完成');
         },
         onCancel: function() {
             console.log('Cancelled');
         //alert("选择了否");
     },
 });
-    }
+}
 },
 // //动态显示总章数
 //         Session.set('downloadChapterCount', this.chapterCount);
@@ -253,16 +253,7 @@ Template.download.events({
         //alert("选择了否");
     },
 });
-    // fs.root.getFile("voice/1-1.mp3", {}, function(fileEntry) {
 
-    //     fileEntry.remove(function() {
-    //         //alert('Directory removed.');
-    //         alert('已删除');
-    //             //遍历根目录 不添加这句必须点进文件夹一次才能看见效果
-    //             readDir(fs.root);
-    //         }, errorHandler);
-
-    // }, errorHandler);
 }
 
 });

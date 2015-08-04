@@ -5,7 +5,7 @@ App.info({
   author: '沈阳以利亚科技有限公司',
   email: 'support@elijah.com.cn',
   website: 'www.elijah.com.cn',
-  version: '1.0.0'
+  version: '2.0.0'
 });
 
 App.icons({

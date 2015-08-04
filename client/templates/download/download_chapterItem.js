@@ -29,6 +29,7 @@ Template.download_chapterItem.events({
  //    },
     'click button[data-play]':function(){
     	download(Session.get('currentBookName'), Session.get('selectedBook'), this.chapterSN);
+    	alert('下载成功');
     },
     'click .lookup':function (){
     	//
