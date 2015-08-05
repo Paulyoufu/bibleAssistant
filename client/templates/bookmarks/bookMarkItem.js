@@ -1,10 +1,5 @@
 Template.temBookmarkItem.rendered=function(){
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        slidesPerView: 'auto',
-        paginationClickable: true,
-        spaceBetween: 30
-    });
+
 }
 Template.temBookmarkItem.events(
     {
@@ -16,7 +11,7 @@ Template.temBookmarkItem.events(
                 template: '修改书签名称：',
                 okText: '确定',cancelText:"取消",
                 inputType: 'text',
-                inputPlaceholder: '书签',
+                inputPlaceholder: '书签名称不能超过6个字符',
                 onOk: function() {
                     if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<7 && $("input[name='prompt']").val().length>0)
                     {
@@ -53,10 +48,18 @@ Template.temBookmarkItem.events(
             currindex=currindex.substr(currindex.indexOf(":")+1);
             Session.set("index",parseInt(currindex));
             getLection(currentBook, currentChapter,currindex);
-          //  $("#books .list").empty();
+          //  $("#books .list").empty();moveleft
            // Router.go('menu');
            // getLection(currentBook, currentChapter);
            // setSetting(Session.get('currentBook'), Session.get('currentChapter'));
-        }
-    }
+        },
+        'swipeleft .item': function(event) {
+            event.stopPropagation();
+            $(event.target).animate({marginLeft:"-50px"});
+        },
+        'swiperight .item': function(event) {
+            event.stopPropagation();
+            $(event.target).animate({marginLeft:""}) ;
+
+        }}
 )

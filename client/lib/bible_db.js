@@ -330,6 +330,7 @@ setBookMarks=function(bookname,bookmark,timer,currbook,currchapter,currchapterCo
         //   console.log(strSQL+"((((((( insert   )))))))");
         tx.executeSql(strSQL, [],
             function(tx, res) {
+                if(res.rowsAffected){loading("消息通知","恭喜书签已经添加成功");}
                 //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
             }, function(e) {
                 console.log("ERROR: setSetting " + e.message);

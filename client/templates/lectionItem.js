@@ -23,7 +23,7 @@ Template.lectionItem.events({
         },
         buttonClicked: function(index) {
             if (index === 0) {
-                var text = Session.get("currLection");
+                var text = Session.get('currentBookName')+" "+Session.get('currentChapter')+"章"+Session.get("currSection")+" "+Session.get("currLection");
                if(text==null){ return;}
                 cordova.plugins.clipboard.copy(text);
             }
@@ -34,7 +34,7 @@ Template.lectionItem.events({
                     template: '书签名称：',
                     okText: '确定',cancelText:"取消",
                     inputType: 'text',
-                    inputPlaceholder: '书签',
+                    inputPlaceholder: '书签名称不能超过6个字符',
                     onOk: function() {
                         if($("input[name='prompt']").val()!="" || $("input[name='prompt']").val().length<7)
                         {
