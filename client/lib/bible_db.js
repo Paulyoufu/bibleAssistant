@@ -41,6 +41,7 @@ getLection = function (volumeSN, chapterSN,index) {
                 }
                 //将查询结果存入Session
                 Session.set('lectionList', lectionList);
+                IonSideMenu.snapper.disable();
                 if(index>1)
                 {
                     $("#divBible").scrollTop(0);
