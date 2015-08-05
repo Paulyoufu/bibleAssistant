@@ -2,7 +2,6 @@
 
 abcGlobal = {};//总结点
 abcGlobal.media = {};//媒体节点
-Session.setDefault('lrcStyle', false);//是否调用LRC字幕,true直播滚动LRC，FALSE不支持
 Session.setDefault('timeValue', 0);//播放进度
 var myMedia = null;//媒体实例
 var url = null;//播放地址
@@ -50,8 +49,8 @@ abcGlobal.media.playAudio = function(){
         },
         //取消
         onCancel: function() {
-           Session.set('lrcStyle',false);
-          $("#divBible span").removeClass("blue");
+          abcGlobal.media.pauseAudio();
+          Session.set('isPlaying',false);
         }
       });
       //----------------------------

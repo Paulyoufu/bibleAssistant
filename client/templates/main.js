@@ -1,8 +1,9 @@
 Session.setDefault('isPlaying', false);   //当前是否正在播放
 Template.main.rendered = function()
 {
-    IonSideMenu.snapper.disable();
 	getSystemSetting();
+    // IonSideMenu.snapper.disable();
+	
 };
 
 Meteor.startup(function () {
@@ -19,6 +20,8 @@ Template.ionNavBar.events({
         if(Session.get('isPlayView')){
             $("#playerDiv").fadeIn("slow");
         }else{
+        	abcGlobal.media.stopAudio();//停止播放
+			Session.set('isPlaying',false);
             $("#playerDiv").fadeOut();
         }
 	}
@@ -89,7 +92,7 @@ Template.main.events({
         Session.set("keyWordBlog",2);
         IonSideMenu.snapper.disable();
         BibleScrollTop();
-        lastChapter();
+        nextChapter();//上一章
 		//播放
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
@@ -104,7 +107,7 @@ Template.main.events({
         Session.set("keyWordBlog",2);
         IonSideMenu.snapper.disable();
         BibleScrollTop();
-        nextChapter();
+        lastChapter();//下一章
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
 			abcGlobal.media.playAudio();
@@ -117,10 +120,8 @@ Template.main.events({
 		Session.set('isPlaying', ! Session.get('isPlaying'));
 		if(Session.get('isPlaying')){
 			abcGlobal.media.playAudio();
-			Session.set('lrcStyle',true);
 		}else{
 			abcGlobal.media.pauseAudio();
-			Session.set('lrcStyle',false);
 		}
 	},'click button[data-skipbackward]': function () {
 		//上一章
@@ -158,11 +159,12 @@ Template.main.events({
 	        okText: '确定',
 	        cancelText:"取消",   
 	        onOk: function() {
-	          automaticDownload(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
+		        download(Session.get('currentBookName'), Session.get('currentBook'), Session.get('currentChapter'));
 	        },
 	        //取消
 	        onCancel: function() {
-	           Session.set('lrcStyle',false);
+	        	abcGlobal.media.pauseAudio();
+				Session.set('isPlaying',false);
 	        }
       	});
 	}

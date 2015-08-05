@@ -51,7 +51,8 @@ download = function(volumeSN, bookSN, chapterSN){
                 },
                 false
                 );
-        }
+}
+
 //全部下载
 downloads = function(volumeSN, bookSN, chapterSN, i){
   var uri = encodeURI("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/cuv/" + volumeSN + "第" +chapterSN+ "章.mp3");
