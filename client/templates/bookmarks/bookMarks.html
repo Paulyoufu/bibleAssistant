@@ -7,7 +7,7 @@
     <div class="bar bar-header bar-dark" >
         <button id="btnreturn" class="button button-clear pull-left">返回</button>
         <div class="h1 title">书签管理</div>
-        <button id="btnAll" class="button button-clear pull-right">全部</button>
+        <button id="btnAll" class="button button-clear pull-right">编辑</button>
     </div>
     <div class="bar bar-subheader bar-stable" style="height:54px;">
         <div class="list" style="width:100%;height:30px;margin-top:-1px;background-color:#F8F8F8">
@@ -27,5 +27,11 @@
                 <div id="message" style="margin-top:20px;width:100%;text-align: center"></div>
             </div>
         {{/ionContent}}
+        {{#ionFooterBar class="bar-dark"}}
+            <div class="button-bar">
+                <a id="delall" class="button">删除</a>
+                <a id="displayall" class="button">显示全部</a>
+            </div>
+        {{/ionFooterBar}}
     {{/ionView}}
 </template>

@@ -66,8 +66,8 @@ getLection = function (volumeSN, chapterSN,index) {
                 {
                     $("#divBible").scrollTop(0);
                     if(Session.get("keyWordBlog")==1){
-                    $("#divBible p").removeClass("scriptColor");
-                    $("#divBible p:eq("+(index)+")").addClass("scriptColor");
+                        $("#divBible p").removeClass("scriptColor");
+                        $("#divBible p:eq("+(index)+")").addClass("scriptColor");
                         Session.set("keyWordBlog",0);
                     }
                     if(Session.get("keyWordBlog")!=0 && Session.get("keyWordBlog")!=1) {
@@ -293,7 +293,7 @@ getSetting = function () {
                 Session.set('currentChapterCount', Session.get('chapterCountIndex')['bookSN'+setting.lastbook]);
                 var url = "documents://voice/" + Session.get('currentBook') + "-" + Session.get('currentChapter') + ".mp3";
                 abcGlobal.media.initAudio();
-                
+
                 //初始化audio
                 // abcGlobal.media.initAudio();
 
@@ -353,21 +353,33 @@ updateBookMarks=function(bookname,bookmark,timer)
             });
     });
 }
-
+var str="";
 //delete table
-delBookMarks=function(booknames,timer){
+delBookMarks=function(timer){
+
+    //    console.log("str="+str,index);
     db.transaction(function(tx) {
+        console.log("----------------------------------str="+str);
         //更新Setting表(bookname,bookmark,time) values ('"+bookname+"','"+bookmark+"','"+timer+"');
-        var strSQL = "delete from bookmarks  where time='"+timer+"'";
-        tx.executeSql(strSQL, [],
-            function(tx, res) {
-                //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-                //  Session.set("sessSearch","*");
-                getBookMarks(booknames);
-            }, function(e) {
-                console.log("ERROR: setSetting " + e.message);
-            });
+        for(var index=0;index<timer.length;index++)
+        { str=timer[index];
+            var strSQL = "delete from bookmarks  where time='"+str+"'";
+            console.log("strSQl="+strSQL);
+            tx.executeSql(strSQL, [],
+                function(tx, res) {
+                    console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+
+                    //  Session.set("sessSearch","*");
+                    //  getBookMarks(booknames);
+                }, function(e) {
+                    console.log("ERROR: setSetting " + e.message);
+                });}
     });
+
+    getBookMarks("*");
+    $("input[name='key']").removeAttr("checked");
+    $("label.checkbox").toggle();
+
 }
 // select talbe
 getBookMarks=function(searchStr){db.transaction(function(tx) {
@@ -379,25 +391,25 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
         function(tx, res) {
             var arrBookMark=[];
             for(var i=0;i<res.rows.length;i++)
-                { var objBMitem={};
-            objBMitem.objbookmarkTime=res.rows.item(i).time;
-            objBMitem.objbookname=res.rows.item(i).bookname;
-            objBMitem.objbookmark=res.rows.item(i).bookmark;
-            objBMitem.objbookid=res.rows.item(i).bookID;
-                    if(res.rows.item(i).bookID<39)
-                    { objBMitem.shortname=arrOld[res.rows.item(i).bookID-1].shortName+" "+res.rows.item(i).bookname.replace(/[\u4e00-\u9fa5 ]/g,"");}
-                    else{objBMitem.shortname=arrNew[res.rows.item(i).bookID-40].shortName+" "+res.rows.item(i).bookname.replace(/[\u4e00-\u9fa5 ]/g,"");}
-            objBMitem.objchapter=res.rows.item(i).chapterID;
-            objBMitem.objchapterCount=res.rows.item(i).chapterCount;
-            arrBookMark.push(objBMitem);
-        }
-        Session.set('sessBookMark',arrBookMark);
-        console.log(arrBookMark.length+"----------id-----------------");
-        if(!arrBookMark.length){$("#message").text("没有数据！！！");}
-        else{$("#message").text("");}
-    }, function(e) {
-        console.log("ERROR: setSetting " + e.message);
-    });
+            { var objBMitem={};
+                objBMitem.objbookmarkTime=res.rows.item(i).time;
+                objBMitem.objbookname=res.rows.item(i).bookname;
+                objBMitem.objbookmark=res.rows.item(i).bookmark;
+                objBMitem.objbookid=res.rows.item(i).bookID;
+                if(res.rows.item(i).bookID<39)
+                { objBMitem.shortname=arrOld[res.rows.item(i).bookID-1].shortName+" "+res.rows.item(i).bookname.replace(/[\u4e00-\u9fa5 ]/g,"");}
+                else{objBMitem.shortname=arrNew[res.rows.item(i).bookID-40].shortName+" "+res.rows.item(i).bookname.replace(/[\u4e00-\u9fa5 ]/g,"");}
+                objBMitem.objchapter=res.rows.item(i).chapterID;
+                objBMitem.objchapterCount=res.rows.item(i).chapterCount;
+                arrBookMark.push(objBMitem);
+            }
+            Session.set('sessBookMark',arrBookMark);
+            console.log(arrBookMark.length+"----------id-----------------");
+            if(!arrBookMark.length){$("#message").text("没有数据！！！");}
+            else{$("#message").text("");}
+        }, function(e) {
+            console.log("ERROR: setSetting " + e.message);
+        });
 });
 
 

@@ -1,20 +1,22 @@
 <template name="temBookmarkItem">
+    <div class="item  row" >
 
-        <p  class="item" style="width:100%;margin-left:0px;">
-                    <span class="button button-clear" style="display:none">
+        <label class="checkbox"  style="display:none">
+            <input type="checkbox" name="key" value="{{objbookmarkTime}}">
+        </label>
+         <span class="button button-clear" style="display:none">
                         <span>{{objbookid}}</span>
                         <span>{{objchapter}}</span>
                         <span>{{objchapterCount}}</span>
                         <span>{{objbookmarkTime}}</span>
                         <span>{{objbookname}}</span>
                     </span>
-            <span class="button button-clear " style="width:40%;">{{objbookmark}}</span>
-            <span   class="button button-clear " data-ion-menu-close  style="width:40%;">{{shortname}}</span>
-            <a id="aEditBookName" class="button button-clear " href="#" style="font-size:x-large;width:20%;"><i class="icon ion-compose"></i></a>
-                <span  class="button button-clear" style="width:20%;">
-                    <button id="buttonDel" style="font-size:large;" class="button button-clear button-positive ion-ios-trash"></button>
-                </span>
-            </p>
+        <span class="col col-40" >{{objbookmark}}</span>
+        <span   class="col col-40" data-ion-menu-close  >{{shortname}}</span>
+        <a id="aEditBookName" class="col col-10" href="#" style="font-size:x-large;"><i class="icon ion-compose"></i></a>
+        <!--<button id="buttonDel" style="font-size:x-large;margin-top:-10px" class="col col-10 button button-clear button-positive ion-ios-trash"></button>-->
+
+    </div>
 
 </template>
 
