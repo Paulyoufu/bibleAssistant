@@ -5,7 +5,7 @@ loading=function(title,content)
 {
     if(title==="" && content===""){return;}
     IonLoading.show({
-    customTemplate: '<h3>'+title+'</h3><p>'+content+'</p>',
+    customTemplate: '<h4>'+title+'</h4><p style="font-size:20px;">'+content+'</p>',
     duration: 1000
 });
 

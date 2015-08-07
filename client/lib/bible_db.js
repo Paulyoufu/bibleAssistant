@@ -346,39 +346,28 @@ updateBookMarks=function(bookname,bookmark,timer)
         var strSQL = "update bookmarks set bookname= '"+bookname+"',bookmark='"+bookmark+ "' where time='"+timer+"'";
         tx.executeSql(strSQL, [],
             function(tx, res) {
-                Session.set("sessSearch","*");
-                getBookMarks(bookname);
             }, function(e) {
                 console.log("ERROR: setSetting " + e.message);
             });
     });
+    getBookMarks("*");
+
 }
 var str="";
 //delete table
 delBookMarks=function(timer){
-
-    //    console.log("str="+str,index);
     db.transaction(function(tx) {
-        console.log("----------------------------------str="+str);
-        //更新Setting表(bookname,bookmark,time) values ('"+bookname+"','"+bookmark+"','"+timer+"');
         for(var index=0;index<timer.length;index++)
         { str=timer[index];
             var strSQL = "delete from bookmarks  where time='"+str+"'";
-            console.log("strSQl="+strSQL);
             tx.executeSql(strSQL, [],
                 function(tx, res) {
                     console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-
-                    //  Session.set("sessSearch","*");
-                    //  getBookMarks(booknames);
                 }, function(e) {
                     console.log("ERROR: setSetting " + e.message);
                 });}
     });
-
     getBookMarks("*");
-    $("input[name='key']").removeAttr("checked");
-    $("label.checkbox").toggle();
 
 }
 // select talbe
@@ -411,7 +400,9 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
             console.log("ERROR: setSetting " + e.message);
         });
 });
-
+    $("input[name='key']").removeAttr("checked");
+    $(".bar-footer").hide();
+    $("label.checkbox").hide();
 
 }
 

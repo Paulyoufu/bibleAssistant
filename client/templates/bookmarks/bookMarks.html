@@ -23,15 +23,16 @@
     </div>
     {{#ionView}}
         {{#ionContent}}
-            <div id="books" class="list" style="margin-top:50px; ">{{#each arrBookMark}} {{> temBookmarkItem}} {{/each}}
+            <div id="books" class="list" style="margin-top:55px;">
+                {{#each arrBookMark}} {{> temBookmarkItem}} {{/each}}
                 <div id="message" style="margin-top:20px;width:100%;text-align: center"></div>
+                <div style="height:20px;"></div>
             </div>
         {{/ionContent}}
+
         {{#ionFooterBar class="bar-dark"}}
-            <div class="button-bar">
-                <a id="delall" class="button">删除</a>
-                <a id="displayall" class="button">显示全部</a>
-            </div>
+                <a id="delall" class="title">删除</a>
         {{/ionFooterBar}}
+
     {{/ionView}}
 </template>

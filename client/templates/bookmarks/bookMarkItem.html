@@ -1,24 +1,19 @@
 <template name="temBookmarkItem">
-    <div class="item  row" >
-
-        <label class="checkbox"  style="display:none">
-            <input type="checkbox" name="key" value="{{objbookmarkTime}}">
-        </label>
-         <span class="button button-clear" style="display:none">
-                        <span>{{objbookid}}</span>
-                        <span>{{objchapter}}</span>
-                        <span>{{objchapterCount}}</span>
-                        <span>{{objbookmarkTime}}</span>
-                        <span>{{objbookname}}</span>
-                    </span>
-        <span class="col col-40" >{{objbookmark}}</span>
-        <span   class="col col-40" data-ion-menu-close  >{{shortname}}</span>
-        <a id="aEditBookName" class="col col-10" href="#" style="font-size:x-large;"><i class="icon ion-compose"></i></a>
-        <!--<button id="buttonDel" style="font-size:x-large;margin-top:-10px" class="col col-10 button button-clear button-positive ion-ios-trash"></button>-->
-
+    <div class="item" style="height:60px;">
+                    <div class="row" style="width:100%;margin-top:-18px;">
+                        <span class="col col-1" style="display:none" >{{objbookid}}</span>
+                        <span class="col col-1" style="display:none" >{{objchapter}}</span>
+                        <span class="col col-1" style="display:none" >{{objchapterCount}}</span>
+                        <span class="col col-1" style="display:none" >{{objbookmarkTime}}</span>
+                        <span class="col col-1" style="display:none" >{{objbookname}}</span>
+                        <span class="col col-3" style="margin-top:0px;margin-left:-20px;font-size:15px;">
+                        <label class="checkbox"  style="display:none;">
+                        <input type="checkbox" name="key" value="{{objbookmarkTime}}">
+                        </label>
+                        </span>
+                        <span class="col col-40" data-ion-menu-close style="margin-top:10px;font-size:18px;margin-left:-55px;text-overflow:ellipsis;">{{objbookmark}}</span>
+                        <span   class="col col-30" data-ion-menu-close style="margin-top:10px;font-size:18px;margin-left:-20px;" >{{shortname}}</span>
+                        <a id="aEditBookName" class="col col-20" href="#" style="font-size:x-large;margin-left:-15px;margin-top:10px;"><i class="icon ion-compose"></i></a>
+                    </div>
     </div>
-
 </template>
-
-
-

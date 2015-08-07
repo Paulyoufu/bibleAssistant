@@ -1,6 +1,3 @@
-Template.temBookmarkItem.rendered=function(){
-
-}
 
 Template.temBookmarkItem.events(
     {
@@ -14,7 +11,7 @@ Template.temBookmarkItem.events(
                 inputType: 'text',
                 inputPlaceholder: '书签名称不能超过6个字符',
                 onOk: function() {
-                    if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<7 && $("input[name='prompt']").val().length>0)
+                    if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<7)
                     {
                         var timer= Session.get("time");
                         var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
@@ -28,16 +25,9 @@ Template.temBookmarkItem.events(
                 onCancel: function() {
                 }})
         },
-        "click #buttonDel:not(.item)": function()
-        {
-            Session.set("time",this.objbookmarkTime);
-            var timer= Session.get("time");
-            //   var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
-            // delBookMarks(booknames,timer);
-        },
         "click .item:not(button)": function()
         {
-            /*Session.set("keyWordBlog",1);
+            Session.set("keyWordBlog",1);
              var bookname=this.objbookname.replace(/[\d]/g,"");
              bookname=bookname.substr(0,bookname.indexOf(":"));
              Session.set('currentBook',this.objbookid);
@@ -49,22 +39,7 @@ Template.temBookmarkItem.events(
              var currindex=this.objbookname;
              currindex=currindex.substr(currindex.indexOf(":")+1);
              Session.set("index",parseInt(currindex));
-             getLection(currentBook, currentChapter,currindex);*/
+             getLection(currentBook, currentChapter,currindex);
 
-        },"click input[type='checkbox']": function(){
-        Session.set("time",this.objbookmarkTime);
-        var timer=Session.get("time");
-
-    },
-        'swipeleft .item': function(e,v) {
-            e.stopPropagation();
-            console.log("1111111111111111"+event.target.nodeName);
-            $(e.target).find(".ion-ios-trash").hide();
-        },
-        'swiperight .item': function(e,v) {
-            e.stopPropagation();
-            console.log("p"+event.target.tagName);
-            $(e.currentTarget).find(".ion-ios-trash").show();
-            // $("p .display").show();
         }}
 )
