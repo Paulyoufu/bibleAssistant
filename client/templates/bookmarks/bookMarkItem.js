@@ -25,7 +25,7 @@ Template.temBookmarkItem.events(
                 onCancel: function() {
                 }})
         },
-        "click .item:not(button)": function()
+        "click .item span[name='goto']": function()
         {
             Session.set("keyWordBlog",1);
              var bookname=this.objbookname.replace(/[\d]/g,"");
