@@ -22,11 +22,7 @@ Template.download_bookItem.events({
 				alert(radioValue);
 			}
 		}
-	},
-	'click .item':function(){
-
-},
-
+	}
 });
 
 

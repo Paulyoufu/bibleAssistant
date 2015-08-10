@@ -24,5 +24,5 @@ Router.map(function() {
   this.route('download', {path: '/download'});
   this.route('systemSettings', {path: '/systemSettings'});
   this.route('dedication', {path: '/dedication'});
-  
+    this.route('downloads', {path: '/downloads'});
 });

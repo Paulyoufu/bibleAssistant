@@ -18,6 +18,20 @@ findfile = function(bookSN, chapterSN){
   };
 }
 
+            // Called upon successful File System resolution
+            function resFSSuccess(entry){
+                //书卷名
+                var bookstr = Session.get('currentBook')
+                //当前章 = chapterSN
+                Session.set("book" + bookstr + "-" + chapterSN, true);
+                //alert(Session.get("book" + Session.get('currentBook') + "-" + chapterSN));
+              }
+            // Note File System failure
+            function resFSError(error){
+            //alert("resFSError code: " + JSON.stringify(error));
+            Session.set("book" + Session.get('currentBook') + "-" + chapterSN, false); 
+          };
+        }
 //下载功能
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
 download = function(volumeSN, bookSN, chapterSN){
@@ -38,8 +52,12 @@ download = function(volumeSN, bookSN, chapterSN){
                   //下载成功
                   console.log("download complete: " + entry.toURL());
                   //弹出下载路径
-                  var content = volumeSN + " " + bookSN + "章" + chapterSN + "节 下载成功";
-                  loading('下载成功',content);
+                  //alert("download complete: " + entry.toURL());
+                  //Router.go('download');
+                  IonLoading.show({
+                    customTemplate: "下载成功",
+                    duration: 1000
+                  });
                 },
                 function(error) {
                   //下载失败
@@ -53,7 +71,7 @@ download = function(volumeSN, bookSN, chapterSN){
 }
 
 //全部下载
-downloads = function(volumeSN, bookSN, chapterSN, i){
+downloads = function(volumeSN, bookSN, chapterSN, i, urls){
   var uri = encodeURI("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/cuv/" + volumeSN + "第" +chapterSN+ "章.mp3");
 
           //将要存储到本地的路径
@@ -73,7 +91,12 @@ downloads = function(volumeSN, bookSN, chapterSN, i){
                   //弹出下载路径
                   if(i == Session.get('selectedChapterCount') - 1)
                   {
-                    loading('下载成功',"全部下载完成");
+
+                    IonLoading.show({
+                      customTemplate: "全部下载完成",
+                      duration: 1000
+                    });
+                    Router.go(urls);
                   }
                 },
                 function(error) {
@@ -85,7 +108,7 @@ downloads = function(volumeSN, bookSN, chapterSN, i){
                 },
                 false
                 );
-        }
+}
 
 //自动下载功能
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
@@ -116,6 +139,9 @@ automaticDownload = function(volumeSN, bookSN, chapterSN){
   },
   function(error) {
     Session.set("VoiceFile-" + bookSN + "-" + chapterSN,false);
+    },
+    function(error) {
+      Session.set("VoiceFile-" + bookSN + "-" + chapterSN,false);
     //下载失败
     console.log("download error source " + error.source);
     console.log("download error target " + error.target);
