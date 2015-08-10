@@ -50,14 +50,14 @@
  {bookID:47,bookName:'哥林多后书',charpterCount:'13'},
  {bookID:48,bookName:'加拉太书',charpterCount:'6'},
  {bookID:49,bookName:'以弗所书',charpterCount:'6'},
- {bookID:50,bookName:'腓立比书',charpterCount:'4'},
+ {bookID:50,bookName:'腌立比书',charpterCount:'4'},
  {bookID:51,bookName:'歌罗西书',charpterCount:'4'},
  {bookID:52,bookName:'帖撒罗尼迦前书',charpterCount:'5'},
  {bookID:53,bookName:'帖撒罗尼迦后书',charpterCount:'3'},
  {bookID:54,bookName:'提摩太前书',charpterCount:'6'},
  {bookID:55,bookName:'提摩太后书',charpterCount:'4'},
  {bookID:56,bookName:'提多书',charpterCount:'3'},
- {bookID:57,bookName:'腓利门书',charpterCount:'1'},
+ {bookID:57,bookName:'腌利门书',charpterCount:'1'},
  {bookID:58,bookName:'希伯来书',charpterCount:'13'},
  {bookID:59,bookName:'雅各书',charpterCount:'5'},
  {bookID:60,bookName:'彼得前书',charpterCount:'5'},
@@ -69,12 +69,12 @@
  {bookID:66,bookName:'启示录',charpterCount:'22'}
  ];
 //一进来就开始运行
-Template.download.rendered = function () {
+Template.downloads.rendered = function () {
 
     initFileSystem();
 };      
 
-Template.download.helpers({
+Template.downloads.helpers({
     booksList: function () {
         return Session.get('booksList');
     },
@@ -118,7 +118,7 @@ Template.download.helpers({
     // }
 });
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号
-Template.download.events({
+Template.downloads.events({
     'click .pull-left': function () {
         Router.go('menu');
     },
@@ -145,7 +145,7 @@ Template.download.events({
                 console.log('Confirmed');
             //alert("选择了是");
             for(var i = 0; i < arrOld.length; i++)
-            {   
+            {
             // arrOld[i].charpterCount 总章
             for(var j = 0; j <arrOld[i].charpterCount; j++)
             {
@@ -174,7 +174,7 @@ Template.download.events({
                 console.log('Confirmed');
             //alert("选择了是");
             for(var i = 0; i < arrNew.length; i++)
-            { 
+            {
             // arrOld[i].charpterCount 总章
             for(var j = 0; j <arrNew[i].charpterCount; j++)
             {
@@ -201,16 +201,12 @@ Template.download.events({
             cancelText:"取消",   
             onOk: function() {
                 console.log('Confirmed');
-                IonLoading.show({
-                    customTemplate: "正在下载" + Session.get('downloadBookName') + "全部章节",
-                    duration: 1000
-                });
             //alert("选择了是");
             for(var i = 0;i<Session.get('selectedChapterCount');i++)
             {
                 var chapterSN = i + 1;
                 //alert(Session.get('selectedBookName') + "-" + Session.get('selectedBook') + "-" + chapterSN);
-                downloads(Session.get('selectedBookName'), Session.get('selectedBook'), chapterSN, i, 'downloads');
+                downloads(Session.get('selectedBookName'), Session.get('selectedBook'), chapterSN, i, 'download');
 
             };
         },
@@ -254,7 +250,7 @@ Template.download.events({
                 customTemplate: "<p>已删除 " + Session.get('downloadBookName') + " 全部语音</p>",
                 duration: 500
             });
-            Router.go('downloads');
+            Router.go('download');
             //alert("已删除" + Session.get('downloadBookName') + "全部语音!")
         },
         onCancel: function() {

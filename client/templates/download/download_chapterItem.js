@@ -27,11 +27,27 @@ Template.download_chapterItem.events({
 
  //        setSetting(Session.get('currentBook'), Session.get('currentChapter'));
  //    },
-    'click button[data-play]':function(){
-    	download(Session.get('currentBookName'), Session.get('selectedBook'), this.chapterSN);
-    },
-    'click .lookup':function (){
-    	//
-    	alert(Session.get('selectedBook') + "-" + this.chapterSN);
-    }
+ 'click button[data-play]':function(){
+ 	if(Session.get("book" + Session.get('currentBook') + "-" + this.chapterSN) == true)
+ 	{
+ 		IonLoading.show({
+ 			customTemplate: "本章语音已经下载！",
+ 			duration: 1000
+ 		});
+ 	}
+ 	else
+ 	{
+ 		IonLoading.show({
+ 			customTemplate: "正在下载" + Session.get('currentBookName') + "第" + this.chapterSN + "章",
+ 			duration: 1000
+ 		});
+ 		download(Session.get('currentBookName'), Session.get('selectedBook'), this.chapterSN);
+ 	}
+
+ },
+ // 'click .lookup':function (){
+ //    	//alert(Session.get('selectedBook') + "-" + this.chapterSN);
+ //    	alert(isDownload);
+ //    	alert("1");
+ //    }
 });
