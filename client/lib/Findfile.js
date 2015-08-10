@@ -17,21 +17,6 @@ findfile = function(bookSN, chapterSN){
     Session.set("book" + Session.get('currentBook') + "-" + chapterSN, false); 
   };
 }
-
-            // Called upon successful File System resolution
-            function resFSSuccess(entry){
-                //书卷名
-                var bookstr = Session.get('currentBook')
-                //当前章 = chapterSN
-                Session.set("book" + bookstr + "-" + chapterSN, true);
-                //alert(Session.get("book" + Session.get('currentBook') + "-" + chapterSN));
-              }
-            // Note File System failure
-            function resFSError(error){
-            //alert("resFSError code: " + JSON.stringify(error));
-            Session.set("book" + Session.get('currentBook') + "-" + chapterSN, false); 
-          };
-        }
 //下载功能
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
 download = function(volumeSN, bookSN, chapterSN){
@@ -68,7 +53,7 @@ download = function(volumeSN, bookSN, chapterSN){
                 },
                 false
                 );
-}
+        }
 
 //全部下载
 downloads = function(volumeSN, bookSN, chapterSN, i, urls){
@@ -108,7 +93,7 @@ downloads = function(volumeSN, bookSN, chapterSN, i, urls){
                 },
                 false
                 );
-}
+        }
 
 //自动下载功能
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
@@ -119,7 +104,7 @@ automaticDownload = function(volumeSN, bookSN, chapterSN){
   //不支持中文目录和文件名
   var fileURL = cordova.file.applicationStorageDirectory + "Documents/voice/"+ bookSN +"-"+ chapterSN +".mp3";
   if (fileTransferObj != null){
-        fileTransferObj.abort();
+    fileTransferObj.abort();
   }
   //实例化文件传输对象
   fileTransferObj = new FileTransfer();
@@ -136,9 +121,9 @@ automaticDownload = function(volumeSN, bookSN, chapterSN){
       abcGlobal.media.playAudio();
       var content = volumeSN + " " + bookSN + "章" + chapterSN + "节 下载成功";
       loading('下载成功',content);
-  },
-  function(error) {
-    Session.set("VoiceFile-" + bookSN + "-" + chapterSN,false);
+    },
+    function(error) {
+      Session.set("VoiceFile-" + bookSN + "-" + chapterSN,false);
     },
     function(error) {
       Session.set("VoiceFile-" + bookSN + "-" + chapterSN,false);
