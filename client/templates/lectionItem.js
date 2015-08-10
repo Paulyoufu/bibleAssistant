@@ -2,8 +2,6 @@ Session.setDefault("currCharpter",1);
 Session.setDefault("currBookName","");
 Session.setDefault("currSection",1);
 Session.setDefault("currLection",null);
-
-
 Template.lectionItem.events({
     'click .item': function () {
         Session.set("currSection",this.sectionSN);
@@ -36,8 +34,9 @@ Template.lectionItem.events({
                     inputType: 'text',
                     inputPlaceholder: '书签名称不能超过6个字符',
                     onOk: function() {
-                        if($("input[name='prompt']").val()!="" || $("input[name='prompt']").val().length<7)
-                        {
+                        if($("input[name='prompt']").val().length<7 || $("input[name='prompt']").val()=="")
+                        { var search=$("input[name='prompt']").val();
+                            if( $("input[name='prompt']").val()==""){ search="空";}
                             var d=new Date();
                             var day=d.getDate();
                             var month=d.getMonth() + 1;
@@ -47,12 +46,13 @@ Template.lectionItem.events({
                            var currbook=Session.get('currentBook');
                             var currchapter=Session.get("currentChapter");
                             var currchapterCount=Session.get('currentChapterCount');
-                            setBookMarks(booknames,$("input[name='prompt']").val(),timer,currbook,currchapter,currchapterCount);
+                            setBookMarks(booknames,search,timer,currbook,currchapter,currchapterCount);
                             getBookMarks("*");
                         }
                         else
                         {
                             $("input[name='prompt']").focus();
+                            loading("提示信息","书签名称超过了6个字符！")
                         }
                     },
                     onCancel: function() {
