@@ -20,6 +20,10 @@ findfile = function(bookSN, chapterSN){
 //下载功能
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
 download = function(volumeSN, bookSN, chapterSN){
+  IonLoading.show({
+      customTemplate: "正在下载" + volumeSN + " 第" + bookSN + "章 : " + chapterSN + "节",
+      duration: 1000
+  });
   var uri = encodeURI("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/cuv/" + volumeSN + "第" +chapterSN+ "章.mp3");
 
           //将要存储到本地的路径
@@ -52,7 +56,7 @@ download = function(volumeSN, bookSN, chapterSN){
         }
 
 //全部下载
-downloads = function(volumeSN, bookSN, chapterSN, i){
+downloads = function(volumeSN, bookSN, chapterSN, i, urls){
   var uri = encodeURI("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/cuv/" + volumeSN + "第" +chapterSN+ "章.mp3");
 
           //将要存储到本地的路径
@@ -72,7 +76,12 @@ downloads = function(volumeSN, bookSN, chapterSN, i){
                   //弹出下载路径
                   if(i == Session.get('selectedChapterCount') - 1)
                   {
-                    loading('下载成功',"全部下载完成");
+
+                    IonLoading.show({
+                      customTemplate: "全部下载完成",
+                      duration: 1000
+                    });
+                    Router.go(urls);
                   }
                 },
                 function(error) {
@@ -84,18 +93,21 @@ downloads = function(volumeSN, bookSN, chapterSN, i){
                 },
                 false
                 );
-        }
+}
 
 //自动下载功能
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
 automaticDownload = function(volumeSN, bookSN, chapterSN){
+  IonLoading.show({
+      customTemplate: "正在下载" + volumeSN + " 第" + bookSN + "章 : " + chapterSN + "节",
+      duration: 1000
+  });
   var uri = encodeURI("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/cuv/" + volumeSN + "第" +chapterSN+ "章.mp3");
   //将要存储到本地的路径
   //可以自己定义文件夹，本示例中使用了voice子目录
   //不支持中文目录和文件名
   var fileURL = cordova.file.applicationStorageDirectory + "Documents/voice/"+ bookSN +"-"+ chapterSN +".mp3";
   if (fileTransferObj != null){
-    alert("停止之前的工作");
     fileTransferObj.abort();
   }
   //实例化文件传输对象

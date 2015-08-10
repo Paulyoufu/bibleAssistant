@@ -37,10 +37,6 @@ Template.download_chapterItem.events({
  	}
  	else
  	{
- 		IonLoading.show({
- 			customTemplate: "正在下载" + Session.get('currentBookName') + "第" + this.chapterSN + "章",
- 			duration: 1000
- 		});
  		download(Session.get('currentBookName'), Session.get('selectedBook'), this.chapterSN);
  	}
 
