@@ -67,7 +67,7 @@ Template.main.events({
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
 			
-			abcGlobal.media.playAudio();
+			findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
 		}
         // 记录本次读经位置
 		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
@@ -81,7 +81,7 @@ Template.main.events({
 		//播放
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
-			abcGlobal.media.playAudio();
+			findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
 		}
         // 记录本次读经位置
 		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
@@ -96,7 +96,7 @@ Template.main.events({
 		//播放
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
-			abcGlobal.media.playAudio();
+			findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
 		}
         // 记录本次读经位置
 		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
@@ -110,7 +110,7 @@ Template.main.events({
         lastChapter();//下一章
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
-			abcGlobal.media.playAudio();
+			findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
 		}
         // 记录本次读经位置
 		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
@@ -119,7 +119,7 @@ Template.main.events({
 		//播放
 		Session.set('isPlaying', ! Session.get('isPlaying'));
 		if(Session.get('isPlaying')){
-			abcGlobal.media.playAudio();
+  			findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
 		}else{
 			abcGlobal.media.pauseAudio();
 		}
@@ -131,7 +131,7 @@ Template.main.events({
 		//播放
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
-			abcGlobal.media.playAudio();
+			findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
 		}
         // 记录本次读经位置
 		setSetting(Session.get('currentBook'), Session.get('currentChapter'));
@@ -144,7 +144,7 @@ Template.main.events({
 
 		abcGlobal.media.initAudio();
 		if(Session.get('isPlaying')){
-			abcGlobal.media.playAudio();
+			findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
 		}
         // 记录本次读经位置
 		setSetting(Session.get('currentBook'), Session.get('currentChapter'));

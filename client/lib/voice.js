@@ -27,8 +27,6 @@ abcGlobal.media.initAudio = function(){
 
 //播放
 abcGlobal.media.playAudio = function(){
-  // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号 
-  findVoiceFile(Session.get('currentBook'),Session.get('currentChapter'));
   //判断文件是否存在
   if(Session.get("VoiceFile-" + Session.get('currentBook') + "-" + Session.get('currentChapter'))==true){
     myMedia.play();
@@ -55,7 +53,9 @@ abcGlobal.media.playAudio = function(){
       });
       //----------------------------
     }
+
   }
+
 }
 
  //暂停
