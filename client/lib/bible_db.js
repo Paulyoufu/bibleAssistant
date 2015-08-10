@@ -116,6 +116,7 @@ getBooksList = function (newOrOld) {
     });
 }
 SearchGetLection = function (searchType,searchStr) {
+    $("#messbox").hide();
     db.transaction(function(tx) {
         var strSQL ="select Lection,ChapterSN,VerseSN,VolumeSN from Bible  where";
         var currBookIndex=Session.get("currBookIndex");
