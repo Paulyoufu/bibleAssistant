@@ -381,8 +381,13 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
             }
             Session.set('sessBookMark',arrBookMark);
             console.log(arrBookMark.length+"----------id-----------------");
-            if(!arrBookMark.length){$("#message").text("没有相关的书签");}
-            else{$("#message").text("");}
+            if(!arrBookMark.length){
+                $("#message").show();
+                $("#message").text("没有相关的书签");
+            }
+            else{
+                $("#message").text("");
+                $("#message").hide();}
         }, function(e) {
             console.log("ERROR: setSetting " + e.message);
         });
