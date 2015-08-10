@@ -23,9 +23,8 @@ Template.bookMarks.events({
     },"click #delall": function(){
         Session.set("time",this.objbookmarkTime);
         var timer=Session.get("time");
-        $("input[name='key']:checked").each(function(){arrsum.push($(this).val());
-            console.log("arrsum="+arrsum);
-            console.log("this="+$(this).val());
+        $("input[name='key']:checked").each(function(){
+            arrsum.push($(this).val());
         });
        if(arrsum.length)
        { delBookMarks(arrsum);}
