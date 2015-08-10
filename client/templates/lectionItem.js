@@ -52,7 +52,10 @@ Template.lectionItem.events({
                         else
                         {
                             $("input[name='prompt']").focus();
-                            loading("提示信息","书签名称超过了6个字符！")
+                            IonLoading.show({
+                                customTemplate: '<h4>提示信息</h4><p style="font-size:20px;">书签名称超过了6个字符！</p>',
+                                duration: 2000
+                            });
                         }
                     },
                     onCancel: function() {

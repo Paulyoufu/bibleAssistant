@@ -381,7 +381,7 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
             }
             Session.set('sessBookMark',arrBookMark);
             console.log(arrBookMark.length+"----------id-----------------");
-            if(!arrBookMark.length){$("#message").text("没有数据！！！");}
+            if(!arrBookMark.length){$("#message").text("没有相关的书签");}
             else{$("#message").text("");}
         }, function(e) {
             console.log("ERROR: setSetting " + e.message);
