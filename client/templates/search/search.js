@@ -37,6 +37,7 @@ Template.search.events({
         // $("#divsearch .item").empty();
         Router.go('menu');
         Session.set("keyWordBlog",1);
+        getLection(arrcurrentBook,arrcurrentChapter,arrcurrSection);
     },
     'click #btnSearchScript': function(event, template){
         IonLoading.show({
