@@ -30,3 +30,4 @@ BibleScrollTop=function(){Session.set("index",1);
 CharpterScrollTop=function(){
     $("#charpterList").scrollTop($("div div:eq(0)").position().top);
 }
+

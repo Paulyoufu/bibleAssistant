@@ -137,6 +137,7 @@ Template.main.events({
 
 	},'click button[data-skipforward]': function () {
 		//下一章
+        console.log(browser.versions.iPhone);
         BibleScrollTop();
 		nextChapter();//播放
         Session.set("keyWordBlog",2);
