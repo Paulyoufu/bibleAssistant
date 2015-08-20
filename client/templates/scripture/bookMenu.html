@@ -8,13 +8,15 @@
 {{#contentFor "headerButtonRight"}}
     <button id="btnVoice" class="button button-clear pull-right"> 语音</button>
 {{/contentFor}}
-            <div class="bar bar-header" style="background-color:black;height:112px">
-               <div style="height:20px;margin-left:90px;border-style:none;">  <h4  style="color:white;text-align:center;border-style:none;" >书卷选择</h4> </div>
-                <div class="tabs" style="border-style:none;margin-left:-167px">
-                    <a class="tab-item chooseOrAndNew " id="old" style="border-style:none;">旧约 </a>
-                    <a class="tab-item chooseOrAndNewDefault " id="new" style="border-style:none;">新约</a>
-                </div>
-            </div>
+  
+    <div class="bar bar-header" style="background-color:black;height:112px">
+        <div style="height:20px;margin-left:90px;border-style:none;">  <h4  style="color:white;text-align:center;border-style:none;" >书卷选择</h4> </div>
+        <div class="tabs" style="border-style:none;margin-left:-167px">
+            <a class="tab-item chooseOrAndNew " id="old" style="border-style:none;font-size:20px;color:blue">旧约 </a>
+            <a class="tab-item chooseOrAndNewDefault " id="new" style="border-style:none;font-size:20px;color:blue">新约</a>
+        </div>
+    </div>
+
     {{#ionView}}
         {{#ionContent}}
             <div id="divBookLists" class="list" style="margin-top:50px;height:100%;overflow-y:scroll;overflow-x:hidden;"> {{#each postBookName}}{{> bookItem}} {{/each}} </div>
