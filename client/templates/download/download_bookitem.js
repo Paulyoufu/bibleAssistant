@@ -8,8 +8,6 @@ Template.download_bookItem.events({
 		//动态显示书卷
 		Session.set('downloadBookName', this.fullName);
 		Session.set('selectedBookName', this.fullName);
-		//alert(Session.get('selectedBook'));
-		//Router.go('chaptersMenu');
 	},
 	'click #form1': function () {
 		var radio = document.getElementsByName("form1");
@@ -19,7 +17,6 @@ Template.download_bookItem.events({
 			if(radio[i].checked)
 			{
 				var radioValue = radio[i].value;
-				alert(radioValue);
 			}
 		}
 	}

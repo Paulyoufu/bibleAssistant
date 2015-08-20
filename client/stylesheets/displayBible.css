@@ -43,3 +43,10 @@ li{background-color:#F3F3F3;}
 }
 .content.overflow-scroll { bottom: 0px !important; }
 .popup{margin-top:-210px !important;}
+
+.Messloading{position:absolute;opacity:0.8;z-index:99;left:0;top:0;width:100%;height:100%;display:none;}
+.MessloadingContent{background-color:black;color:white;left:10%;top:35%;width:80%;height:22%;
+                   border-radius:5px;font-size:20px;}
+.center{line-height:80px; text-align:center;}
+.centerTwoLine{line-height:35px;}
+.centerThreeLine{line-height:25px;}

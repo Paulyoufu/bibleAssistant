@@ -4,8 +4,6 @@
 Session.setDefault('sectionIndex', null);        //当前播放的section索引
 Session.setDefault("sumSectionHeight",0);
 Session.setDefault("scrollPosition",0);
-//Session.setDefault("shortName","创");
-//Session.setDefault("FullName","创世记");
 BibleScroll=function(sectionIndex){
 
 	if(sectionIndex == Session.get('sectionIndex')){//scrollPosition=0;
@@ -28,10 +26,6 @@ BibleScroll=function(sectionIndex){
         }
 }
 BibleScrollTop=function(){Session.set("index",1);
-  //  $("#divBible").scrollTop(60);
-   // $("#divBible").scrollTop($("div p:eq(1)").position().top);
-  //  Session.set("sumSectionHeight",0);
-   // Session.set("scrollPosition",0);
 }
 CharpterScrollTop=function(){
     $("#charpterList").scrollTop($("div div:eq(0)").position().top);

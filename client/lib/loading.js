@@ -1,6 +1,3 @@
-/**
- * Created by paul on 15/8/5.
- */
 loading=function(title,content)
 {
     if(title==="" && content===""){return;}
@@ -9,4 +6,23 @@ loading=function(title,content)
     duration: 1000
 });
 
+}
+MessageLoading=function(id,message){
+
+    if(message.length<=14){
+        console.log(message.length);
+        $("#"+id+" p:eq(0)").outerHeight("22%")
+       $("#"+id+" p:eq(0)").removeClass("centerTwoLine").removeClass("centerThreeLine").addClass("center");
+    }
+    else if(message.length<=28 && message.length>=15){
+        $("#"+id+" p:eq(0)").removeClass("center").removeClass("centerThreeLine").addClass("centerTwoLine");
+        $("#"+id+" p:eq(0)").outerHeight("22%")
+    }
+    else if(message.length>=29){
+        $("#"+id+" p:eq(0)").removeClass("center").removeClass("centerTwoLine").addClass("centerThreeLine");
+        $("#"+id+" p:eq(0)").outerHeight("22%")
+    }
+    $("#"+id+" p:eq(0)").text(message);
+    $("#"+id).show();
+    setTimeout(function(){$("#"+id).hide();},3000);
 }

@@ -8,8 +8,6 @@ currDirEntry = {};
 initFileSystem = function () {
 
 	function onInitFs(filesystem) {
-		// alert('Opened file system: ' + filesystem.name);
-
 		fs = filesystem;
 		currDirEntry = fs.root;
 	}
@@ -19,7 +17,8 @@ initFileSystem = function () {
 
 //读取当前目录下文件
 readDir = function readDir(dirEntry){
-
+	
+	alert("遍历目录");
 	Session.set('currPath', dirEntry.fullPath);
 	currDirEntry = dirEntry;
 	var fileList = [];		
@@ -54,8 +53,6 @@ readDir = function readDir(dirEntry){
 		
 		Session.set('fileList', []);
 		Session.set('fileList', fileList);
-
-		//alert('读到了' + fileList.length + '个文件，第一个文件名叫' + fileList[0].fileName);
 	}
 }
 
@@ -82,6 +79,4 @@ errorHandler = function errorHandler(e) {
 		msg = 'Unknown Error';
 		break;
 	};
-
-	//alert('Error: ' + msg);
 }

@@ -107,15 +107,6 @@ Template.downloads.helpers({
     chapterCount: function() {
         return Session.get('downloadChapterCount');
     }
-    // bookName: function () {
-    //  return Session.get('currentBookName'); 
-    // },
-    // chapterSN: function () {
-    //  return Session.get('currentChapter');
-    // },
-    // selectedBookName: function () {
-    //  return Session.get('selectedBookName');
-    // }
 });
 // volumeSN 书卷名 bookSN 书卷号 chapterSN 章号
 Template.downloads.events({
@@ -143,16 +134,13 @@ Template.downloads.events({
             cancelText:"取消",   
             onOk: function() {
                 console.log('Confirmed');
-            //alert("选择了是");
             for(var i = 0; i < arrOld.length; i++)
             {
-            // arrOld[i].charpterCount 总章
             for(var j = 0; j <arrOld[i].charpterCount; j++)
             {
                 var volumeSN = arrOld[i].bookName;
                 var bookSN = arrOld[i].bookID;
                 var chapterSN = j + 1;
-                //downloads(volumeSN, bookSN, chapterSN, j);
                 alert(arrOld[i].bookName + "-" + bookSN + "-" + chapterSN);
             };  
         };
@@ -163,7 +151,6 @@ Template.downloads.events({
 });
      } 
      if(Session.get('downloadBookName') == "新约"){
-        //alert(Session.get('downloadBookName') + "-新约");
          //提示用户是否下载全部新约语音？
          IonPopup.confirm({
             title: '提示信息',
@@ -175,13 +162,11 @@ Template.downloads.events({
             //alert("选择了是");
             for(var i = 0; i < arrNew.length; i++)
             {
-            // arrOld[i].charpterCount 总章
             for(var j = 0; j <arrNew[i].charpterCount; j++)
             {
                 var volumeSN = arrNew[i].bookName; //书卷
                 var bookSN = arrNew[i].bookID;      //书卷ID
                 var chapterSN = j + 1;              //章节
-                //downloads(volumeSN, bookSN, chapterSN, j);
                 alert(arrNew[i].bookName + "-" + bookSN + "-" + chapterSN);
             }; 
         };
@@ -217,10 +202,6 @@ Template.downloads.events({
 });
     }
 },
-// //动态显示总章数
-//         Session.set('downloadChapterCount', this.chapterCount);
-//         //动态显示书卷
-//         Session.set('downloadBookName', this.fullName);
 //删除文件
 'click .allDelete': function () {
 
@@ -231,15 +212,12 @@ Template.downloads.events({
         cancelText:"取消",   
         onOk: function() {
             console.log('Confirmed');
-            //alert("选择了是");
             for(var i = 0;i<Session.get('selectedChapterCount');i++)
             {
                 var chapterSN = i + 1;
                 fs.root.getFile("voice/" + Session.get('selectedBook') + "-" + chapterSN + ".mp3", {}, function(fileEntry) {
 
                     fileEntry.remove(function() {
-            //alert('Directory removed.');
-            //alert('已删除' + Session.get('downloadBookName') + "第" + chapterSN +"章");
                 //遍历根目录 不添加这句必须点进文件夹一次才能看见效果
                 readDir(fs.root);
             }, errorHandler);
@@ -251,11 +229,9 @@ Template.downloads.events({
                 duration: 500
             });
             Router.go('download');
-            //alert("已删除" + Session.get('downloadBookName') + "全部语音!")
         },
         onCancel: function() {
             console.log('Cancelled');
-        //alert("选择了否");
     },
     
 });
