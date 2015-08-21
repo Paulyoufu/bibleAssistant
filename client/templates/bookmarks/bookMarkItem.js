@@ -20,11 +20,7 @@ Template.temBookmarkItem.events(
                         }
                         else
                         {
-                            $("input[name='prompt']").focus();
-                            IonLoading.show({
-                                customTemplate: '<h4>提示信息</h4><p style="font-size:20px;">书签名称超过了6个字符！</p>',
-                                duration: 2000
-                            });
+                            MessageLoading("BookMarkLD","书签名称超过了6个字符！");
                         }
                     },
                     onCancel: function() {
@@ -48,10 +44,7 @@ Template.temBookmarkItem.events(
                         else
                         {
                             $("input[name='prompt']").focus();
-                            IonLoading.show({
-                                customTemplate: '<h4>提示信息</h4><p style="font-size:20px;">书签名称超过了6个字符！</p>',
-                                duration: 2000
-                            });
+                            MessageLoading("BookMarkLD","书签名称超过了6个字符！");
                         }
                     },
                     onCancel: function() {

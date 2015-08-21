@@ -9,7 +9,7 @@ Template.lectionItem.events({
     },
     'click [data-action=showActionSheet]': function (event, template) {
     IonActionSheet.show({
-        titleText: Session.get('currentBookName')+" "+Session.get('currentChapter')+"章"+Session.get("currSection"),
+        titleText: Session.get('currentBookName')+" "+Session.get('currentChapter')+"章"+Session.get("currSection")+"节",
         buttons: [
             { text: '  复制经文' },
             { text: '  加入书签' },
