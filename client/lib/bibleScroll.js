@@ -25,7 +25,9 @@ BibleScroll=function(sectionIndex){
 
         }
 }
-BibleScrollTop=function(){Session.set("index",1);
+BibleScrollTop=function(){
+    Session.set("index",1);
+    $("#divBible").scrollTop($("div p:eq(0)").position().top);
 }
 CharpterScrollTop=function(){
     $("#charpterList").scrollTop($("div div:eq(0)").position().top);
