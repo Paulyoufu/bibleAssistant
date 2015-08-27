@@ -23,6 +23,10 @@
     </div>
     {{#ionView}}
         {{#ionContent}}
+            <div id="bookloading" class="Messloading list">
+                <p class="Messbookmark item item-text-wrap">
+                </p>
+            </div>
             <div id="books" class="list" style="margin-top:55px;">
                 {{#each arrBookMark}} {{> temBookmarkItem}} {{/each}}
                 <div id="message" class="item" style="display:none;margin-top:0px;width:100%;text-align: center"></div>

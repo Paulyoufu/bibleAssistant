@@ -32,9 +32,9 @@ Template.lectionItem.events({
                     template: '书签名称：',
                     okText: '确定',cancelText:"取消",
                     inputType: 'text',
-                    inputPlaceholder: '书签名称不能超过6个字符',
+                    inputPlaceholder: '书签名称不能超过16个字符',
                     onOk: function() {
-                        if($("input[name='prompt']").val().length<7 || $("input[name='prompt']").val()=="")
+                        if($("input[name='prompt']").val().length<17 || $("input[name='prompt']").val()=="")
                         { var search=$("input[name='prompt']").val();
                             if( $("input[name='prompt']").val()==""){ search="空";}
                             var d=new Date();
@@ -53,7 +53,7 @@ Template.lectionItem.events({
                         {
                             $("input[name='prompt']").focus();
                             IonLoading.show({
-                                customTemplate: '<h4>提示信息</h4><p style="font-size:20px;">书签名称超过了6个字符！</p>',
+                                customTemplate: '<h4>提示信息</h4><p style="font-size:20px;">书签名称超过了16个字符！</p>',
                                 duration: 2000
                             });
                         }

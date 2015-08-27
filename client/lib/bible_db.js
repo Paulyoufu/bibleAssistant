@@ -372,15 +372,8 @@ getBookMarks=function(searchStr){db.transaction(function(tx) {
                 objBMitem.objchapter=res.rows.item(i).chapterID;
                 objBMitem.objchapterCount=res.rows.item(i).chapterCount;
                 arrBookMark.push(objBMitem);
-                console.log("CHAPTER-----"+res.rows.item(i).chapterID);
-                console.log("chapterCount-----"+res.rows.item(i).chapterCount);
-                console.log("bookname-----"+res.rows.item(i).bookname);
-                console.log("bookmark-----"+res.rows.item(i).bookmark);
-                console.log("rowid-----"+res.rows.item(i).rowid);
-                console.log("rowid-----"+res.rows.item(i).rowid);
             }
             Session.set('sessBookMark',arrBookMark);
-            console.log(arrBookMark.length+"----------id-----------------");
             if(!arrBookMark.length){
                 $("#message").show();
                 $("#message").text("没有相关的书签");

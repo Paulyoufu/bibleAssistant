@@ -12,7 +12,9 @@ Template.temBookmarkItem.events(
                     inputType: 'text',
                     inputPlaceholder: '',
                     onOk: function() {
-                        if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<7)
+                        $("input[name='prompt']").val(this.objbookmark);
+
+                        if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<17)
                         {
                             var timer= Session.get("time");
                             var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
@@ -20,11 +22,15 @@ Template.temBookmarkItem.events(
                         }
                         else
                         {
-                            MessageLoading("BookMarkLD","书签名称超过了6个字符！");
+                            IonLoading.show({
+                                customTemplate: '<h4>提示信息</h4><p style="font-size:20px;">书签名称超过了16个字符！</p>',
+                                duration: 2000
+                            });
                         }
                     },
                     onCancel: function() {
                     }})
+                $("input[name='prompt']").val(this.objbookmark);
             }
             else
             {
@@ -34,8 +40,8 @@ Template.temBookmarkItem.events(
                     okText: '确定',cancelText:"取消",
                     inputType: 'text',
                     inputPlaceholder: '书签名称不能超过6个字符',
-                    onOk: function() {
-                        if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<7)
+                    onOk: function() { console.log(this.objbookmark+"sdkdjkskjfjdfjd");
+                        if($("input[name='prompt']").val()!="" && $("input[name='prompt']").val().length<17)
                         {
                             var timer= Session.get("time");
                             var booknames=Session.get('currentBookName')+" "+Session.get('currentChapter')+":"+Session.get("currSection");
@@ -44,13 +50,17 @@ Template.temBookmarkItem.events(
                         else
                         {
                             $("input[name='prompt']").focus();
-                            MessageLoading("BookMarkLD","书签名称超过了6个字符！");
+                            IonLoading.show({
+                                customTemplate: '<h4>提示信息</h4><p style="font-size:20px;">书签名称超过了16个字符！</p>',
+                                duration: 2000
+                            });
                         }
                     },
                     onCancel: function() {
                     }})
-            }
+                $("input[name='prompt']").val(this.objbookmark);
 
+            }
         },
         "click .item span[name='goto']": function()
         {

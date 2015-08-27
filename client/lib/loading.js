@@ -26,3 +26,16 @@ MessageLoading=function(id,message){
     $("#"+id).show();
     setTimeout(function(){$("#"+id).hide();},3000);
 }
+msLoading=function(id,message){
+
+    if(message.length<=14){
+        console.log(message.length);
+        $("#"+id+" p:eq(0)").outerHeight("22%")
+        $("#"+id+" p:eq(0)").addClass("centerbookmark");
+    }
+
+    $("#"+id+" p:eq(0)").text(message);
+    $("#"+id).show();
+    setTimeout(function(){$("#"+id).hide();},3000);
+}
+
